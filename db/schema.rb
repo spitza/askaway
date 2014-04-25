@@ -11,10 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140423225734) do
+ActiveRecord::Schema.define(version: 20140425233540) do
 
   create_table "conversations", force: true do |t|
-    t.integer  "uid"
+    t.string   "uid",        limit: nil
     t.string   "prompt"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20140423225734) do
 
   create_table "users", force: true do |t|
     t.string   "provider"
-    t.integer  "uid",        limit: 255
+    t.string   "uid",        limit: nil
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
