@@ -1,5 +1,8 @@
 Askaway::Application.routes.draw do
+  get "conversations/new"
+  resources :conversations
   root  'static_pages#home'
+  match '/create',  to: 'conversations#new',   via: 'get'
   match '/help',    to: 'static_pages#help',    via: 'get'
   match '/about',   to: 'static_pages#about',   via: 'get'
   match 'auth/twitter/callback', to: 'sessions#create', via: 'get'

@@ -5,6 +5,11 @@
     This that homepage, yo.
   </h2>
 
-  <%= link_to image_tag("sign-in-with-twitter-gray.png", alt: "Sign In"), "/auth/twitter" %>
+	<% if current_user %>
+		<%= link_to "Create a conversation!", create_path, class: "btn btn-large btn-primary" %>
+		<%= link_to "Sign Out, buddy", signout_path %>
+	<% else %>
+		<%= link_to image_tag("sign-in-with-twitter-gray.png", alt: "Sign In"), "/auth/twitter" %>
+	<% end %>
 </div>
 

@@ -11,14 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140421225358) do
+ActiveRecord::Schema.define(version: 20140423225734) do
+
+  create_table "conversations", force: true do |t|
+    t.integer  "uid"
+    t.string   "prompt"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "provider"
-    t.string   "uid"
+    t.integer  "uid",        limit: 255
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "email"
+    t.string   "fullname"
+    t.string   "avatarurl"
+    t.string   "bannerurl"
   end
 
 end
