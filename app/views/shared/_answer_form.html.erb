@@ -1,0 +1,14 @@
+	<%= form_for(@answer) do |f| %>
+	  <%= render 'shared/error_messages', object: f.object %>
+	  <% if current_user%>
+	  	<%= image_tag(current_user.avatarurl)%>
+	  <% end %>
+	</br>
+	</br>
+
+	  <div class="field">
+	    <%= f.text_area :content, placeholder: "Give an answer..." %>
+	  </div>
+	  <%= f.hidden_field :question_id, :value => @question.id %>
+	  <%= f.submit "Post", class: "btn btn-large btn-primary" %>
+	<% end %>

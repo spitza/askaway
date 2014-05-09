@@ -1,0 +1,23 @@
+<%= image_tag(@conversation.user.bannerurl)%>
+<%= image_tag(@conversation.user.avatarurl)%>
+<p><%= @conversation.prompt %></p>
+<h1>Question for <%= @conversation.user.fullname %></h1>
+</br>
+</br>
+<%= image_tag(@question.user.avatarurl)%>
+<h3><%= @question.user.fullname %></h3>
+<span class="content"><%= @question.content %></span>
+<span class="timestamp">
+	Posted <%= time_ago_in_words(@question.created_at) %> ago.
+</span>
+</br>
+</br>
+
+	<% if @question.answer %>
+		<h3>Answer:</h3>
+		<span class="answer">
+			<%= render @question.answer %>
+		</span>
+	<% else %>
+		<%= render 'shared/answer_form' %>
+	<% end %>

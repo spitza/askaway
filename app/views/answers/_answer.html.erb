@@ -1,0 +1,5 @@
+  <%= image_tag(answer.question.conversation.user.avatarurl)%>
+  <span class="content"><%= answer.content %></span>
+  <span class="timestamp">
+    Posted <%= time_ago_in_words(answer.created_at) %> ago.
+  </span>

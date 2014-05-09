@@ -1,5 +1,8 @@
 class Conversation < ActiveRecord::Base
   belongs_to :user
-  #validates :uid, presence: true
-  validates :prompt, presence: true
+  has_many :questions, dependent: :destroy
+  validates :user_id, presence: true
+  validates :prompt, presence: true, length: { maximum: 200 }
+  
+    
 end

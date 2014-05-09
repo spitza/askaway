@@ -1,2 +1,15 @@
-<% provide(:title, @conversation.uid) %>
-<h1><%= @conversation.prompt %></h1>
+<% provide(:title, @conversation.id) %>
+<%= image_tag(@conversation.user.bannerurl)%>
+<%= image_tag(@conversation.user.avatarurl)%>
+<h1><%= @conversation.user.fullname %>'s Conversation</h1>
+<p><%= @conversation.prompt %></p>
+<%= render 'shared/question_form' %>
+<div class="span8">	
+	<% if @conversation.questions.any? %>
+		<h3>Questions (<%= @conversation.questions.count %>)</h3>
+		<ol class="questions">
+			<%= render @questions %>
+		</ol>
+		<%= will_paginate @questions %>
+	<% end %>
+</div>

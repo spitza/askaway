@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_many :conversations, dependent: :destroy
+  has_many :questions, dependent: :destroy
 
   def self.from_omniauth(auth)
     where(auth.slice("provider", "uid")).first || create_from_omniauth(auth)
@@ -8,6 +9,7 @@ class User < ActiveRecord::Base
   def self.create_from_omniauth(auth)
     create! do |user|
       user.provider = auth["provider"]
+      user.id = auth["uid"]
       user.uid = auth["uid"]
       user.name = auth["info"]["nickname"]
       user.fullname = auth["info"]["name"]

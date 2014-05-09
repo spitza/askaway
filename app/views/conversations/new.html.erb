@@ -3,10 +3,11 @@
 <div class="row">
   <div class="span6 offset3">
     <%= form_for(@conversation) do |f| %>
-	<%= render 'shared/error_messages' %>
+	<%= render 'shared/error_messages', object: f.object %>
 
       <%= f.label :prompt %>
       <%= f.text_field :prompt %>
+	  <%= f.hidden_field :user_id, :value => current_user.id %>
 
       <%= f.submit "Host a Conversation", class: "btn btn-large btn-primary" %>
     <% end %>
