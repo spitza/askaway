@@ -1,6 +1,8 @@
 Askaway::Application.routes.draw do
   resources :conversations
-  resources :questions
+  resources :questions do
+    member { post :vote }
+  end
   resources :answers
   root  'static_pages#home'
   match '/create',  to: 'conversations#new',   via: 'get'

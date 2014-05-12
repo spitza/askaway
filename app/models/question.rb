@@ -5,5 +5,10 @@ class Question < ActiveRecord::Base
   validates :content, presence: true
   validates :conversation_id, presence: true
   has_one :answer, dependent: :destroy
+  has_reputation :votes, source: :user, aggregated_by: :sum
+  
+  def self.popular
+    reorder('votes desc').find_with_reputation(:votes, :all)
+  end
   
 end

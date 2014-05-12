@@ -18,6 +18,6 @@
 		<span class="answer">
 			<%= render @question.answer %>
 		</span>
-	<% else %>
+	<% elsif current_user == @conversation.user %>
 		<%= render 'shared/answer_form' %>
 	<% end %>

@@ -4,4 +4,15 @@
   <span class="timestamp">
     Posted <%= link_to time_ago_in_words(question.created_at), question %> ago.
   </span>
+</br>
+<%= pluralize question.reputation_for(:votes).to_i, "vote" %>
+	<% if current_user && !current_user.voted_for?(question) %>
+| <%= link_to "Vote", vote_question_path(question, type: "up"), method: "post" %>
+	<% end %>
+</br>
+  <span class="answer">
+  <% if question.answer %>
+  	<%= render question.answer %>
+	<% end %>
+</span>
 </li>

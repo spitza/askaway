@@ -9,7 +9,7 @@
 		<h3>Questions (<%= @conversation.questions.count %>)</h3>
 		<ol class="questions">
 			<%= render @questions %>
+			<%= will_paginate @questions %>
 		</ol>
-		<%= will_paginate @questions %>
 	<% end %>
 </div>

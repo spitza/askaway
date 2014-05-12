@@ -3,6 +3,4 @@ class Conversation < ActiveRecord::Base
   has_many :questions, dependent: :destroy
   validates :user_id, presence: true
   validates :prompt, presence: true, length: { maximum: 200 }
-  
-    
 end

@@ -6,7 +6,9 @@ class ConversationsController < ApplicationController
 
   def show
     @conversation = Conversation.find(params[:id])
-    @questions = @conversation.questions.paginate(page: params[:page])
+    #@questions = @conversation.questions.paginate(page: params[:page])
+    #@questions = @conversation.questions.find_with_reputation(:votes, :all, order: 'votes desc')
+    @questions = @conversation.questions.paginate(page: params[:page]).popular
     @question = @conversation.questions.build
   end
 
