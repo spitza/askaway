@@ -1,9 +1,10 @@
 class AnswersController < ApplicationController
   before_action :current_user, only: [:create]
   
+  # currently if you're not logged in and try to create an answer, I just redirect back.
+  
   def create
     if current_user
-      #@question = Question.find(params[:id])
       @answer = Answer.new(answer_params)
       if @answer.save
         redirect_to :back

@@ -1,14 +1,15 @@
 class ConversationsController < ApplicationController
   before_action :current_user, only: [:new, :create]
+  
   def new
     @conversation = Conversation.new
   end
 
   def show
     @conversation = Conversation.find(params[:id])
-    #@questions = @conversation.questions.paginate(page: params[:page])
-    #@questions = @conversation.questions.find_with_reputation(:votes, :all, order: 'votes desc')
+    #taking the conversations questions, paginating them, sorting by most votes
     @questions = @conversation.questions.paginate(page: params[:page]).popular
+    #for the form
     @question = @conversation.questions.build
   end
 

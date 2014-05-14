@@ -2,6 +2,7 @@ class QuestionsController < ApplicationController
   before_action :current_user, only: [:create]
   
   def create
+    #currently if you're not logged in and try to ask a q, i just redirect.  fixing this.
     if current_user
       @question = current_user.questions.build(question_params)
       if @question.save
@@ -14,12 +15,14 @@ class QuestionsController < ApplicationController
     end
   end
 
+  #will add this
   def destroy
   end
   
   def show
     @question = Question.find(params[:id])
     @conversation = @question.conversation
+    #for the answer form
     @answer = Answer.new
   end 
   

@@ -3,10 +3,14 @@ class User < ActiveRecord::Base
   has_many :questions, dependent: :destroy
   has_many :evaluations, class_name: "ReputationSystem::Evaluation", as: :source
 
+  #checking to see if the user already exists
+  
   def self.from_omniauth(auth)
     where(auth.slice("provider", "uid")).first || create_from_omniauth(auth)
   end
 
+  #creating a new one from the omniauth hash
+  
   def self.create_from_omniauth(auth)
     create! do |user|
       user.provider = auth["provider"]
@@ -19,9 +23,14 @@ class User < ActiveRecord::Base
     end
   end
   
+  #logic to disallow a user from voting twice
+  
   def voted_for?(question)
     evaluations.exists?(target_type: question.class, target_id: question.id)
   end
+  
+  
+  # not using this portrait method yet.  Will implement this later.
   
   def portrait(size)
 

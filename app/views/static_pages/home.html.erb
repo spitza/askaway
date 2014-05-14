@@ -8,8 +8,10 @@
 	<% if current_user %>
     Signed in as <%= current_user.name %>
 		<%= link_to "Create a conversation!", create_path, class: "btn btn-large btn-primary" %>
-		<%= link_to "Sign Out, buddy", signout_path %>
 	<% else %>
-		<%= link_to image_tag("sign-in-with-twitter-gray.png", alt: "Sign In"), "/auth/twitter" %>
+		<%= link_to image_tag("sign-in-with-twitter-gray.png", alt: "Sign In"), "/auth/twitter?origin=#{request.original_url}" %>
 	<% end %>
+
 </div>
+
+
