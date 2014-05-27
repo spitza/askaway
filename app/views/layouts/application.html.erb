@@ -1,17 +1,61 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <title><%= full_title(yield(:title)) %></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%= stylesheet_link_tag "application", media: "all",
                                            "data-turbolinks-track" => true %>
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
     <%= csrf_meta_tags %>
     <%= render 'layouts/shim' %>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.4.2/pure-min.css">
+	
+	<style>
+	/*
+	When setting the primary font stack, apply it to the Pure grid units along
+	with `html`, `button`, `input`, `select`, and `textarea`. Pure Grids use
+	specific font stacks to ensure the greatest OS/browser compatibility.
+	*/
+	html, button, input, select, textarea,
+	.pure-g [class *= "pure-u"],
+	.pure-g-r [class *= "pure-u"] {
+	    /* Set your content font stack here: */
+	    font-family: 'Open Sans', sans-serif;
+	}
+	</style>
   </head>
   <body>
-    <%= render 'layouts/header' %>
-    <div class="container">
-      <%= yield %>
+	<div id="layout">
+	    <!-- Menu toggle -->
+	    <a href="#menu" id="menuLink" class="menu-link">
+	        <!-- Hamburger icon -->
+	        <span></span>
+	    </a>
+
+	    <div id="menu">
+	        <div class="pure-menu pure-menu-open">
+	            <a class="pure-menu-heading" href="#">Askaway</a>
+
+	            <ul>
+		            <li><%= link_to "Home", root_path %></li>
+		            <li><%= link_to "Help", help_path %></li>
+          
+		  		  <li>
+		  			<% if current_user %>
+		  			  	<%= link_to "Sign Out", signout_path %>
+		  			<% else %>
+		  				<%= link_to "Sign In", "/auth/twitter?origin=#{request.original_url}" %>
+		  			<% end %>
+		  			</li>
+	            </ul>
+	        </div>
+	    </div>
+
+	    <div id="main">
+      	  <%= yield %>
+		</div>
     </div>
+	
   </body>
 </html>

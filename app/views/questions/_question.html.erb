@@ -1,18 +1,35 @@
 <li>
-  <%= image_tag(question.user.avatarurl)%>
-  <span class="content"><%= question.content %></span>
-  <span class="timestamp">
-    Posted <%= link_to time_ago_in_words(question.created_at), question %> ago.
-  </span>
-</br>
-<%= pluralize question.reputation_for(:votes).to_i, "vote" %>
-	<% if current_user && !current_user.voted_for?(question) %>
-| <%= link_to "Vote", vote_question_path(question, type: "up"), method: "post" %>
-	<% end %>
-</br>
-  <span class="answer">
-  <% if question.answer %>
-  	<%= render question.answer %>
-	<% end %>
-</span>
+	<div class="pure-g">
+		<div class="pure-u-1-8 vote-column">
+			<% if current_user && !current_user.user_has_upvoted?(question) %>
+				<%= button_to vote_question_path(question, type: "up"), method: "post", class:"btn btn-primary vote-button" do %>
+					<%= image_tag("voteup.png", class:"vote-icon") %>
+					<%= question.reputation_for(:votes).to_i %>
+				<% end %>
+			<% elsif current_user && current_user.user_has_upvoted?(question) %>
+				<%= button_to vote_question_path(question, type: "down"), method: "post", class:"btn btn-primary pressed vote-button" do %>
+					<span class="glyphicon glyphicon-ok"></span>
+					<br>
+					<%= question.reputation_for(:votes).to_i %>
+				<% end %>
+			<% elsif !current_user %>
+				<%= button_to "#", class:"btn btn-primary vote-button" do %>
+					<%= image_tag("voteup.png", class:"vote-icon") %>
+					<%= question.reputation_for(:votes).to_i %>
+				<% end %>
+			<% end %>
+		</div>
+		<div class="pure-u-7-8 q-a-column">
+			<%= image_tag(question.user.portrait("normal"), class:"img-circle", display: "inline")%>
+			<p class="q-a-metadata">
+				<%= question.user.fullname %> | <span class="timestamp"> Asked <%= link_to time_ago_in_words(question.created_at), question %> ago. </span>
+			</p>
+			<div class = "q-and-a-content">
+				<%= question.content %>
+			</div>
+			<% if question.answer %>
+				<%= render question.answer %>
+			<% end %>
+		</div>
+	</div>
 </li>

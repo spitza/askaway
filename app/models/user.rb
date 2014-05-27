@@ -18,39 +18,36 @@ class User < ActiveRecord::Base
       user.uid = auth["uid"]
       user.name = auth["info"]["nickname"]
       user.fullname = auth["info"]["name"]
-      user.avatarurl = auth["info"]["image"].sub("normal", "bigger")
+      user.avatarurl = auth["info"]["image"].sub("normal", "")
       user.bannerurl = auth["extra"]["raw_info"]["profile_banner_url"]
     end
   end
   
-  #logic to disallow a user from voting twice
+  #logic to check to see if a user has voted already.
   
-  def voted_for?(question)
-    evaluations.exists?(target_type: question.class, target_id: question.id)
+  def user_has_upvoted?(question)
+    evaluations.where(target_type: question.class, target_id: question.id, value: "1").present?
   end
-  
-  
-  # not using this portrait method yet.  Will implement this later.
   
   def portrait(size)
 
       # Twitter
-      # mini (24x24)                                                                  
+      # mini (24x24)                                                            
       # normal (48x48)                                            
       # bigger (73x73)                                                
       # original (variable width x variable height)
 
-      if self.image.include? "twimg"
+      if self.avatarurl.include? "twimg"
 
           # determine filetype        
           case 
-          when self.image.downcase.include?(".jpeg")
+          when self.avatarurl.downcase.include?(".jpeg")
               filetype = ".jpeg"
-          when self.image.downcase.include?(".jpg")
+          when self.avatarurl.downcase.include?(".jpg")
               filetype = ".jpg"
-          when self.image.downcase.include?(".gif")
+          when self.avatarurl.downcase.include?(".gif")
               filetype = ".gif"
-          when self.image.downcase.include?(".png")
+          when self.avatarurl.downcase.include?(".png")
               filetype = ".png"
           else
               raise "Unable to read filetype of Twitter image for User ##{self.id}"
@@ -58,9 +55,9 @@ class User < ActiveRecord::Base
 
           # return requested size
           if size == "original"
-              return self.image
+              return self.avatarurl
           else
-              return self.image.gsub(filetype, "_#{size}#{filetype}")
+              return self.avatarurl.gsub(filetype, "_#{size}#{filetype}")
           end
 
       end

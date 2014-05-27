@@ -1,15 +1,18 @@
 <% provide(:title, @conversation.id) %>
-<%= image_tag(@conversation.user.bannerurl)%>
-<%= image_tag(@conversation.user.avatarurl)%>
-<h1><%= @conversation.user.fullname %>'s Conversation</h1>
-<p><%= @conversation.prompt %></p>
-<%= render 'shared/question_form' %>
-<div class="span8">	
+<%= image_tag(@conversation.user.bannerurl, class: "header_img") %>
+<div class="content">
+	<div class = "small-screen-space pure-hidden-tablet pure-hidden-desktop">&nbsp;</div>
+	<h1 class = "full_name"><%= @conversation.user.fullname %></h1>
+	<h3 class = "twitter-handle"><%= link_to "@#{@conversation.user.name}", "http://www.twitter.com/#{@conversation.user.name}", target: "_blank", class:"twitter-handle-link" %></h3>
+	<%= image_tag(@conversation.user.portrait("original"), class:"img-circle prof-pic pure-hidden-phone")%>
+	<%= image_tag(@conversation.user.portrait("bigger"), class:"img-circle smaller-prof-pic pure-hidden-tablet pure-hidden-desktop")%>
+	<h2 class="prompt"><%= @conversation.prompt %></h2>
+	<%= render 'shared/question_form' %>
 	<% if @conversation.questions.any? %>
-		<h3>Questions (<%= @conversation.questions.count %>)</h3>
-		<ol class="questions">
-			<%= render @questions %>
-			<%= will_paginate @questions %>
-		</ol>
+		<h2 class="center"><%= @conversation.questions.count %> Questions</h2>
 	<% end %>
+	<ol class="questions">
+		<%= render @questions %>
+		<%= will_paginate @questions %>
+	</ol>
 </div>

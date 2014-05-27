@@ -1,61 +1,162 @@
 @import "bootstrap";
 
-/* mixins, variables, etc. */
+/* pure layout stuff */
 
-$grayMediumLight: #eaeaea;
-
-/* universal */
-
-html {
-  overflow-y: scroll;
+.pure-img-responsive {
+    max-width: 100%;
+    height: auto;
 }
 
-body {
-  padding-top: 60px;
+#layout,
+#menu,
+.menu-link {
+    -webkit-transition: all 0.2s ease-out;
+    -moz-transition: all 0.2s ease-out;
+    -ms-transition: all 0.2s ease-out;
+    -o-transition: all 0.2s ease-out;
+    transition: all 0.2s ease-out;
 }
 
-section {
-  overflow: auto;
+#layout {
+    position: relative;
+    padding-left: 0;
+	font-family: 'Open Sans', sans-serif;
 }
+    #layout.active {
+        position: relative;
+        left: 150px;
+    }
+        #layout.active #menu {
+            left: 150px;
+            width: 150px;
+        }
 
-textarea {
-  resize: vertical;
-}
+        #layout.active .menu-link {
+            left: 150px;
+        }
+		
 
-.center {
-  text-align: center;
-  h1 {
-    margin-bottom: 10px;
-  }
-}
+		#menu {
+		    margin-left: -150px; /* "#menu" width */
+		    width: 150px;
+		    position: fixed;
+		    top: 0;
+		    left: 0;
+		    bottom: 0;
+		    z-index: 1000; /* so the menu or its navicon stays above all content */
+		    background: #191818;
+		    overflow-y: auto;
+		    -webkit-overflow-scrolling: touch;
+		}
+		    /*
+		    All anchors inside the menu should be styled like this.
+		    */
+		    #menu a {
+		        color: #999;
+		        border: none;
+		        padding: 0.6em 0 0.6em 0.6em;
+		    }
 
-/* typography */
+		    /*
+		    Remove all background/borders, since we are applying them to #menu.
+		    */
+		     #menu .pure-menu,
+		     #menu .pure-menu ul {
+		        border: none;
+		        background: transparent;
+		    }
 
-h1, h2, h3, h4, h5, h6 {
-  line-height: 1;
-}
+		    /*
+		    Add that light border to separate items into groups.
+		    */
+		    #menu .pure-menu ul,
+		    #menu .pure-menu .menu-item-divided {
+		        border-top: 1px solid #333;
+		    }
+		        /*
+		        Change color of the anchor links on hover/focus.
+		        */
+		        #menu .pure-menu li a:hover,
+		        #menu .pure-menu li a:focus {
+		            background: #333;
+		        }
 
-h1 {
-  font-size: 3em;
-  letter-spacing: -2px;
-  margin-bottom: 30px;
-  text-align: center;
-}
+		    /*
+		    This styles the selected menu item `<li>`.
+		    */
+		    #menu .pure-menu-selected,
+		    #menu .pure-menu-heading {
+		        background: #1f8dd6;
+		    }
+		        /*
+		        This styles a link within a selected menu item `<li>`.
+		        */
+		        #menu .pure-menu-selected a {
+		            color: #fff;
+		        }
 
-h2 {
-  font-size: 1.2em;
-  letter-spacing: -1px;
-  margin-bottom: 30px;
-  text-align: center;
-  font-weight: normal;
-  color: $grayLight;
-}
+		    /*
+		    This styles the menu heading.
+		    */
+		    #menu .pure-menu-heading {
+		        font-size: 110%;
+		        color: #fff;
+		        margin: 0;
+		    }
+
+		/*
+		`.menu-link` represents the responsive menu toggle that shows/hides on
+		small screens.
+		*/
+		
+		.menu-link {
+		    position: fixed;
+		    display: block; /* show this only on small screens */
+		    top: 0;
+		    left: 0; /* "#menu width" */
+		    background: #000;
+		    background: rgba(0,0,0,0.7);
+		    font-size: 10px; /* change this value to increase/decrease button size */
+		    z-index: 10;
+		    width: 5em;
+		    height: auto;
+		    padding: 2.1em 1.6em;
+		}
+
+		    .menu-link:hover,
+		    .menu-link:focus {
+		        background: #000;
+		    }
+
+		    .menu-link span {
+		        position: relative;
+		        display: block;
+		    }
+
+		    .menu-link span,
+		    .menu-link span:before,
+		    .menu-link span:after {
+		        background-color: #fff;
+		        width: 100%;
+		        height: 0.2em;
+		    }
+
+		        .menu-link span:before,
+		        .menu-link span:after {
+		            position: absolute;
+		            margin-top: -0.6em;
+		            content: " ";
+		        }
+
+		        .menu-link span:after {
+		            margin-top: 0.6em;
+		        }
+		
 
 p {
   font-size: 1.1em;
   line-height: 1.7em;
 }
-
 
 /* header */
 
@@ -75,7 +176,7 @@ p {
   }
 }
 
-/* footer */
+/* footer 
 
 footer {
   margin-top: 45px;
@@ -102,6 +203,8 @@ footer {
 }
 
 /* forms */
+
+/*
 
 @mixin box_sizing {
   -moz-box-sizing: border-box;
@@ -137,23 +240,19 @@ input {
 
 .questions {
   list-style: none;
-  margin: 10px 0 0 0;
+  font-family: 'Open Sans', sans-serif;
+  padding: 0 0 0 0px;
 
   li {
-    padding: 10px 0;
-    border-top: 1px solid #e8e8e8;
+    padding: 18px 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
   }
 }
-.content {
-  display: block;
-}
+
 .timestamp {
-  color: $grayLight;
+  color: gray;
 }
-.gravatar {
-  float: left;
-  margin-right: 10px;
-}
+
 aside {
   textarea {
     height: 100px;
@@ -161,7 +260,127 @@ aside {
   }
 }
 
-.answer {
+/* conversation show page */
+
+.header_img {
+	width: 100%;
+	z-index: -1;
+	-webkit-filter: grayscale; /*sepia, hue-rotate, invert....*/
+	-webkit-filter: brightness(80%);
+}
+
+.small-screen-space {
+	display:block;
+	height:5em;
+}
+
+.full_name {
+	text-shadow: 0px 1px 1px #000;
+	color:white;
 	text-align:center;
-	display: block;
+	font-size:3em;
+	line-height:.5em;
+}
+
+.twitter-handle {
+	text-align:center;
+}
+
+.twitter-handle-link {
+	font-size:1em;
+	text-shadow: 0px 1px 1px #000;
+	color:white;
+}
+
+.twitter-handle-link:hover {
+	color:white;
+}
+
+.prof-pic {
+	border: 3px solid #eee;
+	box-shadow: 0 3px 2px rgba(0, 0, 0, 0.3);
+	width:175px;
+	display:block;
+	margin:auto;
+}
+
+.smaller-prof-pic {
+	border: 2px solid #eee;
+	box-shadow: 0 2px 1px rgba(0, 0, 0, 0.3);
+	display:block;
+	margin:auto;
+}
+
+.ask-button {
+	float:right;
+}
+
+.q-a-metadata {
+	display:inline-block;
+	position:relative;
+	left:1em;
+	font-size: .8em;
+}
+
+.q-and-a-content {
+	font-size:1.5em;
+	line-height:1.4em;
+	padding-top: .3em;
+	padding-bottom:.5em;
+}
+
+.answer-area {
+	background-color:rgb(237,255,236);
+	-webkit-border-radius: 2px; /* Saf3+, Chrome */
+	border-radius: 4px;
+}
+
+.pressed {
+	opacity:.3;
+}
+
+.vote-button {
+	width:3.4em;
+	padding-top:.7em;
+}
+
+.q-a-column {
+	padding-left:.5em;
+}
+
+.vote-icon {
+	display:block;
+	margin-bottom:3px;
+	width: 1.5em;
+}
+
+.tooltip {
+	opacity:1;
+}
+
+.prompt {
+	line-height:1.4em;
+	position:relative;
+	top:.3em;
+}
+
+.center {
+	text-align:center;
+}
+
+.content {
+	margin: 0 auto 2em;
+	padding: 0 .5em;
+	max-width: 800px;
+	min-width: 350px;
+	font-family: 'Open Sans', sans-serif;
+	position:relative;
+	bottom:15em;
+}
+
+html, button, input, select, textarea,
+.pure-g [class *= "pure-u"],
+.pure-g-r [class *= "pure-u"] {
+    /* Set your content font stack here: */
+    font-family: 'Open Sans', sans-serif;
 }
