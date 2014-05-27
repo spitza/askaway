@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
       user.uid = auth["uid"]
       user.name = auth["info"]["nickname"]
       user.fullname = auth["info"]["name"]
-      user.avatarurl = auth["info"]["image"].sub("normal", "")
+      user.avatarurl = auth["info"]["image"].sub("_normal", "")
       user.bannerurl = auth["extra"]["raw_info"]["profile_banner_url"]
     end
   end
