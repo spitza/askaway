@@ -1,0 +1,17 @@
+				<% if current_user && !current_user.user_has_upvoted?(question) %>
+					<%= button_to vote_question_path(question, type: "up"), method: "post", class:"btn btn-primary vote-button", remote: true do %>
+						<%= image_tag("voteup.png", class:"vote-icon") %>
+						<%= question.reputation_for(:votes).to_i %>
+					<% end %>
+				<% elsif current_user && current_user.user_has_upvoted?(question) %>
+					<%= button_to vote_question_path(question, type: "down"), method: "post", class:"btn btn-primary pressed vote-button", remote: true do %>
+						<span class="glyphicon glyphicon-ok"></span>
+						<br>
+						<%= question.reputation_for(:votes).to_i %>
+					<% end %>
+				<% elsif !current_user %>
+					<%= button_to "#", class:"btn btn-primary vote-button" do %>
+						<%= image_tag("voteup.png", class:"vote-icon") %>
+						<%= question.reputation_for(:votes).to_i %>
+					<% end %>
+				<% end %>

@@ -9,7 +9,7 @@
 	<h2 class="prompt"><%= @conversation.prompt %></h2>
 	<%= render 'shared/question_form' %>
 	<% if @conversation.questions.any? %>
-		<h2 class="center"><%= @conversation.questions.count %> Questions</h2>
+		<h2 class="center"><%= pluralize(@conversation.questions.count, "Question") %> </h2>
 	<% end %>
 	<ol class="questions">
 		<%= render @questions %>

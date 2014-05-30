@@ -30,7 +30,10 @@ class QuestionsController < ApplicationController
     value = params[:type] == "up" ? 1 : 0
     @question = Question.find(params[:id])
     @question.add_or_update_evaluation(:votes, value, current_user)
-    redirect_to :back, notice: "Thank you for voting!"
+    respond_to do |format|
+      format.html { redirect_to :back }
+      format.js
+    end
   end
   
   private

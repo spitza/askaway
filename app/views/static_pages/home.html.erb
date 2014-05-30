@@ -1,13 +1,10 @@
 <div class="center hero-unit">
   <%= image_tag("askaway_logo.png", alt: "askaway")%>
-
-  <h2>
-    This that homepage, yo.
-  </h2>
-
+<br>
+<br>
 	<% if current_user %>
     Signed in as <%= current_user.name %>
-		<%= link_to "Create a conversation!", create_path, class: "btn btn-large btn-primary" %>
+		<%= link_to "Create a conversation!", create_path, class: "btn btn-large btn-primary", id:"create_button", remote: true %>
 	<% else %>
 		<%= link_to image_tag("sign-in-with-twitter-gray.png", alt: "Sign In"), "/auth/twitter?origin=#{request.original_url}" %>
 	<% end %>
