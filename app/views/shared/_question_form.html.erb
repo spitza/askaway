@@ -1,5 +1,5 @@
-</br>
-<% if current_user%>
+<% if current_user && @conversation.user != current_user %>
+	<div class = "space-after-big-prompt pure-hidden-phone">&nbsp;</div>
 	<div class="pure-g-r">
 		<div class ="pure-u-1-5 center">
 			<%= image_tag(current_user.portrait("bigger"), class:"img-circle q-pic pure-hidden-phone", alt: "Signed In as #{current_user.name}")%>
@@ -11,13 +11,11 @@
 					<%= f.text_area :content, placeholder: "Ask #{@conversation.user.fullname} a question...", class:"pure-input-1" %>
 					<%= f.hidden_field :conversation_id, :value => @conversation.id %>
 					<%= f.hidden_field :user_id, :value => current_user.id %>
-					</br>
-					</br>
+					<br>
+					<br>
 					<%= f.submit "Ask", class: "pure-button-primary pure-button ask-button" %>
 				</div>
 			<% end %>
 		</div>
 	</div>
-<% else %>
-	<%= link_to image_tag("sign-in-with-twitter-gray.png", alt: "Sign In"), "/auth/twitter?origin=#{request.original_url}" %>
 <% end %>

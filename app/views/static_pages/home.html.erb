@@ -1,14 +1,13 @@
 <div class="center hero-unit">
-  <%= image_tag("askaway_logo.png", alt: "askaway")%>
-<br>
-<br>
-	<% if current_user %>
-    Signed in as <%= current_user.name %>
-		<%= link_to "Create a conversation!", create_path, class: "btn btn-large btn-primary", id:"create_button", remote: true %>
-	<% else %>
-		<%= link_to image_tag("sign-in-with-twitter-gray.png", alt: "Sign In"), "/auth/twitter?origin=#{request.original_url}" %>
-	<% end %>
-
+  <h1 class="askaway-logo-home-big pure-hidden-phone">AskAway</h1>
+  <h1 class="askaway-logo-home-small pure-hidden-tablet pure-hidden-desktop">AskAway</h1>
+  <p class="slogan-big pure-hidden-phone">Candid conversations with the world's most interesting people</p>
+  <p class="slogan-small pure-hidden-tablet pure-hidden-desktop">Candid conversations with the world's most interesting people</p>
 </div>
-
-
+<div class = "home-content">
+	<h2 class="trending-convos center">Trending Conversations</h2>
+	<ol class="conversations">
+		<%= render @conversations %>
+	</ol>
+	<%= will_paginate @conversations %>
+</div>

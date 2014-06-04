@@ -1,6 +1,6 @@
 <li>
 	<div class="pure-g">
-		<div class="pure-u-1-8 vote-column">
+		<div class="pure-u-1-12 vote-column">
 			<% if current_user && !current_user.user_has_upvoted?(question) %>
 				<%= button_to vote_question_path(question, type: "up"), method: "post", class:"btn btn-primary vote-button" do %>
 					<%= image_tag("voteup.png", class:"vote-icon") %>
@@ -13,22 +13,30 @@
 					<span class="votecount"><%= question.reputation_for(:votes).to_i %></span>
 				<% end %>
 			<% elsif !current_user %>
-				<%= button_to "#", class:"btn btn-primary vote-button" do %>
+				<%= button_to "#", class:"btn btn-primary vote-button-logged-out", :data => {trigger:"manual", content:"#{link_to "Sign In with Twitter", "/auth/twitter?origin=#{request.original_url}"} to vote."} do %>
 					<%= image_tag("voteup.png", class:"vote-icon") %>
 					<span class="votecount"><%= question.reputation_for(:votes).to_i %></span>
 				<% end %>
 			<% end %>
 		</div>
+		<div class="pure-u-1-24">&nbsp;</div>
 		<div class="pure-u-7-8 q-a-column">
 			<%= image_tag(question.user.portrait("normal"), class:"img-circle", display: "inline")%>
-			<p class="q-a-metadata">
+			<div class="q-a-metadata pure-hidden-phone">
 				<%= question.user.fullname %> | <span class="timestamp"> Asked <%= link_to time_ago_in_words(question.created_at), question %> ago. </span>
-			</p>
+			</div>
+			<div class="q-a-metadata-small pure-hidden-tablet pure-hidden-desktop">
+				<%= question.user.fullname %>
+				<br>
+				<span class="timestamp"> Asked <%= link_to time_ago_in_words(question.created_at), question %> ago. </span>
+			</div>
 			<div class = "q-and-a-content">
 				<%= question.content %>
 			</div>
 			<% if question.answer %>
 				<%= render question.answer %>
+			<% elsif current_user == @conversation.user %>
+				<%= link_to "Answer", question, class: "btn btn-large btn-success" %>
 			<% end %>
 		</div>
 	</div>

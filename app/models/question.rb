@@ -1,6 +1,6 @@
 class Question < ActiveRecord::Base
   belongs_to :user
-  belongs_to :conversation
+  belongs_to :conversation, counter_cache: true
   validates :user_id, presence: true
   validates :content, presence: true
   validates :conversation_id, presence: true

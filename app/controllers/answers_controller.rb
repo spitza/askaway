@@ -16,6 +16,10 @@ class AnswersController < ApplicationController
     end
   end
   
+  def new
+    @answer = Answer.new
+  end
+  
   private
 
     def answer_params

@@ -1,10 +1,103 @@
 @import "bootstrap";
 
+/* home page */
+
+.askaway-logo-home-big {
+	font-style:italic;
+	font-size:6em;
+	font-family: Georgia, Serif;
+	padding-top:.5em;
+}
+
+.askaway-logo-home-small {
+	font-style:italic;
+	font-size:3em;
+	font-family: Georgia, Serif;
+	padding-top:.5em;
+	margin-bottom:1em;
+}
+
+.slogan-big {
+	font-family: 'Open Sans', sans-serif;
+	font-size:1.5em;
+	position:relative;
+	bottom:2em;
+}
+
+.slogan-small {
+	font-family: 'Open Sans', sans-serif;
+	font-size:1.3em;
+	line-height:1.2em;
+	padding:0em 1em 0em;
+	position:relative;
+	bottom:1.7em;
+}
+
+.trending-convos {
+	font-family: 'Open Sans', sans-serif;
+	font-weight:700;
+}
+
+.home-content {
+	margin: 0 auto 2em;
+	padding: 0 .5em;
+	max-width: 800px;
+	font-family: Georgia, Serif;
+}
+
+.conversation-list-name {
+	font-family: 'Open Sans', sans-serif;
+	font-weight:700;
+	color:orange;
+}
+
+.conversation-list-prompt {
+	color:black;
+}
+
+.conversation-list-link:hover {
+	text-decoration:none;
+}
+
+.conversations {
+  list-style: none;
+  font-family: Georgia, Serif;
+  padding: 0 0 0 0px;
+
+  li {
+	  padding: 16px 0px;
+	  border-top: 1px solid rgba(0, 0, 0, 0.2);
+  }
+  li:hover {
+	  opacity:.8;
+  }
+}
+
+.name-and-prompt-area {
+	padding: 0 7px;
+}
+
+.conversation-avatar-big {
+	width:6em;
+	position:relative;
+	top:1em;
+}
+
+.conversation-avatar-small {
+	position:relative;
+	top:1em;
+}
+
 /* pure layout stuff */
 
 .pure-img-responsive {
     max-width: 100%;
     height: auto;
+}
+
+body {
+	position:relative;
+	bottom:1.3em;
 }
 
 #layout,
@@ -24,21 +117,21 @@
 }
     #layout.active {
         position: relative;
-        left: 150px;
+        left: 160px;
     }
         #layout.active #menu {
-            left: 150px;
-            width: 150px;
+            left: 160px;
+            width: 160px;
         }
 
         #layout.active .menu-link {
-            left: 150px;
+            left: 160px;
         }
 		
 
 		#menu {
-		    margin-left: -150px; /* "#menu" width */
-		    width: 150px;
+		    margin-left: -160px; /* "#menu" width */
+		    width: 160px;
 		    position: fixed;
 		    top: 0;
 		    left: 0;
@@ -158,93 +251,15 @@ p {
   line-height: 1.7em;
 }
 
-/* header */
-
-#logo {
-  float: left;
-  margin-right: 10px;
-  font-size: 1.7em;
-  color: white;
-  text-transform: uppercase;
-  letter-spacing: -1px;
-  padding-top: 9px;
-  font-weight: bold;
-  line-height: 1;
-  &:hover {
-    color: white;
-    text-decoration: none;
-  }
-}
-
-/* footer 
-
-footer {
-  margin-top: 45px;
-  padding-top: 5px;
-  border-top: 1px solid $grayMediumLight;
-  color: $grayLight;
-  a {
-    color: $gray;
-    &:hover {
-      color: $grayDarker;
-    }
-  }
-  small {
-    float: left;
-  }
-  ul {
-    float: right;
-    list-style: none;
-    li {
-      float: left;
-      margin-left: 10px;
-    }
-  }
-}
-
-/* forms */
-
-/*
-
-@mixin box_sizing {
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-}
-
-input, textarea, select, .uneditable-input {
-  border: 1px solid #bbb;
-  width: 100%;
-  margin-bottom: 15px;
-  @include box_sizing;
-}
-
-input {
-  height: auto !important;
-}
-
-#error_explanation {
-  color: #f00;
-  ul {
-    list-style: none;
-    margin: 0 0 18px 0;
-  }
-}
-
-.field_with_errors {
-  @extend .control-group;
-  @extend .error;
-}
-
 /* questions */
 
 .questions {
   list-style: none;
-  font-family: 'Open Sans', sans-serif;
+  font-family: Georgia, Serif;
   padding: 0 0 0 0px;
 
   li {
-    padding: 18px 0;
+    padding: 16px 0;
     border-top: 1px solid rgba(0, 0, 0, 0.2);
   }
 }
@@ -260,6 +275,8 @@ aside {
   }
 }
 
+
+
 /* conversation show page */
 
 .header_img {
@@ -269,35 +286,104 @@ aside {
 	-webkit-filter: brightness(80%);
 }
 
-.small-screen-space {
-	display:block;
-	height:5em;
+.askaway-logo-big {
+	font-style:italic;
+	position:absolute;
+	top:.3em;
+	left:2.5em;
+	text-shadow: 0px 1px 1px #000;
+	color:white;
+	font-family: Georgia, Serif;
 }
 
-.full_name {
+.home-link-big {
+	color:white;
+}
+
+.home-link-big:hover {
+	color:white;
+	text-decoration:none;
+}
+
+.askaway-logo-small {
+	font-style:italic;
+	text-shadow: 0px 1px 1px #000;
+	color:white;
+	position:relative;
+	top:.9em;
+}
+
+.small-screen-header {
+	display:block;
+	text-align:center;
+	background-color:black;
+	height:3.3em;
+	font-family: Georgia, Serif;
+}
+
+.small-screen-space {
+	display:block;
+	height:8.6em;
+}
+
+.space-after-big-prompt {
+	display:block;
+	height:1em;
+}
+
+.full_name_big, .full_name_small {
 	text-shadow: 0px 1px 1px #000;
 	color:white;
 	text-align:center;
-	font-size:3em;
+}
+
+.full_name_big {
+	font-size:3.4em;
 	line-height:.5em;
+	font-family: 'Open Sans', sans-serif;
+	font-weight:700;
+}
+
+.full_name_small {
+	font-size:2em;
+	line-height:.3em;
+	position:relative;
+	bottom:.2em;
+	font-family: 'Open Sans', sans-serif;
+	font-weight:700;
 }
 
 .twitter-handle {
 	text-align:center;
 }
 
-.twitter-handle-link {
-	font-size:1em;
+.twitter-handle-link-big {
+	font-size:1.3em;
 	text-shadow: 0px 1px 1px #000;
+	color:white;
+	font-family: 'Open Sans', sans-serif;
+}
+
+.twitter-handle-link-small {
+	text-shadow: 0px 1px 1px #000;
+	color:white;
+	font-family: 'Open Sans', sans-serif;
+}
+
+.small-twitter-handle-span {
+	font-size:.5em;
+}
+
+.twitter-handle-link-big:hover {
 	color:white;
 }
 
-.twitter-handle-link:hover {
+.twitter-handle-link-small:hover {
 	color:white;
 }
 
 .prof-pic {
-	border: 3px solid #eee;
+	border: 3px solid white;
 	box-shadow: 0 3px 2px rgba(0, 0, 0, 0.3);
 	width:175px;
 	display:block;
@@ -309,10 +395,34 @@ aside {
 	box-shadow: 0 2px 1px rgba(0, 0, 0, 0.3);
 	display:block;
 	margin:auto;
+	width:4.7em;
+}
+
+.prompt_big {
+	line-height:1.6em;
+	position:relative;
+	top:.3em;
+	margin-bottom:2em;
+}
+
+.prompt_small {
+	line-height:1.6em;
+	padding:.7em .5em 0;
+}
+
+.numer-of-questions {
+	font-family: 'Open Sans', sans-serif;
+	font-weight:700;
+}
+
+.center {
+	text-align:center;
 }
 
 .ask-button {
 	float:right;
+	font-family: 'Open Sans', sans-serif;
+	opacity:1;
 }
 
 .q-a-metadata {
@@ -320,13 +430,23 @@ aside {
 	position:relative;
 	left:1em;
 	font-size: .8em;
+	font-family: 'Open Sans', sans-serif;
+}
+
+.q-a-metadata-small {
+	display:inline-block;
+	position:relative;
+	left:1em;
+	top:.6em;
+	font-size: .8em;
+	font-family: 'Open Sans', sans-serif;
 }
 
 .q-and-a-content {
-	font-size:1.5em;
-	line-height:1.4em;
+	font-size:1.3em;
+	line-height:1.6em;
 	padding-top: .3em;
-	padding-bottom:.5em;
+	padding-bottom: .1em;
 }
 
 .answer-area {
@@ -342,10 +462,18 @@ aside {
 .vote-button {
 	width:3.4em;
 	padding-top:.7em;
+	font-family: 'Open Sans', sans-serif;
+}
+
+.vote-button-logged-out {
+	width:3.4em;
+	padding-top:.7em;
+	font-family: 'Open Sans', sans-serif;
+	opacity:1;
 }
 
 .q-a-column {
-	padding-left:.5em;
+	padding-left:1em;
 }
 
 .vote-icon {
@@ -354,32 +482,81 @@ aside {
 	width: 1.5em;
 }
 
-.tooltip {
-	opacity:1;
-}
-
-.prompt {
-	line-height:1.4em;
-	position:relative;
-	top:.3em;
-}
-
-.center {
-	text-align:center;
-}
-
 .content {
 	margin: 0 auto 2em;
 	padding: 0 .5em;
 	max-width: 800px;
-	font-family: 'Open Sans', sans-serif;
+	font-family: Georgia, Serif;
 	position:relative;
-	bottom:15em;
+	bottom:16em;
 }
 
 html, button, input, select, textarea,
 .pure-g [class *= "pure-u"],
 .pure-g-r [class *= "pure-u"] {
     /* Set your content font stack here: */
-    font-family: 'Open Sans', sans-serif;
+    font-family: Georgia, Serif;
 }
+
+/* custom pagination shite */
+
+.pagination {
+  height: 36px;
+  margin: 18px 0;
+}
+.pagination ul {
+  display: inline-block;
+  *display: inline;
+  /* IE7 inline-block hack */
+
+  *zoom: 1;
+  margin-left: 0;
+  margin-bottom: 0;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+.pagination li {
+  display: inline;
+}
+.pagination a {
+  float: left;
+  padding: 0 14px;
+  line-height: 34px;
+  text-decoration: none;
+  border: 1px solid #ddd;
+  border-left-width: 0;
+}
+.pagination a:hover,
+.pagination .active a {
+  background-color: #f5f5f5;
+}
+.pagination .active a {
+  color: #999999;
+  cursor: default;
+}
+.pagination .disabled span,
+.pagination .disabled a,
+.pagination .disabled a:hover {
+  color: #999999;
+  background-color: transparent;
+  cursor: default;
+}
+.pagination li:first-child a {
+  border-left-width: 1px;
+  -webkit-border-radius: 3px 0 0 3px;
+  -moz-border-radius: 3px 0 0 3px;
+  border-radius: 3px 0 0 3px;
+}
+.pagination li:last-child a {
+  -webkit-border-radius: 0 3px 3px 0;
+  -moz-border-radius: 0 3px 3px 0;
+  border-radius: 0 3px 3px 0;
+}
+.pagination-centered {
+  text-align: center;
+}
+  
