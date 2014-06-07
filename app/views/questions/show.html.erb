@@ -2,7 +2,11 @@
 <div class="pure-hidden-desktop pure-hidden-tablet small-screen-header">
 	<h3 class = "askaway-logo-small">AskAway</h3>
 </div>
-<%= image_tag(@conversation.user.bannerurl, class: "header_img") %>
+<% if @conversation.user.bannerurl %>
+	<%= image_tag(@conversation.user.bannerurl, class: "header_img") %>
+<% else %>
+	<%= image_tag("backup-banner.png", class: "header_img") %>
+<% end %>
 <h1 class = "pure-hidden-phone askaway-logo-big"><%= link_to "AskAway", root_path, class:"home-link-big" %></h1>
 <div class="content">
 	<div class = "small-screen-space pure-hidden-tablet pure-hidden-desktop">&nbsp;</div>
@@ -12,7 +16,7 @@
 	<%= image_tag(@conversation.user.portrait("bigger"), class:"img-circle smaller-prof-pic pure-hidden-tablet pure-hidden-desktop")%>
 	<h1 class = "full_name_small pure-hidden-tablet pure-hidden-desktop"><%= @conversation.user.fullname %>&nbsp;<span class="small-twitter-handle-span">(<%= link_to "@#{@conversation.user.name}", "http://www.twitter.com/#{@conversation.user.name}", target: "_blank", class:"twitter-handle-link-small" %>)</span></h1>
 	<br class="pure-hidden-phone">
-	<h2 class="center question-description">Question by <%= @question.user.fullname %> in <%= link_to "#{@conversation.user.fullname}'s conversation", @conversation %> </h2>
+	<h3 class="center question-description">Question from <%= @question.user.fullname %> in <%= link_to "#{@conversation.user.fullname}'s conversation", @conversation %> </h3>
 	<br>
 <div>
 

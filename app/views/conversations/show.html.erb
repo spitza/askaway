@@ -12,7 +12,11 @@
 		</div>
 	</div>
 <% end %>
-<%= image_tag(@conversation.user.bannerurl, class: "header_img") %>
+<% if @conversation.user.bannerurl %>
+	<%= image_tag(@conversation.user.bannerurl, class: "header_img") %>
+<% else %>
+	<%= image_tag("backup-banner.png", class: "header_img") %>
+<% end %>
 <h1 class = "pure-hidden-phone askaway-logo-big"><%= link_to "AskAway", root_path, class:"home-link-big" %></h1>
 <div class="content">
 	<div class = "small-screen-space pure-hidden-tablet pure-hidden-desktop">&nbsp;</div>

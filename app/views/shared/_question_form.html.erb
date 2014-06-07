@@ -5,15 +5,13 @@
 			<%= image_tag(current_user.portrait("bigger"), class:"img-circle q-pic pure-hidden-phone q-pic-form", alt: "Signed In as #{current_user.name}")%>
 		</div>
 		<div class ="pure-u-17-24">
-			<%= form_for @question, :html => {:class => 'pure-form'} do |f| %>
-				<%= render 'shared/error_messages', object: f.object %>
+			<%= bootstrap_form_for @question do |f| %>
 				<div class="field">
-					<%= f.text_area :content, placeholder: "Ask #{@conversation.user.fullname} a question...", class:"pure-input-1" %>
+					<%= f.text_area :content, placeholder: "Ask #{@conversation.user.fullname} a question...", class:"pure-input-1", hide_label: true %>
 					<%= f.hidden_field :conversation_id, :value => @conversation.id %>
 					<%= f.hidden_field :user_id, :value => current_user.id %>
 					<br>
-					<br>
-					<%= f.submit "Ask", class: "pure-button-primary pure-button ask-button" %>
+					<%= f.submit "Ask", class: "btn btn-large btn-success ask-button" %>
 				</div>
 			<% end %>
 		</div>

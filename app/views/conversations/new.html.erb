@@ -6,7 +6,11 @@
 		<p>Almost there!  This conversation will go live after you write a quick prompt below.</p>
 	</div>
 </div>
-<%= image_tag(current_user.bannerurl, class: "header_img") %>
+<% if current_user.bannerurl %>
+	<%= image_tag(current_user.bannerurl, class: "header_img") %>
+<% else %>
+	<%= image_tag("backup-banner.png", class: "header_img") %>
+<% end %>
 <h1 class = "pure-hidden-phone askaway-logo-big"><%= link_to "AskAway", root_path, class:"home-link-big" %></h1>
 <div class="create-page-content">
 	<div class = "small-screen-space pure-hidden-tablet pure-hidden-desktop">&nbsp;</div>

@@ -1,16 +1,15 @@
 <br>
-<div class="pure-g">
+<div class="pure-g-r">
 	<div class ="pure-u-1-5 center">
 		<%= image_tag(current_user.portrait("bigger"), class:"img-circle q-pic pure-hidden-phone q-pic-form", alt: "Signed In as #{current_user.name}")%>
 	</div>
 	<div class ="pure-u-17-24">
-		<%= form_for @answer, :html => {:class => 'pure-form'} do |f| %>
+		<%= bootstrap_form_for @answer do |f| %>
 			<div class="field">
-				<%= f.text_area :content, placeholder: "Answer this question...", class:"pure-input-1" %>
+				<%= f.text_area :content, placeholder: "Answer this question...", class:"pure-input-1", hide_label: true %>
 				<%= f.hidden_field :question_id, :value => @question.id %>
 				<br>
-				<br>
-				<%= f.submit "Answer", class: "pure-button-primary pure-button ask-button" %>
+				<%= f.submit "Answer", class: "btn btn-large btn-success ask-button" %>
 			</div>
 		<% end %>
 	</div>
