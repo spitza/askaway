@@ -20,7 +20,7 @@ class QuestionsController < ApplicationController
   end
   
   def show
-    @question = Question.find(params[:id])
+    @question = Question.friendly.find(params[:id])
     @conversation = @question.conversation
     #for the answer form
     @answer = Answer.new
@@ -28,7 +28,7 @@ class QuestionsController < ApplicationController
   
   def vote
     value = params[:type] == "up" ? 1 : 0
-    @question = Question.find(params[:id])
+    @question = Question.friendly.find(params[:id])
     @question.add_or_update_evaluation(:votes, value, current_user)
     respond_to do |format|
       format.html { redirect_to :back }

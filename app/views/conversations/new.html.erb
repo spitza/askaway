@@ -1,17 +1,27 @@
-<br>
-<h2>Create a Conversation</h2>
-<div class="row">
-  <div class="span6 offset3">
-    <%= form_for(@conversation) do |f| %>
-	<%= render 'shared/error_messages', object: f.object %>
-
-      <%= f.label :prompt %>
-      <%= f.text_area :prompt %>
-	  <%= f.hidden_field :user_id, :value => current_user.id %>
-	  </br>
-	  </br>
-
-      <%= f.submit "Host a Conversation", class: "btn btn-large btn-primary" %>
-    <% end %>
-  </div>
+<div class="pure-hidden-desktop pure-hidden-tablet small-screen-header">
+	<h3 class = "askaway-logo-small">AskAway</h3>
+</div>
+<div class="absolute-center">
+	<div class = "sticky taped pure-hidden-phone">
+		<p>Almost there!  This conversation will go live after you write a quick prompt below.</p>
+	</div>
+</div>
+<%= image_tag(current_user.bannerurl, class: "header_img") %>
+<h1 class = "pure-hidden-phone askaway-logo-big"><%= link_to "AskAway", root_path, class:"home-link-big" %></h1>
+<div class="create-page-content">
+	<div class = "small-screen-space pure-hidden-tablet pure-hidden-desktop">&nbsp;</div>
+	<h1 class = "full_name_big pure-hidden-phone"><%= current_user.fullname %></h1>
+	<h3 class = "twitter-handle pure-hidden-phone"><%= link_to "@#{current_user.name}", "http://www.twitter.com/#{current_user.name}", target: "_blank", class:"twitter-handle-link-big" %></h3>
+	<%= image_tag(current_user.portrait("original"), class:"img-circle prof-pic pure-hidden-phone")%>
+	<%= image_tag(current_user.portrait("bigger"), class:"img-circle smaller-prof-pic pure-hidden-tablet pure-hidden-desktop")%>
+	<h1 class = "full_name_small pure-hidden-tablet pure-hidden-desktop"><%= current_user.fullname %>&nbsp;<span class="small-twitter-handle-span">(<%= link_to "@#{current_user.name}", "http://www.twitter.com/#{current_user.name}", target: "_blank", class:"twitter-handle-link-small" %>)</span></h1>
+	<div class="prompt-form-area">
+	    <%= bootstrap_form_for(@conversation, class:"convo-form") do |f| %>
+	      <%= f.text_area :prompt, label: "Write a prompt describing your conversation:", id: "composer" %>
+		  <%= f.hidden_field :user_id, :value => current_user.id %>
+		  <span class="countdown"></span>
+		  <br>
+	      <%= f.submit "Go Live!", class: "btn btn-large btn-success go-live-button" %>
+	    <% end %>
+	</div>
 </div>

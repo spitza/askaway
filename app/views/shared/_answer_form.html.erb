@@ -1,14 +1,17 @@
-	<%= form_for(@answer) do |f| %>
-	  <%= render 'shared/error_messages', object: f.object %>
-	  <% if current_user%>
-	  	<%= image_tag(current_user.avatarurl)%>
-	  <% end %>
-	</br>
-	</br>
-
-	  <div class="field">
-	    <%= f.text_area :content, placeholder: "Give an answer..." %>
-	  </div>
-	  <%= f.hidden_field :question_id, :value => @question.id %>
-	  <%= f.submit "Post", class: "btn btn-large btn-primary" %>
-	<% end %>
+<br>
+<div class="pure-g">
+	<div class ="pure-u-1-5 center">
+		<%= image_tag(current_user.portrait("bigger"), class:"img-circle q-pic pure-hidden-phone q-pic-form", alt: "Signed In as #{current_user.name}")%>
+	</div>
+	<div class ="pure-u-17-24">
+		<%= form_for @answer, :html => {:class => 'pure-form'} do |f| %>
+			<div class="field">
+				<%= f.text_area :content, placeholder: "Answer this question...", class:"pure-input-1" %>
+				<%= f.hidden_field :question_id, :value => @question.id %>
+				<br>
+				<br>
+				<%= f.submit "Answer", class: "pure-button-primary pure-button ask-button" %>
+			</div>
+		<% end %>
+	</div>
+</div>

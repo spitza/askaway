@@ -1,23 +1,61 @@
-<%= image_tag(@conversation.user.bannerurl)%>
-<%= image_tag(@conversation.user.avatarurl)%>
-<p><%= @conversation.prompt %></p>
-<h1>Question for <%= @conversation.user.fullname %></h1>
-</br>
-</br>
-<%= image_tag(@question.user.avatarurl)%>
-<h3><%= @question.user.fullname %></h3>
-<span class="content"><%= @question.content %></span>
-<span class="timestamp">
-	Posted <%= time_ago_in_words(@question.created_at) %> ago.
-</span>
-</br>
-</br>
+<% provide(:title, @question.id) %>
+<div class="pure-hidden-desktop pure-hidden-tablet small-screen-header">
+	<h3 class = "askaway-logo-small">AskAway</h3>
+</div>
+<%= image_tag(@conversation.user.bannerurl, class: "header_img") %>
+<h1 class = "pure-hidden-phone askaway-logo-big"><%= link_to "AskAway", root_path, class:"home-link-big" %></h1>
+<div class="content">
+	<div class = "small-screen-space pure-hidden-tablet pure-hidden-desktop">&nbsp;</div>
+	<h1 class = "full_name_big pure-hidden-phone"><%= @conversation.user.fullname %></h1>
+	<h3 class = "twitter-handle pure-hidden-phone"><%= link_to "@#{@conversation.user.name}", "http://www.twitter.com/#{@conversation.user.name}", target: "_blank", class:"twitter-handle-link-big" %></h3>
+	<%= image_tag(@conversation.user.portrait("original"), class:"img-circle prof-pic pure-hidden-phone")%>
+	<%= image_tag(@conversation.user.portrait("bigger"), class:"img-circle smaller-prof-pic pure-hidden-tablet pure-hidden-desktop")%>
+	<h1 class = "full_name_small pure-hidden-tablet pure-hidden-desktop"><%= @conversation.user.fullname %>&nbsp;<span class="small-twitter-handle-span">(<%= link_to "@#{@conversation.user.name}", "http://www.twitter.com/#{@conversation.user.name}", target: "_blank", class:"twitter-handle-link-small" %>)</span></h1>
+	<br class="pure-hidden-phone">
+	<h2 class="center question-description">Question by <%= @question.user.fullname %> in <%= link_to "#{@conversation.user.fullname}'s conversation", @conversation %> </h2>
+	<br>
+<div>
 
-	<% if @question.answer %>
-		<h3>Answer:</h3>
-		<span class="answer">
-			<%= render @question.answer %>
-		</span>
-	<% elsif current_user == @conversation.user %>
-		<%= render 'shared/answer_form' %>
-	<% end %>
+<div class="pure-g">
+	<div class="pure-u-1-12 vote-column">
+		<% if current_user && !current_user.user_has_upvoted?(@question) %>
+			<%= button_to vote_question_path(@question, type: "up"), method: "post", class:"btn btn-primary vote-button" do %>
+				<%= image_tag("voteup.png", class:"vote-icon") %>
+				<span class="votecount"><%= @question.reputation_for(:votes).to_i %></span>
+			<% end %>
+		<% elsif current_user && current_user.user_has_upvoted?(@question) %>
+			<%= button_to vote_question_path(@question, type: "down"), method: "post", class:"btn btn-primary pressed vote-button" do %>
+				<span class="glyphicon glyphicon-ok"></span>
+				<br>
+				<span class="votecount"><%= @question.reputation_for(:votes).to_i %></span>
+			<% end %>
+		<% elsif !current_user %>
+			<%= button_to "#", class:"btn btn-primary vote-button-logged-out", :data => {trigger:"manual", content:"#{link_to "Sign In with Twitter", "/auth/twitter?origin=#{request.original_url}"} to vote."} do %>
+				<%= image_tag("voteup.png", class:"vote-icon") %>
+				<span class="votecount"><%= @question.reputation_for(:votes).to_i %></span>
+			<% end %>
+		<% end %>
+	</div>
+	<div class="pure-u-1-24">&nbsp;</div>
+	<div class="pure-u-7-8 q-a-column">
+		<%= image_tag(@question.user.portrait("normal"), class:"img-circle", display: "inline")%>
+		<div class="q-a-metadata pure-hidden-phone">
+			<%= @question.user.fullname %> | <span class="timestamp"> Asked <%= time_ago_in_words(@question.created_at) %> ago. </span>
+		</div>
+		<div class="q-a-metadata-small pure-hidden-tablet pure-hidden-desktop">
+			<%= @question.user.fullname %>
+			<br>
+			<span class="timestamp"> Asked <%= time_ago_in_words(@question.created_at) %> ago. </span>
+		</div>
+		<div class = "q-and-a-content">
+			<%= @question.content %>
+		</div>
+	</div>
+</div>
+<% if @question.answer %>
+	<br>
+	<%= render @question.answer %>
+<% elsif current_user == @question.conversation.user %>
+	<br>
+	<%= render 'shared/answer_form' %>
+<% end %>

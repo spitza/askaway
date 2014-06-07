@@ -36,7 +36,7 @@
 			<% if question.answer %>
 				<%= render question.answer %>
 			<% elsif current_user == @conversation.user %>
-				<%= link_to "Answer", question, class: "btn btn-large btn-success" %>
+				<%= link_to "Answer", question, class: "btn btn-large btn-success answer-button" %>
 			<% end %>
 		</div>
 	</div>

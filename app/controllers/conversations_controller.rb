@@ -7,7 +7,7 @@ class ConversationsController < ApplicationController
   end
 
   def show
-    @conversation = Conversation.find(params[:id])
+    @conversation = Conversation.friendly.find(params[:id])
     #taking the conversations questions, paginating them, sorting by most votes
     @questions = @conversation.questions.paginate(page: params[:page], :per_page => 15).popular
     #for the form
