@@ -287,7 +287,7 @@ aside {
 .sticky {
   position: relative;
   left: -50%;
-  top:10em;
+  top:7em;
   background-color: #F4F39E;
   border-color: #DEE184;
   text-align: center;
@@ -709,5 +709,19 @@ html, button, input, select, textarea,
 }
 .pagination-centered {
   text-align: center;
+}
+
+/* custom media page size stuff *///////////////////////////////////////////
+
+@media screen and (max-width: 600px) {
+	.pure-hidden-phone {
+  	  display: none;
+    }
+}
+
+@media screen and (min-width: 601px) {
+	.pure-hidden-desktop {
+  	  display: none;
+    }
 }
   

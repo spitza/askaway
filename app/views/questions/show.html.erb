@@ -1,5 +1,5 @@
 <% provide(:title, @question.id) %>
-<div class="pure-hidden-desktop pure-hidden-tablet small-screen-header">
+<div class="pure-hidden-desktop small-screen-header">
 	<h3 class = "askaway-logo-small">AskAway</h3>
 </div>
 <% if @conversation.user.bannerurl %>
@@ -9,12 +9,12 @@
 <% end %>
 <h1 class = "pure-hidden-phone askaway-logo-big"><%= link_to "AskAway", root_path, class:"home-link-big" %></h1>
 <div class="content">
-	<div class = "small-screen-space pure-hidden-tablet pure-hidden-desktop">&nbsp;</div>
+	<div class = "small-screen-space pure-hidden-desktop">&nbsp;</div>
 	<h1 class = "full_name_big pure-hidden-phone"><%= @conversation.user.fullname %></h1>
 	<h3 class = "twitter-handle pure-hidden-phone"><%= link_to "@#{@conversation.user.name}", "http://www.twitter.com/#{@conversation.user.name}", target: "_blank", class:"twitter-handle-link-big" %></h3>
 	<%= image_tag(@conversation.user.portrait("original"), class:"img-circle prof-pic pure-hidden-phone")%>
-	<%= image_tag(@conversation.user.portrait("bigger"), class:"img-circle smaller-prof-pic pure-hidden-tablet pure-hidden-desktop")%>
-	<h1 class = "full_name_small pure-hidden-tablet pure-hidden-desktop"><%= @conversation.user.fullname %>&nbsp;<span class="small-twitter-handle-span">(<%= link_to "@#{@conversation.user.name}", "http://www.twitter.com/#{@conversation.user.name}", target: "_blank", class:"twitter-handle-link-small" %>)</span></h1>
+	<%= image_tag(@conversation.user.portrait("bigger"), class:"img-circle smaller-prof-pic pure-hidden-desktop")%>
+	<h1 class = "full_name_small pure-hidden-desktop"><%= @conversation.user.fullname %>&nbsp;<span class="small-twitter-handle-span">(<%= link_to "@#{@conversation.user.name}", "http://www.twitter.com/#{@conversation.user.name}", target: "_blank", class:"twitter-handle-link-small" %>)</span></h1>
 	<br class="pure-hidden-phone">
 	<h3 class="center question-description">Question from <%= @question.user.fullname %> in <%= link_to "#{@conversation.user.fullname}'s conversation", @conversation %> </h3>
 	<br>
@@ -46,7 +46,7 @@
 		<div class="q-a-metadata pure-hidden-phone">
 			<%= @question.user.fullname %> | <span class="timestamp"> Asked <%= time_ago_in_words(@question.created_at) %> ago. </span>
 		</div>
-		<div class="q-a-metadata-small pure-hidden-tablet pure-hidden-desktop">
+		<div class="q-a-metadata-small pure-hidden-desktop">
 			<%= @question.user.fullname %>
 			<br>
 			<span class="timestamp"> Asked <%= time_ago_in_words(@question.created_at) %> ago. </span>

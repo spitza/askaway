@@ -3,6 +3,7 @@
 	<div class="pure-g-r">
 		<div class ="pure-u-1-5 center">
 			<%= image_tag(current_user.portrait("bigger"), class:"img-circle q-pic pure-hidden-phone q-pic-form", alt: "Signed In as #{current_user.name}")%>
+			<%= image_tag(current_user.portrait("normal"), class:"img-circle q-pic pure-hidden-desktop", alt: "Signed In as #{current_user.name}")%>
 		</div>
 		<div class ="pure-u-17-24">
 			<%= bootstrap_form_for @question do |f| %>
@@ -17,7 +18,7 @@
 		</div>
 	</div>
 <% elsif @conversation.user != current_user && @conversation.questions.count > 0 %>
-	<div class="pure-hidden-tablet pure-hidden-desktop center">
+	<div class="pure-hidden-desktop center">
 		<%= link_to image_tag("sign-in-with-twitter-gray.png"), "/auth/twitter?origin=#{request.original_url}" %>
 	</div>
 <% end %>
