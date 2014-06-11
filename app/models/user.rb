@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
       user.name = auth["info"]["nickname"]
       user.fullname = auth["info"]["name"]
       user.avatarurl = auth["info"]["image"].sub("_normal", "")
-      unless auth["extra"]["raw_info"]["profile_banner_url"].empty?
+      unless "#{auth["extra"]["raw_info"]["profile_banner_url"]}".empty?
         user.bannerurl = auth["extra"]["raw_info"]["profile_banner_url"] << "/1500x500"
       end
     end
