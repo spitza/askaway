@@ -3,9 +3,10 @@
 	<div class="q-a-metadata pure-hidden-phone">
 		<%= @conversation.user.fullname %> | <span class="timestamp"> Answered <%= time_ago_in_words(answer.created_at) %> ago. </span>
 	</div>
-	<div class="q-a-metadata-small" %>
+	<div class="q-a-metadata-small pure-hidden-desktop" %>
+		<%= @conversation.user.fullname %>
 		<br>
-		<span class="timestamp"> Answered <%= time_ago_in_words(answer.created_at) %> ago.</span>
+		<span class="timestamp"> Answered <%= time_ago_in_words(answer.created_at) %> ago. </span>
 	</div>
 	<div class = "q-and-a-content">
 		<%= answer.content %>
