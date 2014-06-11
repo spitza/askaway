@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140606231754) do
+ActiveRecord::Schema.define(version: 20140611013404) do
 
   create_table "answers", force: true do |t|
     t.integer  "question_id"
@@ -24,8 +24,8 @@ ActiveRecord::Schema.define(version: 20140606231754) do
     t.string   "prompt"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "user_id"
-    t.integer  "questions_count", default: 0
+    t.integer  "user_id",         limit: 8
+    t.integer  "questions_count",           default: 0
     t.string   "slug"
   end
 
@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 20140606231754) do
 
   create_table "questions", force: true do |t|
     t.string   "content"
-    t.integer  "user_id"
+    t.integer  "user_id",         limit: 8
     t.integer  "upvotes"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -45,11 +45,11 @@ ActiveRecord::Schema.define(version: 20140606231754) do
 
   create_table "rs_evaluations", force: true do |t|
     t.string   "reputation_name"
-    t.integer  "source_id"
+    t.integer  "source_id",       limit: 8
     t.string   "source_type"
     t.integer  "target_id"
     t.string   "target_type"
-    t.float    "value",           default: 0.0
+    t.float    "value",                     default: 0.0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -87,7 +87,8 @@ ActiveRecord::Schema.define(version: 20140606231754) do
   add_index "rs_reputations", ["reputation_name"], name: "index_rs_reputations_on_reputation_name"
   add_index "rs_reputations", ["target_id", "target_type"], name: "index_rs_reputations_on_target_id_and_target_type"
 
-  create_table "users", force: true do |t|
+  create_table "users", id: false, force: true do |t|
+    t.integer  "id",         limit: 8
     t.string   "provider"
     t.string   "name"
     t.datetime "created_at"
@@ -96,7 +97,7 @@ ActiveRecord::Schema.define(version: 20140606231754) do
     t.string   "fullname"
     t.string   "avatarurl"
     t.string   "bannerurl"
-    t.integer  "uid"
+    t.integer  "uid",        limit: 8
   end
 
 end
