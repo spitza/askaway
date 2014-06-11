@@ -12,5 +12,4 @@ class Conversation < ActiveRecord::Base
     short_prompt = truncate("#{prompt}", length: 25, separator: ' ')
     "#{self.user.name}" + " " + "#{short_prompt}"
   end
-  
 end
