@@ -14,8 +14,8 @@ class User < ActiveRecord::Base
   def self.create_from_omniauth(auth)
     create! do |user|
       user.provider = auth["provider"]
-      user.id = auth["uid"]
-      user.uid = auth["uid"]
+      user.id = auth["uid"].to_i
+      user.uid = auth["uid"].to_i
       user.name = auth["info"]["nickname"]
       user.fullname = auth["info"]["name"]
       user.avatarurl = auth["info"]["image"].sub("_normal", "")
