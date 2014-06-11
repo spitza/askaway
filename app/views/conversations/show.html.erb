@@ -24,7 +24,7 @@
 	<h3 class = "twitter-handle pure-hidden-phone"><%= link_to "@#{@conversation.user.name}", "http://www.twitter.com/#{@conversation.user.name}", target: "_blank", class:"twitter-handle-link-big" %></h3>
 	<%= image_tag(@conversation.user.portrait("original"), class:"img-circle prof-pic pure-hidden-phone")%>
 	<%= image_tag(@conversation.user.portrait("bigger"), class:"img-circle smaller-prof-pic pure-hidden-desktop")%>
-	<h1 class = "full_name_small pure-hidden-desktop"><%= @conversation.user.fullname %>&nbsp;<span class="small-twitter-handle-span">(<%= link_to "@#{@conversation.user.name}", "http://www.twitter.com/#{@conversation.user.name}", target: "_blank", class:"twitter-handle-link-small" %>)</span></h1>
+	<h1 class = "full_name_small pure-hidden-desktop"><%= @conversation.user.fullname %></h1>
 	<div class="prompt-area">
 		<h2 class="prompt_big pure-hidden-phone"><%= @conversation.prompt %></h2>
 		<p class="prompt_small pure-hidden-desktop"><%= @conversation.prompt %></p>
