@@ -2,8 +2,7 @@
 	<%= link_to conversation, class: "conversation-list-link" do %>
 		<div class="pure-g">
 			<div class="pure-u-1-4 center">
-				<%= image_tag(conversation.user.portrait("bigger"), class:"img-circle conversation-avatar-big pure-hidden-phone")%>
-				<%= image_tag(conversation.user.portrait("bigger"), class:"img-circle conversation-avatar-small pure-hidden-desktop")%>
+				<%= image_tag(conversation.user.portrait("bigger"), class:"img-circle conversation-avatar")%>
 			</div>
 			<div class="pure-u-3-4 name-and-prompt-area">
 				<h1 class="conversation-list-name"><%= conversation.user.fullname %></h1>

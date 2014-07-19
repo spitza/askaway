@@ -1,9 +1,15 @@
 <% provide(:title, @conversation.id) %>
-<div class="pure-hidden-desktop small-screen-header">
+<div class="small-screen-header">
 	<h3 class = "askaway-logo-small">AskAway</h3>
 </div>
-<% if !current_user && @conversation.questions.count > 0 %>
-	<div class = "sticky-login-prompt pure-hidden-phone">
+<ul class = "big-screen-nav">
+	<% if current_user %>
+	  	<li><%= link_to "Sign Out", signout_path %></li>
+		<li><%= link_to "Host a Conversation", create_path %></li>
+	<% end %>
+</ul>
+<% if !current_user %>
+	<div class = "sticky-login-prompt">
 		<p class="login-prompt center">
 			To ask <%=@conversation.user.fullname %> a question:
 		</p>
@@ -17,18 +23,12 @@
 <% else %>
 	<%= image_tag("backup-banner.png", class: "header_img") %>
 <% end %>
-<h1 class = "pure-hidden-phone askaway-logo-big"><%= link_to "AskAway", root_path, class:"home-link-big" %></h1>
+<h1 class = "askaway-logo"><%= link_to "AskAway", root_path, class:"home-link" %></h1>
 <div class="content">
-	<div class = "small-screen-space pure-hidden-desktop">&nbsp;</div>
-	<h1 class = "full_name_big pure-hidden-phone"><%= @conversation.user.fullname %></h1>
-	<h3 class = "twitter-handle pure-hidden-phone"><%= link_to "@#{@conversation.user.name}", "http://www.twitter.com/#{@conversation.user.name}", target: "_blank", class:"twitter-handle-link-big" %></h3>
-	<%= image_tag(@conversation.user.portrait("original"), class:"img-circle prof-pic pure-hidden-phone")%>
-	<%= image_tag(@conversation.user.portrait("bigger"), class:"img-circle smaller-prof-pic pure-hidden-desktop")%>
-	<h1 class = "full_name_small pure-hidden-desktop"><%= @conversation.user.fullname %></h1>
-	<div class="prompt-area">
-		<h2 class="prompt_big pure-hidden-phone"><%= @conversation.prompt %></h2>
-		<p class="prompt_small pure-hidden-desktop"><%= @conversation.prompt %></p>
-	</div>
+	<h1 class = "full_name"><%= @conversation.user.fullname %></h1>
+	<h3 class = "twitter-handle"><%= link_to "@#{@conversation.user.name}", "http://www.twitter.com/#{@conversation.user.name}", target: "_blank", class:"twitter-handle-link" %></h3>
+	<%= image_tag(@conversation.user.portrait("original"), class:"img-circle prof-pic")%>
+	<p class="prompt"><%= @conversation.prompt %></p>
 	<% if @conversation.questions.count == 0 && @conversation.user != current_user %>
 		<h2 class="center no-questions-prompt">No questions yet!  Be the first to ask: </h2>
 		<% if !current_user %>

@@ -1,41 +1,65 @@
 @import "bootstrap";
 
+@mixin breakpoint($point) {
+    @if $point == tablet {
+        @media (min-width: 480px)  { @content; }
+    }
+    @else if $point == inbetween {
+        @media (min-width: 768px) { @content; }
+    }
+    @else if $point == desktop {
+        @media (min-width: 1024px) { @content; }
+    }
+}
+
+body {
+	position:relative;
+	bottom:1.9em;
+}
+
+/* menu and header stuff *////////////////////////////////////////////
+
+
+
+
 /* home page *///////////////////////////////////////////////////
 
-.askaway-logo-home-big {
-	font-style:italic;
-	font-size:6em;
-	font-family: Georgia, Serif;
-	padding-top:.5em;
-}
-
-.askaway-logo-home-small {
-	font-style:italic;
-	font-size:3em;
-	font-family: Georgia, Serif;
+.askaway-logo-home {
+	font-size:4em;
 	padding-top:.5em;
 	margin-bottom:1em;
+	color:orange;
+	font-family: 'oleo script';
+	@include breakpoint(tablet) {
+		font-size:5em;
+	}
+	@include breakpoint(desktop) {
+		font-size:6em;
+	}
 }
 
-.slogan-big {
-	font-family: 'Open Sans', sans-serif;
-	font-size:1.5em;
-	position:relative;
-	bottom:2em;
-}
-
-.slogan-small {
+.slogan {
 	font-family: 'Open Sans', sans-serif;
 	font-size:1.3em;
 	line-height:1.2em;
 	padding:0em 1em 0em;
 	position:relative;
-	bottom:1.7em;
+	bottom:2.2em;
+	@include breakpoint(tablet) {
+		font-size:1.5em;
+	}
 }
 
 .trending-convos {
 	font-family: 'Open Sans', sans-serif;
 	font-weight:700;
+	font-size:1.5em;
+	@include breakpoint(tablet) {
+		font-size:1.6em;
+	}
+	@include breakpoint(desktop) {
+		font-size:2em;
+	}
 }
 
 .home-content {
@@ -63,7 +87,6 @@
   list-style: none;
   font-family: Georgia, Serif;
   padding: 0 0 0 0px;
-
   li {
 	  padding: 16px 0px;
 	  border-top: 1px solid rgba(0, 0, 0, 0.2);
@@ -77,15 +100,12 @@
 	padding: 0 7px;
 }
 
-.conversation-avatar-big {
-	width:6em;
+.conversation-avatar {
 	position:relative;
 	top:1em;
-}
-
-.conversation-avatar-small {
-	position:relative;
-	top:1em;
+	@include breakpoint(tablet) {
+		width:6em;
+	}
 }
 
 /* pure layout stuff */////////////////////////////////////////////////////////////
@@ -93,11 +113,6 @@
 .pure-img-responsive {
     max-width: 100%;
     height: auto;
-}
-
-body {
-	position:relative;
-	bottom:1.3em;
 }
 
 .center {
@@ -196,11 +211,10 @@ body {
 		    This styles the menu heading.
 		    */
 		    #menu .pure-menu-heading {
-		        font-size: 120%;
+		        font-size: 130%;
 		        color: #fff;
 		        margin: 0;
-				font-style:italic;
-				font-family: Georgia, Serif;
+				font-family: 'oleo script';
 				text-transform:none;
 		    }
 
@@ -221,6 +235,9 @@ body {
 		    width: 5em;
 		    height: auto;
 		    padding: 2.1em 1.6em;
+			@include breakpoint(desktop) {
+				display:none;
+			}
 		}
 
 		    .menu-link:hover,
@@ -361,56 +378,85 @@ aside {
 }
 
 .sticky-login-prompt {
-	position: absolute;
-	right: 5em;
-	display:block;
-	top:1em;
-	z-index:1;
-	background-color:rgba(0,0,0,0.25);
-	color:white;
-	font-family: 'Open Sans', sans-serif;
-	padding:0 1em 1.3em;
-	border-radius:3px;
+	display:none;
+	@include breakpoint(desktop) {
+		position: absolute;
+		right: 2em;
+		display:block;
+		top:1em;
+		z-index:1;
+		background-color:rgba(0,0,0,0.25);
+		color:white;
+		font-family: 'Open Sans', sans-serif;
+		padding:0 1em 1.3em;
+		border-radius:3px;
+	}
 }
 
-.askaway-logo-big {
-	font-style:italic;
-	position:absolute;
-	top:.3em;
-	left:2.5em;
-	text-shadow: 0px 1px 1px #000;
-	color:white;
-	font-family: Georgia, Serif;
-}
-
-.home-link-big {
+.home-link {
 	color:white;
 }
 
-.home-link-big:hover {
+.home-link:hover {
 	color:white;
 	text-decoration:none;
 }
 
-.askaway-logo-small {
-	font-style:italic;
-	text-shadow: 0px 1px 1px #000;
-	color:white;
-	position:relative;
-	top:.9em;
+.askaway-logo {
+	display:none;
+	@include breakpoint(desktop) {
+		display:block;
+		position:absolute;
+		top:.6em;
+		left:.6em;
+		font-size:2.3em;
+		text-shadow: 0px 1px 1px #000;
+		color:white;
+		font-family: 'oleo script';
+	}
+}
+
+.big-screen-nav {
+	display:none;
+	@include breakpoint(desktop) {
+		display:block;
+		float:right;
+		position:relative;
+		font-size:1.1em;
+		top:2.6em;
+		margin: 0em 0em 0 0;
+		list-style: none;
+		z-index:1;
+		li {
+			float:right;
+			margin:0 1.5em 0 0;
+			text-shadow: 0px 1px 1px #000;
+			a, a:hover {
+				color:white;
+			}
+		}
+	}
 }
 
 .small-screen-header {
 	display:block;
+	font-family: 'oleo script';
 	text-align:center;
-	background-color:black;
-	height:3.3em;
-	font-family: Georgia, Serif;
+	background-color:rgb(26,26,29);
+	color:white;
+	height:3.4em;
+	@include breakpoint(desktop) {
+		display:none;
+	}
 }
 
-.small-screen-space {
-	display:block;
-	height:8.6em;
+.askaway-logo-small {
+	font-size:1.7em;
+	position:relative;
+	top:.6em;
+	@include breakpoint(desktop) {
+		display:none;
+	}
 }
 
 .space-after-big-prompt {
@@ -418,83 +464,89 @@ aside {
 	height:1em;
 }
 
-.full_name_big, .full_name_small {
+.full_name {
 	text-shadow: 0px 1px 1px #000;
 	color:white;
 	text-align:center;
-}
-
-.full_name_big {
-	font-size:3.4em;
-	line-height:.5em;
 	font-family: 'Open Sans', sans-serif;
 	font-weight:700;
-}
-
-.full_name_small {
 	font-size:2em;
 	line-height:.3em;
-	position:relative;
-	bottom:.2em;
-	font-family: 'Open Sans', sans-serif;
-	font-weight:700;
+	margin-top:5.8em;
+	@include breakpoint(tablet) {
+		font-size:2.7em;
+		line-height:.5em;
+		margin-top:2.6em;
+	}
+	@include breakpoint(inbetween) {
+		margin-top:1.9em;
+	}
+	@include breakpoint(desktop) {
+		font-size:3.5em;
+		margin-top:.7em;
+	}
 }
 
 .twitter-handle {
-	text-align:center;
+	display:none;
+	@include breakpoint(tablet) {
+		text-align:center;
+		display:block;
+		font-size:.8em;
+	}
+	@include breakpoint(inbetween) {
+		text-align:center;
+		display:block;
+		font-size:1em;
+	}
 }
 
-.twitter-handle-link-big {
+.twitter-handle-link {
 	font-size:1.3em;
 	text-shadow: 0px 1px 1px #000;
 	color:white;
 	font-family: 'Open Sans', sans-serif;
 }
 
-.twitter-handle-link-small {
-	text-shadow: 0px 1px 1px #000;
-	color:white;
-	font-family: 'Open Sans', sans-serif;
-}
-
-.small-twitter-handle-span {
-	font-size:.5em;
-}
-
 .twitter-handle-link-big:hover {
 	color:white;
 }
 
-.twitter-handle-link-small:hover {
-	color:white;
-}
-
 .prof-pic {
-	border: 3px solid white;
-	box-shadow: 0 3px 2px rgba(0, 0, 0, 0.3);
-	width:175px;
-	display:block;
-	margin:auto;
-}
-
-.smaller-prof-pic {
-	border: 2px solid #eee;
+	border: 2px solid white;
 	box-shadow: 0 2px 1px rgba(0, 0, 0, 0.3);
 	display:block;
 	margin:auto;
 	width:4.7em;
+	@include breakpoint(tablet) {
+		border: 3px solid white;
+		box-shadow: 0 3px 2px rgba(0, 0, 0, 0.3);
+		width:7.5em;
+	}
+	@include breakpoint(inbetween) {
+		width:10em;
+	}
+	@include breakpoint(desktop) {
+		width:13em;
+	}
 }
 
-.prompt_big {
+.prompt {
 	line-height:1.6em;
-	margin:1.5em auto 2em;
-	top:.3em;
+	padding:0em .5em 0;
 	word-wrap:break-word;
-}
-
-.prompt_small {
-	line-height:1.6em;
-	padding:.7em .5em 0;
+	font-size:1.3em;
+	margin:.5em auto .9em;
+	@include breakpoint(tablet) {
+		font-size:1.4em;
+		margin:.7em auto .9em;
+	}
+	@include breakpoint(inbetween) {
+		font-size:1.5em;
+	}
+	@include breakpoint(desktop) {
+		font-size:1.7em;
+	}
 }
 
 .no-questions-prompt {
