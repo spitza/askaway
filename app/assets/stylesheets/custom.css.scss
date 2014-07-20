@@ -19,7 +19,48 @@ body {
 
 /* menu and header stuff *////////////////////////////////////////////
 
+.big-screen-nav {
+	display:none;
+	@include breakpoint(desktop) {
+		display:block;
+		float:right;
+		position:relative;
+		font-size:1.1em;
+		top:2.6em;
+		margin: 0em 0em 0 0;
+		list-style: none;
+		z-index:1;
+		li {
+			float:right;
+			margin:0 1.5em 0 0;
+			text-shadow: 0px 1px 1px #000;
+			a, a:hover {
+				color:white;
+			}
+		}
+	}
+}
 
+.small-screen-header {
+	display:block;
+	font-family: 'oleo script';
+	text-align:center;
+	background-color:rgb(26,26,29);
+	color:white;
+	height:3.4em;
+	@include breakpoint(desktop) {
+		display:none;
+	}
+}
+
+.askaway-logo-small {
+	font-size:1.7em;
+	position:relative;
+	top:.6em;
+	@include breakpoint(desktop) {
+		display:none;
+	}
+}
 
 
 /* home page *///////////////////////////////////////////////////
@@ -27,26 +68,28 @@ body {
 .askaway-logo-home {
 	font-size:4em;
 	padding-top:.5em;
-	margin-bottom:1em;
-	color:orange;
+	color:white;
 	font-family: 'oleo script';
+	text-shadow: 0px 1px 1px #000;
 	@include breakpoint(tablet) {
 		font-size:5em;
 	}
-	@include breakpoint(desktop) {
+	@include breakpoint(inbetween) {
 		font-size:6em;
+		margin-bottom:.1em;
 	}
 }
 
 .slogan {
 	font-family: 'Open Sans', sans-serif;
-	font-size:1.3em;
-	line-height:1.2em;
-	padding:0em 1em 0em;
-	position:relative;
-	bottom:2.2em;
-	@include breakpoint(tablet) {
-		font-size:1.5em;
+	font-size:1.2em;
+	line-height:1.3em;
+	padding:0 1em 0;
+	margin: 0 0 2em 0;
+	color:inherit;
+	@include breakpoint(inbetween) {
+		color:white;
+		text-shadow: 0px 1px 1px #000;
 	}
 }
 
@@ -57,8 +100,13 @@ body {
 	@include breakpoint(tablet) {
 		font-size:1.6em;
 	}
+	@include breakpoint(inbetween) {
+		font-size:2em;
+		margin-top:3.5em;
+	}
 	@include breakpoint(desktop) {
 		font-size:2em;
+		margin-top:5em;
 	}
 }
 
@@ -67,6 +115,17 @@ body {
 	padding: 0 .5em;
 	max-width: 800px;
 	font-family: Georgia, Serif;
+	position:relative;
+	bottom:10em;
+	@include breakpoint(tablet) {
+		bottom:13.3em;
+	}
+	@include breakpoint(inbetween) {
+		bottom:19em;
+	}
+	@include breakpoint(desktop) {
+		bottom:22em;
+	}
 }
 
 .conversation-list-name {
@@ -87,6 +146,7 @@ body {
   list-style: none;
   font-family: Georgia, Serif;
   padding: 0 0 0 0px;
+  text-align:left;
   li {
 	  padding: 16px 0px;
 	  border-top: 1px solid rgba(0, 0, 0, 0.2);
@@ -302,38 +362,45 @@ aside {
 /* conversation create page *///////////////////////////////////////////////////
 
 .sticky {
-  position: relative;
-  left: -50%;
-  top:7em;
-  background-color: #F4F39E;
-  border-color: #DEE184;
-  text-align: center;
-  margin: 2.5em 0px;
-  padding: 1.5em 1em;
-  width:15em;
-  -webkit-box-shadow: 0px 1px 3px rgba(0,0,0,0.25);
-  -moz-box-shadow: 0px 1px 3px rgba(0,0,0,0.25);
-  box-shadow: 0px 1px 3px rgba(0,0,0,0.25);
-  font-family: 'Open Sans', sans-serif;
-  font-weight:700;
+	display:none;
+	@include breakpoint(desktop) {
+	    display:block;
+		position: relative;
+	    left: -50%;
+	    top:7em;
+	    background-color: #F4F39E;
+	    border-color: #DEE184;
+	    text-align: center;
+	    margin: 2.5em 0px;
+	    padding: 1.5em 1em;
+	    width:15em;
+	    -webkit-box-shadow: 0px 1px 3px rgba(0,0,0,0.25);
+	    -moz-box-shadow: 0px 1px 3px rgba(0,0,0,0.25);
+	    box-shadow: 0px 1px 3px rgba(0,0,0,0.25);
+	    font-family: 'Open Sans', sans-serif;
+	    font-weight:700;
+	}
 }
 
 .sticky.taped:after {
-  display: block;
-  content: "";
-  position: absolute; 
-  width: 110px;
-  height: 30px;
-  top: -21px;
-  left: 23%;    
-  border: 1px solid #fff;
-  background: rgba(254, 254, 254, .6);
-  -webkit-box-shadow: 0px 0 3px rgba(0,0,0,0.1);
-  -moz-box-shadow: 0px 0 3px rgba(0,0,0,0.1);
-  box-shadow: 0px 0 3px rgba(0,0,0,0.1);
-  -ms-transform:rotate(-3deg); /* IE 9 */
-  -webkit-transform:rotate(-3deg); /* Chrome, Safari, Opera */
-  transform:rotate(-3deg); /* Standard syntax */
+	display:none;
+	@include breakpoint(desktop) {
+	    display: block;
+	    content: "";
+	    position: absolute; 
+	    width: 110px;
+	    height: 30px;
+	    top: -21px;
+	    left: 23%;    
+	    border: 1px solid #fff;
+	    background: rgba(254, 254, 254, .6);
+	    -webkit-box-shadow: 0px 0 3px rgba(0,0,0,0.1);
+	    -moz-box-shadow: 0px 0 3px rgba(0,0,0,0.1);
+	    box-shadow: 0px 0 3px rgba(0,0,0,0.1);
+	    -ms-transform:rotate(-3deg); /* IE 9 */
+	    -webkit-transform:rotate(-3deg); /* Chrome, Safari, Opera */
+	    transform:rotate(-3deg); /* Standard syntax */
+	}
 }
 
 .absolute-center {
@@ -369,6 +436,18 @@ aside {
 }
 
 /* conversation show page *///////////////////////////////////////////////////
+
+.content {
+	margin: 0 auto 2em;
+	padding: 0 .5em;
+	max-width: 800px;
+	font-family: Georgia, Serif;
+	position:relative;
+	bottom:17em;
+	@include breakpoint(tablet) {
+		bottom:16em;
+	}
+}
 
 .header_img {
 	width: 100%;
@@ -413,49 +492,6 @@ aside {
 		text-shadow: 0px 1px 1px #000;
 		color:white;
 		font-family: 'oleo script';
-	}
-}
-
-.big-screen-nav {
-	display:none;
-	@include breakpoint(desktop) {
-		display:block;
-		float:right;
-		position:relative;
-		font-size:1.1em;
-		top:2.6em;
-		margin: 0em 0em 0 0;
-		list-style: none;
-		z-index:1;
-		li {
-			float:right;
-			margin:0 1.5em 0 0;
-			text-shadow: 0px 1px 1px #000;
-			a, a:hover {
-				color:white;
-			}
-		}
-	}
-}
-
-.small-screen-header {
-	display:block;
-	font-family: 'oleo script';
-	text-align:center;
-	background-color:rgb(26,26,29);
-	color:white;
-	height:3.4em;
-	@include breakpoint(desktop) {
-		display:none;
-	}
-}
-
-.askaway-logo-small {
-	font-size:1.7em;
-	position:relative;
-	top:.6em;
-	@include breakpoint(desktop) {
-		display:none;
 	}
 }
 
@@ -517,7 +553,7 @@ aside {
 	box-shadow: 0 2px 1px rgba(0, 0, 0, 0.3);
 	display:block;
 	margin:auto;
-	width:4.7em;
+	width:6.5em;
 	@include breakpoint(tablet) {
 		border: 3px solid white;
 		box-shadow: 0 3px 2px rgba(0, 0, 0, 0.3);
@@ -598,11 +634,88 @@ aside {
   transform:rotate(-3deg); /* Standard syntax */
 }
 
+/* question show page *///////////////////////////////////////////////////
+
+.prof-pic-q-page {
+	border: 2px solid white;
+	box-shadow: 0 2px 1px rgba(0, 0, 0, 0.3);
+	display:block;
+	margin:auto;
+	width:7em;
+	@include breakpoint(tablet) {
+		border: 3px solid white;
+		box-shadow: 0 3px 2px rgba(0, 0, 0, 0.3);
+		width:9em;
+	}
+	@include breakpoint(inbetween) {
+		width:13em;
+	}
+	@include breakpoint(desktop) {
+		width:14em;
+	}
+}
+
+.asker-and-askee {
+	width:65%;
+	margin:0 auto;
+}
+
+.question-page-content {
+	margin: 0 auto 2em;
+	padding: 0 .5em;
+	max-width: 800px;
+	font-family: Georgia, Serif;
+	position:relative;
+	bottom:8em;
+	@include breakpoint(tablet) {
+		bottom:11em;
+	}
+	@include breakpoint(inbetween) {
+		bottom:17em;
+	}
+	@include breakpoint(desktop) {
+		bottom:20em;
+	}
+}
+
 .question-description {
 	font-family: 'Open Sans', sans-serif;
-	line-height:1.3em;
-	color:gray;
+	line-height:1.4em;
+	font-size:1em;
+	@include breakpoint(inbetween) {
+		color:white;
+		text-shadow: 0px 1px 1px #000;
+	}
 }
+
+.space-before-question-description {
+	height:.4em;
+	@include breakpoint(tablet) {
+		height:1.4em;
+	}
+	@include breakpoint(inbetween) {
+		height:.7em;
+	}
+	@include breakpoint(desktop) {
+		height:3em;
+	}
+}
+
+.space-after-question-description {
+	height:1.3em;
+	@include breakpoint(inbetween) {
+		height:2.3em;
+	}
+}
+
+.question-page-convo-link, .question-page-convo-link:hover {
+	text-decoration:underline;
+	color:inherit;
+	@include breakpoint(inbetween) {
+		color:white;
+	}
+}
+
 
 .number-of-questions {
 	font-family: 'Open Sans', sans-serif;
@@ -683,22 +796,6 @@ aside {
 	display:block;
 	margin-bottom:3px;
 	width: 1.5em;
-}
-
-.content {
-	margin: 0 auto 2em;
-	padding: 0 .5em;
-	max-width: 800px;
-	font-family: Georgia, Serif;
-	position:relative;
-	bottom:16em;
-}
-
-html, button, input, select, textarea,
-.pure-g [class *= "pure-u"],
-.pure-g-r [class *= "pure-u"] {
-    /* Set your content font stack here: */
-    font-family: Georgia, Serif;
 }
 
 /* custom pagination shite *///////////////////////////////////////////

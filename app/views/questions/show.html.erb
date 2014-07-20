@@ -1,66 +1,85 @@
 <% provide(:title, @question.id) %>
-<div class="pure-hidden-desktop small-screen-header">
+<div class="small-screen-header">
 	<h3 class = "askaway-logo-small">AskAway</h3>
 </div>
+<ul class = "big-screen-nav">
+	<% if current_user %>
+	  	<li><%= link_to "Sign Out", signout_path %></li>
+		<li><%= link_to "Host a Conversation", create_path %></li>
+	<% end %>
+</ul>
+<% if !current_user %>
+	<div class = "sticky-login-prompt">
+		<p class="login-prompt center">
+			To ask <%=@conversation.user.fullname %> a question:
+		</p>
+		<div class="center">
+			<%= link_to image_tag("sign-in-with-twitter-gray.png"), "/auth/twitter?origin=#{request.original_url}" %>
+		</div>
+	</div>
+<% end %>
 <% if @conversation.user.bannerurl %>
 	<%= image_tag(@conversation.user.bannerurl, class: "header_img") %>
 <% else %>
 	<%= image_tag("backup-banner.png", class: "header_img") %>
 <% end %>
-<h1 class = "pure-hidden-phone askaway-logo-big"><%= link_to "AskAway", root_path, class:"home-link-big" %></h1>
-<div class="content">
-	<div class = "small-screen-space pure-hidden-desktop">&nbsp;</div>
-	<h1 class = "full_name_big pure-hidden-phone"><%= @conversation.user.fullname %></h1>
-	<h3 class = "twitter-handle pure-hidden-phone"><%= link_to "@#{@conversation.user.name}", "http://www.twitter.com/#{@conversation.user.name}", target: "_blank", class:"twitter-handle-link-big" %></h3>
-	<%= image_tag(@conversation.user.portrait("original"), class:"img-circle prof-pic pure-hidden-phone")%>
-	<%= image_tag(@conversation.user.portrait("bigger"), class:"img-circle smaller-prof-pic pure-hidden-desktop")%>
-	<h1 class = "full_name_small pure-hidden-desktop"><%= @conversation.user.fullname %></h1>
-	<br class="pure-hidden-phone">
-	<h3 class="center question-description">Question from <%= @question.user.fullname %> in <%= link_to "#{@conversation.user.fullname}'s conversation", @conversation %> </h3>
-	<br>
-<div>
-<div id="question_<%= @question.id %>">
-	<div class="pure-g">
-		<div class="pure-u-1-12 vote-column">
-			<% if current_user && !current_user.user_has_upvoted?(@question) %>
-				<%= button_to vote_question_path(@question, type: "up"), method: "post", class:"btn btn-primary vote-button", remote: true do %>
-					<%= image_tag("voteup.png", class:"vote-icon") %>
-					<span class="votecount"><%= @question.reputation_for(:votes).to_i %></span>
-				<% end %>
-			<% elsif current_user && current_user.user_has_upvoted?(@question) %>
-				<%= button_to vote_question_path(@question, type: "down"), method: "post", class:"btn btn-primary pressed vote-button", remote: true do %>
-					<span class="glyphicon glyphicon-ok"></span>
-					<br>
-					<span class="votecount"><%= @question.reputation_for(:votes).to_i %></span>
-				<% end %>
-			<% elsif !current_user %>
-				<%= button_to "#", class:"btn btn-primary vote-button-logged-out", :data => {trigger:"manual", content:"#{link_to "Sign In with Twitter", "/auth/twitter?origin=#{request.original_url}"} to vote."} do %>
-					<%= image_tag("voteup.png", class:"vote-icon") %>
-					<span class="votecount"><%= @question.reputation_for(:votes).to_i %></span>
-				<% end %>
-			<% end %>
+<h1 class = "askaway-logo"><%= link_to "AskAway", root_path, class:"home-link" %></h1>
+<div class="question-page-content">
+	<div class="asker-and-askee pure-g">
+		<div class="pure-u-1-2">
+			<%= image_tag(@question.user.portrait("original"), class:"img-circle prof-pic-q-page")%>
 		</div>
-		<div class="pure-u-1-24">&nbsp;</div>
-		<div class="pure-u-7-8 q-a-column">
-			<%= image_tag(@question.user.portrait("normal"), class:"img-circle", display: "inline")%>
-			<div class="q-a-metadata pure-hidden-phone">
-				<%= @question.user.fullname %> | <span class="timestamp"> Asked <%= time_ago_in_words(@question.created_at) %> ago. </span>
-			</div>
-			<div class="q-a-metadata-small pure-hidden-desktop">
-				<%= @question.user.fullname %>
-				<br>
-				<span class="timestamp"> Asked <%= time_ago_in_words(@question.created_at) %> ago. </span>
-			</div>
-			<div class = "q-and-a-content">
-				<%= @question.content %>
-			</div>
+		<div class="pure-u-1-2">
+			<%= image_tag(@conversation.user.portrait("original"), class:"img-circle prof-pic-q-page")%>
 		</div>
 	</div>
+	<div class="space-before-question-description">&nbsp;</div>
+	<h3 class="center question-description">Question from <%= @question.user.fullname %> in <%= link_to "#{@conversation.user.fullname}'s conversation", @conversation, class:"question-page-convo-link" %> </h3>
+	<div class="space-after-question-description">&nbsp;</div>
+	<div id="question_<%= @question.id %>">
+		<div class="pure-g">
+			<div class="pure-u-1-12 vote-column">
+				<% if current_user && !current_user.user_has_upvoted?(@question) %>
+					<%= button_to vote_question_path(@question, type: "up"), method: "post", class:"btn btn-primary vote-button", remote: true do %>
+						<%= image_tag("voteup.png", class:"vote-icon") %>
+						<span class="votecount"><%= @question.reputation_for(:votes).to_i %></span>
+					<% end %>
+				<% elsif current_user && current_user.user_has_upvoted?(@question) %>
+					<%= button_to vote_question_path(@question, type: "down"), method: "post", class:"btn btn-primary pressed vote-button", remote: true do %>
+						<span class="glyphicon glyphicon-ok"></span>
+						<br>
+						<span class="votecount"><%= @question.reputation_for(:votes).to_i %></span>
+					<% end %>
+				<% elsif !current_user %>
+					<%= button_to "#", class:"btn btn-primary vote-button-logged-out", :data => {trigger:"manual", content:"#{link_to "Sign In with Twitter", "/auth/twitter?origin=#{request.original_url}"} to vote."} do %>
+						<%= image_tag("voteup.png", class:"vote-icon") %>
+						<span class="votecount"><%= @question.reputation_for(:votes).to_i %></span>
+					<% end %>
+				<% end %>
+			</div>
+			<div class="pure-u-1-24">&nbsp;</div>
+			<div class="pure-u-7-8 q-a-column">
+				<%= image_tag(@question.user.portrait("normal"), class:"img-circle", display: "inline")%>
+				<div class="q-a-metadata pure-hidden-phone">
+					<%= @question.user.fullname %> | <span class="timestamp"> Asked <%= time_ago_in_words(@question.created_at) %> ago. </span>
+				</div>
+				<div class="q-a-metadata-small pure-hidden-desktop">
+					<%= @question.user.fullname %>
+					<br>
+					<span class="timestamp"> Asked <%= time_ago_in_words(@question.created_at) %> ago. </span>
+				</div>
+				<div class = "q-and-a-content">
+					<%= @question.content %>
+				</div>
+				<% if @question.answer %>
+					<br>
+					<%= render @question.answer %>
+				<% end %>
+			</div>
+		</div>
+		<% if current_user == @question.conversation.user && !@question.answer %>
+			<br>
+			<%= render 'shared/answer_form' %>
+		<% end %>
+	</div>
 </div>
-<% if @question.answer %>
-	<br>
-	<%= render @question.answer %>
-<% elsif current_user == @question.conversation.user %>
-	<br>
-	<%= render 'shared/answer_form' %>
-<% end %>

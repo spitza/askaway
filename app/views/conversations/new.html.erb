@@ -1,24 +1,27 @@
-<div class="pure-hidden-desktop small-screen-header">
-	<h3 class = "askaway-logo-small">AskAway</h3>
-</div>
 <div class="absolute-center">
-	<div class = "sticky taped pure-hidden-phone">
+	<div class = "sticky taped">
 		<p>Almost there!  This conversation will go live after you write a quick prompt below.</p>
 	</div>
 </div>
+<div class="small-screen-header">
+	<h3 class = "askaway-logo-small">AskAway</h3>
+</div>
+<ul class = "big-screen-nav">
+	<% if current_user %>
+	  	<li><%= link_to "Sign Out", signout_path %></li>
+		<li><%= link_to "Host a Conversation", create_path %></li>
+	<% end %>
+</ul>
 <% if current_user.bannerurl %>
 	<%= image_tag(current_user.bannerurl, class: "header_img") %>
 <% else %>
 	<%= image_tag("backup-banner.png", class: "header_img") %>
 <% end %>
-<h1 class = "pure-hidden-phone askaway-logo-big"><%= link_to "AskAway", root_path, class:"home-link-big" %></h1>
-<div class="create-page-content">
-	<div class = "small-screen-space pure-hidden-desktop">&nbsp;</div>
-	<h1 class = "full_name_big pure-hidden-phone"><%= current_user.fullname %></h1>
-	<h3 class = "twitter-handle pure-hidden-phone"><%= link_to "@#{current_user.name}", "http://www.twitter.com/#{current_user.name}", target: "_blank", class:"twitter-handle-link-big" %></h3>
-	<%= image_tag(current_user.portrait("original"), class:"img-circle prof-pic pure-hidden-phone")%>
-	<%= image_tag(current_user.portrait("bigger"), class:"img-circle smaller-prof-pic pure-hidden-desktop")%>
-	<h1 class = "full_name_small pure-hidden-desktop"><%= current_user.fullname %>&nbsp;<span class="small-twitter-handle-span">(<%= link_to "@#{current_user.name}", "http://www.twitter.com/#{current_user.name}", target: "_blank", class:"twitter-handle-link-small" %>)</span></h1>
+<h1 class = "askaway-logo"><%= link_to "AskAway", root_path, class:"home-link" %></h1>
+<div class="content">
+	<h1 class = "full_name"><%= current_user.fullname %></h1>
+	<h3 class = "twitter-handle"><%= link_to "@#{current_user.name}", "http://www.twitter.com/#{current_user.name}", target: "_blank", class:"twitter-handle-link" %></h3>
+	<%= image_tag(current_user.portrait("original"), class:"img-circle prof-pic")%>
 	<div class="prompt-form-area">
 	    <%= bootstrap_form_for(@conversation, class:"convo-form") do |f| %>
 	      <%= f.text_area :prompt, label: "Write a prompt describing your conversation:", id: "composer" %>
