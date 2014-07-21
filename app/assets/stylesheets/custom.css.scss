@@ -641,7 +641,7 @@ aside {
 	box-shadow: 0 2px 1px rgba(0, 0, 0, 0.3);
 	display:block;
 	margin:auto;
-	width:7em;
+	width:6em;
 	@include breakpoint(tablet) {
 		border: 3px solid white;
 		box-shadow: 0 3px 2px rgba(0, 0, 0, 0.3);
@@ -666,7 +666,7 @@ aside {
 	max-width: 800px;
 	font-family: Georgia, Serif;
 	position:relative;
-	bottom:8em;
+	bottom:7em;
 	@include breakpoint(tablet) {
 		bottom:11em;
 	}
