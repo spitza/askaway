@@ -1,45 +1,37 @@
 <li>
-	<div id ="question_<%= question.id %>">
-		<div class="pure-g">
-			<div class="pure-u-1-12 vote-column">
-				<% if current_user && !current_user.user_has_upvoted?(question) %>
-					<%= button_to vote_question_path(question, type: "up"), method: "post", class:"btn btn-primary vote-button", remote: true do %>
-						<%= image_tag("voteup.png", class:"vote-icon") %>
-						<span class="votecount"><%= question.reputation_for(:votes).to_i %></span>
-					<% end %>
-				<% elsif current_user && current_user.user_has_upvoted?(question) %>
-					<%= button_to vote_question_path(question, type: "down"), method: "post", class:"btn btn-primary pressed vote-button", remote: true do %>
-						<span class="glyphicon glyphicon-ok"></span>
-						<br>
-						<span class="votecount"><%= question.reputation_for(:votes).to_i %></span>
-					<% end %>
-				<% elsif !current_user %>
-					<%= button_to "#", class:"btn btn-primary vote-button-logged-out", :data => {trigger:"manual", content:"#{link_to "Sign In with Twitter", "/auth/twitter?origin=#{request.original_url}"} to vote."} do %>
-						<%= image_tag("voteup.png", class:"vote-icon") %>
-						<span class="votecount"><%= question.reputation_for(:votes).to_i %></span>
-					<% end %>
-				<% end %>
-			</div>
-			<div class="pure-u-1-24">&nbsp;</div>
-			<div class="pure-u-7-8 q-a-column">
-				<%= image_tag(question.user.portrait("normal"), class:"img-circle", display: "inline")%>
-				<div class="q-a-metadata pure-hidden-phone">
-					<%= question.user.fullname %> | <span class="timestamp"> Asked <%= link_to time_ago_in_words(question.created_at), question %> ago. </span>
+	<div id ="question_<%= question.id %>" class="shift-q-up">
+		<% if current_user && !current_user.user_has_upvoted?(question) %>
+			<%= button_to vote_question_path(question, type: "up"), method: "post", class:"btn btn-primary vote-button", remote: true do %>
+				<div class="center">
+					<span class="glyphicon glyphicon-arrow-up"></span>
 				</div>
-				<div class="q-a-metadata-small pure-hidden-desktop">
-					<%= question.user.fullname %>
-					<br>
-					<span class="timestamp"> Asked <%= link_to time_ago_in_words(question.created_at), question %> ago. </span>
+				<span><%= question.reputation_for(:votes).to_i %></span>
+			<% end %>
+		<% elsif current_user && current_user.user_has_upvoted?(question) %>
+			<%= button_to vote_question_path(question, type: "down"), method: "post", class:"btn btn-primary pressed vote-button", remote: true do %>
+				<div class="center">
+					<span class="glyphicon glyphicon-ok"></span>
 				</div>
-				<div class = "q-and-a-content">
-					<%= question.content %>
-				</div>
-				<% if question.answer %>
-					<%= render question.answer %>
-				<% elsif current_user == @conversation.user %>
-					<%= link_to "Answer", question, class: "btn btn-large btn-success answer-button" %>
-				<% end %>
-			</div>
+				<span><%= question.reputation_for(:votes).to_i %></span>
+			<% end %>
+		<% elsif !current_user %>
+			<%= button_to "#", class:"btn btn-primary vote-button-logged-out", :data => {trigger:"manual", content:"#{link_to "Sign In with Twitter", "/auth/twitter?origin=#{request.original_url}"} to vote."} do %>
+				<%= image_tag("voteup.png", class:"vote-icon") %>
+				<span class="votecount"><%= question.reputation_for(:votes).to_i %></span>
+			<% end %>
+		<% end %>
+		<div class = "q-and-a-content">
+			<%= question.content %>
 		</div>
+		<div class="q-a-metadata">
+			<%= question.user.fullname %> <span class="timestamp"> asked <%= link_to time_ago_in_words(question.created_at), question %> ago. </span>
+		</div>
+		<br>
+		<br>
+		<% if question.answer %>
+			<%= render question.answer %>
+		<% elsif current_user == @conversation.user %>
+			<%= link_to "Answer", question, class: "btn btn-large btn-success answer-button" %>
+		<% end %>
 	</div>
 </li>
