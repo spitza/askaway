@@ -15,7 +15,8 @@
 body {
 	position:relative;
 	bottom:1.9em;
-	
+	background-image:url('paper_fibers.png');
+	background-repeat:repeat;
 }
 
 /* menu and header stuff *////////////////////////////////////////////
@@ -364,8 +365,9 @@ p {
   margin:0 .5em;
   li {
     padding: .7em .7em 0;
-    border: 1px solid rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(0, 0, 0, 0.1);
 	margin:0 0 1.4em 0;
+	background:white;
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 	border-radius: 3px;
@@ -871,7 +873,7 @@ aside {
 }
 
 .answer-button {
-	margin-top:1em;
+	margin-bottom:1em;
 }
 
 /* custom pagination shite *///////////////////////////////////////////
