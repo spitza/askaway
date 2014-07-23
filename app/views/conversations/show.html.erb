@@ -44,7 +44,9 @@
 			</div>
 		</div>
 	<% end %>
-	<%= render 'shared/question_form' %>
+	<div class="question-form-area">
+		<%= render 'shared/question_form' %>
+	</div>
 	<% if @conversation.questions.count != 0 %>
 		<h2 class="center number-of-questions"><%= pluralize(@conversation.questions.count, "Question") %> </h2>
 	<% end %>

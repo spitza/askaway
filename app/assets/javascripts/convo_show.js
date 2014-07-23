@@ -4,4 +4,3 @@ $( document ).on( "click", ".vote-button-logged-out", function() {
   }).popover('toggle');    
     return false;
 });
-

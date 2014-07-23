@@ -1,5 +1,5 @@
 <li>
-	<div id ="question_<%= question.id %>" class="shift-q-up">
+	<div id ="question_<%= question.id %>">
 		<% if current_user && !current_user.user_has_upvoted?(question) %>
 			<%= button_to vote_question_path(question, type: "up"), method: "post", class:"btn btn-primary vote-button", remote: true do %>
 				<div class="center">
@@ -20,14 +20,14 @@
 				<span class="votecount"><%= question.reputation_for(:votes).to_i %></span>
 			<% end %>
 		<% end %>
-		<div class = "q-and-a-content">
-			<%= question.content %>
+		<div class = "question-area">
+			<div class = "q-and-a-content">
+				<%= question.content %>
+			</div>
+			<div class="q-a-metadata">
+				<%= question.user.fullname %> <span class="timestamp"> asked <%= link_to time_ago_in_words(question.created_at), question %> ago. </span>
+			</div>
 		</div>
-		<div class="q-a-metadata">
-			<%= question.user.fullname %> <span class="timestamp"> asked <%= link_to time_ago_in_words(question.created_at), question %> ago. </span>
-		</div>
-		<br>
-		<br>
 		<% if question.answer %>
 			<%= render question.answer %>
 		<% elsif current_user == @conversation.user %>
