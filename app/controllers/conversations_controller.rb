@@ -1,6 +1,7 @@
 class ConversationsController < ApplicationController
   before_action :current_user, only: [:new, :create]
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
+  rescue_from NoMethodError, with: :record_not_found
   
   def new
     @conversation = Conversation.new

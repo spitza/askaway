@@ -1,8 +1,9 @@
 
 <%= bootstrap_form_for @answer do |f| %>
 	<div class="field">
-		<%= f.text_area :content, placeholder: "Answer this question...", class:"pure-input-1", hide_label: true %>
+		<%= f.text_area :content, placeholder: "Answer this question...", class:"answer-text-area pure-input-1", id:"composer", hide_label: true %>
 		<%= f.hidden_field :question_id, :value => @question.id %>
+		<span class="countdown"></span>
 		<br>
 		<%= f.submit "Answer", class: "btn btn-large btn-success ask-button" %>
 	</div>

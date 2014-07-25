@@ -4,7 +4,7 @@ class Conversation < ActiveRecord::Base
   include ActionView::Helpers::TextHelper
   has_many :questions, dependent: :destroy
   validates :user_id, presence: true
-  validates :prompt, presence: true, length: { maximum: 400 }
+  validates :prompt, presence: true, length: { maximum: 500 }
   friendly_id :convo_url, use: :slugged
   scope :featured, order('questions_count DESC')
   

@@ -1,5 +1,5 @@
 function updateCountdown() {
-    var remaining = 400 - $('#composer').val().length;
+    var remaining = 500 - $('#composer').val().length;
   $('.countdown').text(remaining);
 }
 
