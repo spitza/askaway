@@ -1,17 +1,14 @@
 class QuestionsController < ApplicationController
   before_action :current_user, only: [:create]
   
-  def create
-    #currently if you're not logged in and try to ask a q, i just redirect.  fixing this.
-    if current_user
-      @question = current_user.questions.build(question_params)
-      if @question.save
-        redirect_to :back
-      else
-        render 'static_pages/home'
-      end
+  def create  
+    @question = current_user.questions.build(question_params)
+    @conversation = @question.conversation
+    @questions = @conversation.questions.paginate(page: params[:page], :per_page => 15).popular
+    if @question.save
+      redirect_to @conversation
     else
-      redirect_to :back
+      render 'conversations/show'
     end
   end
 

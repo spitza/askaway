@@ -154,6 +154,7 @@ body {
 .conversation-list-prompt {
 	color:black;
 	font-size:1.3em;
+	line-height:1.4em;
 	@include breakpoint(desktop) {
 		font-size:1.5em;
 	}
@@ -169,8 +170,10 @@ body {
   padding: 0 0 0 0px;
   text-align:left;
   li {
-	  padding: 16px 0px;
 	  border-top: 1px solid rgba(0, 0, 0, 0.2);
+	  @include breakpoint(inbetween) {
+		  padding: 1em 0;
+	  }
   }
   li:hover {
 	  opacity:.8;

@@ -1,12 +1,10 @@
 <% if current_user && @conversation.user != current_user %>
 	<%= bootstrap_form_for @question do |f| %>
-		<div class="field">
-			<%= f.text_area :content, placeholder: "Ask #{@conversation.user.fullname} a question...", class:"question-input pure-input-1", hide_label: true %>
-			<%= f.hidden_field :conversation_id, :value => @conversation.id %>
-			<%= f.hidden_field :user_id, :value => current_user.id %>
-			<div class = "space-before-ask-button">&nbsp;</div>
-			<%= f.submit "Ask", class: "btn btn-large btn-success ask-button" %>
-		</div>
+		<%= f.text_area :content, placeholder: "Ask #{@conversation.user.fullname} a question...", class:"question-input pure-input-1", hide_label: true %>
+		<%= f.hidden_field :conversation_id, :value => @conversation.id %>
+		<%= f.hidden_field :user_id, :value => current_user.id %>
+		<div class = "space-before-ask-button">&nbsp;</div>
+		<%= f.submit "Ask", class: "btn btn-large btn-success ask-button" %>
 	<% end %>
 	<br>
 <% elsif @conversation.user != current_user && @conversation.questions.count > 0 %>
