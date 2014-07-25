@@ -696,7 +696,7 @@ aside {
 	line-height:1.5em;
 	padding-bottom: .1em;
 	color:#333333;
-	@include breakpoint(inbetween) {
+	@include breakpoint(tablet) {
 		font-size:1.4em;
 	}
 	@include breakpoint(inbetween) {
@@ -736,23 +736,56 @@ aside {
 	font-family: 'Open Sans', sans-serif;
 	float:left;
 	margin-right:.5em;
+	border:1px solid #333333;
+	background:white;
+	@include breakpoint(tablet) {
+		margin-top:.1em;
+	}
 	@include breakpoint(inbetween) {
-		position:relative;
-		top:.1em;
+		margin-top:.2em;
 	}
 	@include breakpoint(desktop) {
-		top:.4em;
 		margin-right:.8em;
+		margin-top:.3em;
 	}
+}
+
+.vote-button:hover {
+	opacity:.7;
+}
+
+.vote-button:active {
+	position:relative;
+	top:1px;
 }
 
 .vote-button-logged-out {
 	width:3.4em;
 	padding-top:.4em;
 	font-family: 'Open Sans', sans-serif;
-	opacity:1;
 	float:left;
 	margin-right:.5em;
+	border:1px solid #333333;
+	background:white;
+	@include breakpoint(tablet) {
+		margin-top:.1em;
+	}
+	@include breakpoint(inbetween) {
+		margin-top:.2em;
+	}
+	@include breakpoint(desktop) {
+		margin-right:.8em;
+		margin-top:.3em;
+	}
+}
+
+.vote-button-logged-out:hover {
+	opacity:.7;
+}
+
+.vote-button-logged-out:active {
+	position:relative;
+	top:1px;
 }
 
 .q-a-column {

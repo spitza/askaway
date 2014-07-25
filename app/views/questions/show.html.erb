@@ -38,22 +38,24 @@
 	<div class="space-after-question-description">&nbsp;</div>
 	<div id="question_<%= @question.id %>">
 		<% if current_user && !current_user.user_has_upvoted?(@question) %>
-			<%= button_to vote_question_path(@question, type: "up"), method: "post", class:"btn btn-primary vote-button", remote: true do %>
+			<%= button_to vote_question_path(@question, type: "up"), method: "post", class:"btn vote-button", remote: true do %>
 				<div class="center">
 					<span class="glyphicon glyphicon-arrow-up"></span>
 				</div>
 				<span><%= @question.reputation_for(:votes).to_i %></span>
 			<% end %>
 		<% elsif current_user && current_user.user_has_upvoted?(@question) %>
-			<%= button_to vote_question_path(@question, type: "down"), method: "post", class:"btn btn-primary pressed vote-button", remote: true do %>
+			<%= button_to vote_question_path(@question, type: "down"), method: "post", class:"btn pressed vote-button", remote: true do %>
 				<div class="center">
 					<span class="glyphicon glyphicon-ok"></span>
 				</div>
 				<span><%= @question.reputation_for(:votes).to_i %></span>
 			<% end %>
 		<% elsif !current_user %>
-			<%= button_to "#", class:"btn btn-primary vote-button-logged-out", :data => {trigger:"manual", content:"#{link_to "Sign In with Twitter", "/auth/twitter?origin=#{request.original_url}"} to vote."} do %>
-				<%= image_tag("voteup.png", class:"vote-icon") %>
+			<%= button_to "#", class:"btn vote-button-logged-out", :data => {trigger:"manual", content:"#{link_to "Sign In with Twitter", "/auth/twitter?origin=#{request.original_url}"} to vote."} do %>
+				<div class="center">
+					<span class="glyphicon glyphicon-arrow-up"></span>
+				</div>
 				<span class="votecount"><%= @question.reputation_for(:votes).to_i %></span>
 			<% end %>
 		<% end %>
