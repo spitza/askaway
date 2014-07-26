@@ -11,17 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140611225928) do
+ActiveRecord::Schema.define(version: 20140726000949) do
 
   create_table "answers", force: true do |t|
     t.integer  "question_id"
-    t.string   "content"
+    t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "conversations", force: true do |t|
-    t.string   "prompt"
+    t.text     "prompt"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 20140611225928) do
   add_index "conversations", ["slug"], name: "index_conversations_on_slug", unique: true
 
   create_table "questions", force: true do |t|
-    t.string   "content"
+    t.text     "content"
     t.integer  "user_id"
     t.integer  "upvotes"
     t.datetime "created_at"
