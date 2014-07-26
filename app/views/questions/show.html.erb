@@ -72,6 +72,14 @@
 		<% elsif current_user == @question.conversation.user && !@question.answer %>
 			<br>
 			<%= render 'shared/answer_form' %>
+		<% elsif current_user == @question.user && !@question.answer %>
+			<div class="center">
+				<div class = "sticky-share-prompt-q">
+					<div class="taped"></div>
+					<h3 class="share-q-prompt">Share your question link with friends to rack up some votes!</h3>
+					<p class="q-link"><FONT style="BACKGROUND-COLOR: rgb(237,255,236)"><%= "#{request.original_url}" %></FONT></p>
+				</div>
+			</div>
 		<% end %>
 	</div>
 </div>
