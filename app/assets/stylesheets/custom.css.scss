@@ -472,6 +472,8 @@ aside {
 .prompt-form-area {
 	padding-top:2em;
 	font-family: 'Open Sans', sans-serif;
+	font-size:1.2em;
+	resize:none;
 }
 
 .go-live-button {
@@ -936,7 +938,7 @@ aside {
 
 .question-input {
 	resize:none;
-	font-size:1.3em;
+	font-size:1.2em;
 }
 
 .space-before-ask-button {
@@ -952,6 +954,7 @@ aside {
 
 .answer-text-area {
 	resize:none;
+	font-size:1.2em;
 }
 
 /* custom pagination shite *///////////////////////////////////////////
