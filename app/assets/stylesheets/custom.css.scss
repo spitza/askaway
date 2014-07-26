@@ -362,26 +362,29 @@ p {
 /* questions */////////////////////////////////////////////////////////////
 
 .questions {
-  list-style: none;
-  font-family: Georgia, Serif;
-  padding: 0 0 0 0;
-  margin:0 .5em;
-  li {
-    padding: .7em .7em 0;
-	border-color: rgb(238, 238, 238) rgb(221, 221, 221) rgb(187, 187, 187);
-	border-width: 1px;
-	border-style: solid;
-	box-shadow: rgba(0, 0, 0, 0.14902) 0px 1px 3px;
-	margin:0 0 1.4em 0;
-	background:white;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	border-radius: 3px;
-	@include breakpoint(inbetween) {
-		padding: 1em 1em 0;
-		margin:0 0 2em 0;
+	list-style: none;
+	font-family: Georgia, Serif;
+	padding: 0 0 0 0;
+	margin:0 .5em;
+	li {
+		padding: .7em .7em 0;
+		border-color: rgb(238, 238, 238) rgb(221, 221, 221) rgb(187, 187, 187);
+		border-width: 1px;
+		border-style: solid;
+		box-shadow: rgba(0, 0, 0, 0.14902) 0px 1px 3px;
+		margin:0 0 1.4em 0;
+		background:white;
+		-webkit-border-radius: 3px;
+		-moz-border-radius: 3px;
+		border-radius: 3px;
+		@include breakpoint(inbetween) {
+			padding: 1em 1em 0;
+			margin:0 0 2em 0;
+		}
 	}
-  }
+	@include breakpoint(desktop) {
+		margin:0 0 0 0;
+	}
 }
 
 .question-list-link:hover {
@@ -933,6 +936,7 @@ aside {
 
 .question-input {
 	resize:none;
+	font-size:1.3em;
 }
 
 .space-before-ask-button {
