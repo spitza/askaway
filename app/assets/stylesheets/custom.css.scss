@@ -153,9 +153,12 @@ body {
 
 .conversation-list-prompt {
 	color:black;
-	font-size:1.3em;
+	font-size:1.2em;
 	line-height:1.4em;
-	@include breakpoint(desktop) {
+	@include breakpoint(tablet) {
+		font-size:1.3em;
+	}
+	@include breakpoint(inbetween) {
 		font-size:1.5em;
 	}
 }
@@ -377,8 +380,9 @@ p {
 		-webkit-border-radius: 3px;
 		-moz-border-radius: 3px;
 		border-radius: 3px;
+		padding-bottom:.7em;
 		@include breakpoint(inbetween) {
-			padding: 1em 1em 0;
+			padding: 1em 1em;
 			margin:0 0 2em 0;
 		}
 	}
@@ -571,7 +575,7 @@ aside {
 .prompt {
 	line-height:1.5em;
 	word-wrap:break-word;
-	font-size:1.3em;
+	font-size:1.1em;
 	margin:.5em auto .9em;
 	@include breakpoint(tablet) {
 		font-size:1.4em;
@@ -662,7 +666,7 @@ aside {
 }
 
 .q-and-a-content {
-	font-size:1.3em;
+	font-size:1.1em;
 	line-height:1.5em;
 	padding-bottom: .1em;
 	color:#333333;
@@ -678,7 +682,6 @@ aside {
 }
 
 .answer-area {
-	margin-bottom:.8em;
 	border-left:.3em solid green;
 	padding:.5em 1em;
 	background-color: rgba(0, 182, 0, 0.06);
@@ -697,7 +700,7 @@ aside {
 }
 
 .pressed {
-	opacity:.3;
+	opacity:.5;
 }
 
 .vote-button {
@@ -705,7 +708,7 @@ aside {
 	padding-top:.4em;
 	font-family: 'Open Sans', sans-serif;
 	float:left;
-	margin-right:.5em;
+	margin:.3em .5em 0 0;
 	-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
 	-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
 	box-shadow:inset 0px 1px 0px 0px #ffffff;
@@ -752,7 +755,7 @@ aside {
 	padding-top:.4em;
 	font-family: 'Open Sans', sans-serif;
 	float:left;
-	margin-right:.5em;
+	margin:.3em .5em 0 0;
 	-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
 	-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
 	box-shadow:inset 0px 1px 0px 0px #ffffff;
@@ -796,13 +799,6 @@ aside {
 
 .q-a-column {
 	padding-left:1em;
-}
-
-.vote-icon {
-	display:block;
-	margin:0 0 .2em 0;
-	padding: .1em 0 0 0;
-	width: 1.5em;
 }
 
 /* question show page *///////////////////////////////////////////////////
