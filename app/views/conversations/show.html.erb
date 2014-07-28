@@ -28,7 +28,7 @@
 	<h1 class = "full_name"><%= @conversation.user.fullname %></h1>
 	<h3 class = "twitter-handle"><%= link_to "@#{@conversation.user.name}", "http://www.twitter.com/#{@conversation.user.name}", target: "_blank", class:"twitter-handle-link" %></h3>
 	<%= image_tag(@conversation.user.portrait("original"), class:"img-circle prof-pic")%>
-	<p class="prompt"><%= @conversation.prompt %></p>
+	<p class="prompt"><%= @prompt_linked %></p>
 	<% if @conversation.questions.count == 0 && @conversation.user != current_user %>
 		<h2 class="center no-questions-prompt-so-ask">No questions yet!  Be the first to ask: </h2>
 		<% if !current_user %>

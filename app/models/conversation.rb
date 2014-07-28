@@ -12,4 +12,9 @@ class Conversation < ActiveRecord::Base
     short_prompt = truncate("#{prompt}", length: 25, separator: ' ')
     "#{self.user.name}" + " " + "#{short_prompt}"
   end
+  
+  def linked_prompt
+    "#{Rinku.auto_link(self.prompt, :all, 'target="_blank"')}"
+  end
+  
 end

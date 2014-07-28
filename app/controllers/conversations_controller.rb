@@ -9,6 +9,7 @@ class ConversationsController < ApplicationController
 
   def show
     @conversation = Conversation.friendly.find(params[:id])
+    @prompt_linked = @conversation.linked_prompt.html_safe
     #taking the conversations questions, paginating them, sorting by most votes
     @questions = @conversation.questions.paginate(page: params[:page], :per_page => 15).popular
     #for the form

@@ -19,4 +19,8 @@ class Question < ActiveRecord::Base
     "q for " + "#{self.conversation.user.name}" + " by " "#{self.user.name}" + " #{short_q}"
   end
   
+  def linked_content
+    "#{Rinku.auto_link(self.content, :all, 'target="_blank"')}"
+  end
+  
 end

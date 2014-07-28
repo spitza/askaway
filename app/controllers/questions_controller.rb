@@ -20,6 +20,10 @@ class QuestionsController < ApplicationController
   def show
     @question = Question.friendly.find(params[:id])
     @conversation = @question.conversation
+    @question_with_links = @question.linked_content.html_safe
+    if @question.answer
+      @answer_with_links = @question.answer.linked_content.html_safe
+    end
     #for the answer form
     @answer = Answer.new
   end 
