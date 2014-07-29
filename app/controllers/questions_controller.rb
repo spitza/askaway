@@ -1,5 +1,6 @@
 class QuestionsController < ApplicationController
   before_action :current_user, only: [:create]
+  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
   
   def create  
     @question = current_user.questions.build(question_params)
@@ -42,6 +43,10 @@ class QuestionsController < ApplicationController
 
     def question_params
       params.require(:question).permit(:content, :conversation_id)
+    end
+    
+    def record_not_found
+      redirect_to root_url, notice: "That question can't be found."
     end
     
 end

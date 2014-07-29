@@ -1,5 +1,6 @@
 class ConversationsController < ApplicationController
   before_action :current_user, only: [:new, :create]
+  before_action :correct_user, only: :destroy
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
   rescue_from NoMethodError, with: :record_not_found
   
@@ -24,6 +25,11 @@ class ConversationsController < ApplicationController
       render 'new'
     end
   end
+  
+  def destroy
+    @conversation.destroy
+    redirect_to root_url
+  end
 
   private
 
@@ -33,6 +39,11 @@ class ConversationsController < ApplicationController
     
     def record_not_found
       redirect_to root_url, notice: "That conversation doesn't exist yet."
+    end
+    
+    def correct_user
+      @conversation = current_user.conversations.friendly.find(params[:id])
+      redirect_to root_url if @conversation.nil?
     end
     
 end

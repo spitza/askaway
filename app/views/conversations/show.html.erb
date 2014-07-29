@@ -53,6 +53,13 @@
 	<% end %>
 	<ol class="questions">
 		<%= render @questions %>
-		<%= will_paginate @questions %>
 	</ol>
+	<div class ="center">
+		<%= will_paginate @questions %>
+		<% if @conversation.user == current_user %>
+			<div class = "convo-delete-link">
+				<%= link_to "Delete this conversation", @conversation, method: :delete, data: { confirm: "You sure?  You will delete this conversation and all of its questions." } %>
+			</div>
+		<% end %>
+	</div>
 </div>

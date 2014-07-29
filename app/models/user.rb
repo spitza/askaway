@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   has_many :conversations, dependent: :destroy
   has_many :questions, dependent: :destroy
-  has_many :evaluations, class_name: "ReputationSystem::Evaluation", as: :source
+  has_many :evaluations, class_name: "ReputationSystem::Evaluation", as: :source, dependent: :destroy
   self.primary_key = 'id'
 
   #checking to see if the user already exists
