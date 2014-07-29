@@ -82,4 +82,11 @@
 			</div>
 		<% end %>
 	</div>
+	<div class ="center">
+		<% if @question.user == current_user %>
+			<div class = "question-delete-link">
+				<%= link_to "Delete this question", @question, method: :delete, data: { confirm: "You sure?" } %>
+			</div>
+		<% end %>
+	</div>
 </div>

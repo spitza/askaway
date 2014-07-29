@@ -1,5 +1,6 @@
 class QuestionsController < ApplicationController
   before_action :current_user, only: [:create]
+  before_action :correct_user, only: :destroy
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
   
   def create  
@@ -16,6 +17,8 @@ class QuestionsController < ApplicationController
 
   #will add this
   def destroy
+    @question.destroy
+    redirect_to root_url
   end
   
   def show
@@ -47,6 +50,11 @@ class QuestionsController < ApplicationController
     
     def record_not_found
       redirect_to root_url, notice: "That question can't be found."
+    end
+    
+    def correct_user
+      @question = current_user.questions.friendly.find(params[:id])
+      redirect_to root_url if @question.nil?
     end
     
 end
