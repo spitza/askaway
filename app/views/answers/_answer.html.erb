@@ -8,6 +8,6 @@
 </div>
 <% if @conversation.user == current_user %>
 	<div class = "answer-delete-link">
-		<%= link_to "Delete this answer", answer, method: :delete, data: { confirm: "You sure?" } %>
+		<%= link_to "delete", answer, method: :delete, data: { confirm: "You sure?" } %>
 	</div>
 <% end %>

@@ -155,6 +155,7 @@ body {
 	color:black;
 	font-size:1.2em;
 	line-height:1.4em;
+	word-wrap:break-word;
 	@include breakpoint(tablet) {
 		font-size:1.3em;
 	}
@@ -963,8 +964,52 @@ aside {
 }
 
 .answer-delete-link {
-	margin-top:2em;
+	position:relative;
+	bottom:1.6em;
 	float:right;
+	right:.4em;
+}
+
+
+/* Profile Page *///////////////////////////////////////////
+
+.number-of-conversations {
+	font-family: 'Open Sans', sans-serif;
+	font-weight:700;
+}
+
+.conversations-on-prof {
+  list-style: none;
+  font-family: Georgia, Serif;
+  padding: 0 0 0 0px;
+  text-align:left;
+  li {
+	  border-top: 1px solid rgba(0, 0, 0, 0.2);
+	  @include breakpoint(inbetween) {
+		  padding: 1em 0;
+	  }
+  }
+  li:hover {
+	  opacity:.8;
+  }
+}
+
+.conversation-statz {
+	text-align:center;
+	font-family: 'Open Sans', sans-serif;
+	font-weight:700;
+	font-size:1.2em;
+	color:orange;
+	@include breakpoint(inbetween) {
+	  font-size:1.4em;
+	}
+	@include breakpoint(desktop) {
+	  font-size:1.5em;
+	}
+}
+
+.num-answers {
+	color:green;
 }
 
 /* custom pagination shite *///////////////////////////////////////////
