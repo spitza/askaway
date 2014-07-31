@@ -1,0 +1,32 @@
+<% provide(:title, @user.fullname) %>
+<div class="small-screen-header">
+	<h3 class = "askaway-logo-small">AskAway</h3>
+</div>
+<ul class = "big-screen-nav">
+	<% if current_user %>
+	  	<li><%= link_to "Sign Out", signout_path %></li>
+		<li><%= link_to "Host a Conversation", create_path %></li>
+	<% else %>
+		<li><%= link_to "Sign In with Twitter", "/auth/twitter?origin=#{request.original_url}" %></li>
+	<% end %>
+</ul>
+<% if @user.bannerurl %>
+	<%= image_tag(@user.bannerurl, class: "header_img") %>
+<% else %>
+	<%= image_tag("backup-banner.png", class: "header_img") %>
+<% end %>
+<h1 class = "askaway-logo"><%= link_to "AskAway", root_path, class:"home-link" %></h1>
+<div class="content">
+	<h1 class = "full_name"><%= @user.fullname %></h1>
+	<h3 class = "twitter-handle"><%= link_to "@#{@user.name}", "http://www.twitter.com/#{@user.name}", target: "_blank", class:"twitter-handle-link" %></h3>
+	<%= image_tag(@user.portrait("original"), class:"img-circle prof-pic")%>
+	<h2 class ="number-of-conversations center">
+		<%= pluralize(@user.conversations.count, "Conversations") %>
+	</h2>
+	<ol class="conversations-on-prof">
+		<%= render partial: "conversations/profile_conversation", collection: @conversations, as: :item %>
+	</ol>
+	<h2 class ="number-of-questions center">
+		<%= pluralize(@user.questions.count, "Questions") %>
+	</h2>
+</div>

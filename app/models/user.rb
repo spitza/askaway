@@ -2,8 +2,15 @@ class User < ActiveRecord::Base
   has_many :conversations, dependent: :destroy
   has_many :questions, dependent: :destroy
   has_many :evaluations, class_name: "ReputationSystem::Evaluation", as: :source, dependent: :destroy
+  include FriendlyId
+  include ActionView::Helpers::TextHelper
+  friendly_id :profile_url, use: :slugged
   self.primary_key = 'id'
 
+  def profile_url
+    "#{self.name}"
+  end
+  
   #checking to see if the user already exists
   
   def self.from_omniauth(auth)

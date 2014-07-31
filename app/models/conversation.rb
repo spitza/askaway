@@ -3,6 +3,7 @@ class Conversation < ActiveRecord::Base
   include FriendlyId
   include ActionView::Helpers::TextHelper
   has_many :questions, dependent: :destroy
+  has_many :answers, through: :questions
   validates :user_id, presence: true
   validates :prompt, presence: true, length: { maximum: 500 }
   friendly_id :convo_url, use: :slugged

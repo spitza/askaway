@@ -8,6 +8,7 @@ class AnswersController < ApplicationController
     @conversation = @question.conversation
     @answer = Answer.new(answer_params)
     if @answer.save
+      @question.update_attribute(:has_answer, true)
       redirect_to @question
     else
       render 'questions/show'
@@ -18,6 +19,7 @@ class AnswersController < ApplicationController
     @answer = Answer.find(params[:id])
     @question = @answer.question
     @answer.destroy
+    @question.update_attribute(:has_answer, false)
     redirect_to @question
   end
   
