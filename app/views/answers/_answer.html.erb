@@ -3,10 +3,10 @@
 		<%= answer.linked_content.html_safe %>
 	</div>
 	<div class="q-a-metadata">
-		<%= @conversation.user.fullname %> <span class="timestamp"> answered <%= time_ago_in_words(answer.created_at) %> ago. </span>
+		<%= link_to answer.question.conversation.user.fullname, answer.question.conversation.user %> <span class="timestamp"> answered <%= time_ago_in_words(answer.created_at) %> ago. </span>
 	</div>
 </div>
-<% if @conversation.user == current_user %>
+<% if answer.question.conversation.user == current_user %>
 	<div class = "answer-delete-link">
 		<%= link_to "delete", answer, method: :delete, data: { confirm: "You sure?" } %>
 	</div>

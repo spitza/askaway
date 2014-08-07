@@ -156,6 +156,7 @@ body {
 	font-size:1.2em;
 	line-height:1.4em;
 	word-wrap:break-word;
+	margin-bottom:0;
 	@include breakpoint(tablet) {
 		font-size:1.3em;
 	}
@@ -176,7 +177,7 @@ body {
   li {
 	  border-top: 1px solid rgba(0, 0, 0, 0.2);
 	  @include breakpoint(inbetween) {
-		  padding: 1em 0;
+		  padding: .3em 0;
 	  }
   }
   li:hover {
@@ -190,10 +191,15 @@ body {
 
 .conversation-avatar {
 	position:relative;
-	top:1em;
+	top:1.5em;
+	width:4em;
 	@include breakpoint(tablet) {
-		width:6em;
+		width:5em;
 	}
+}
+
+.conversation-statz-home-content {
+	font-weight:400;
 }
 
 /* pure layout stuff */////////////////////////////////////////////////////////////
@@ -529,6 +535,11 @@ aside {
 	}
 }
 
+.conversation-username-link, .conversation-username-link:hover {
+	color:white;
+	text-decoration:none;
+}
+
 .twitter-handle {
 	display:none;
 	@include breakpoint(tablet) {
@@ -804,6 +815,8 @@ aside {
 
 .convo-delete-link {
 	margin-top:3em;
+	font-family: 'Open Sans', sans-serif;
+	font-size:.8em;
 }
 
 /* question show page *///////////////////////////////////////////////////
@@ -960,14 +973,18 @@ aside {
 }
 
 .question-delete-link {
-	margin-top:3em;
+	margin-top:2em;
+	font-size:1em;
+	font-family: 'Open Sans', sans-serif;
 }
 
 .answer-delete-link {
 	position:relative;
 	bottom:1.6em;
+	font-size:.8em;
 	float:right;
 	right:.4em;
+	font-family: 'Open Sans', sans-serif;
 }
 
 
@@ -981,13 +998,11 @@ aside {
 .conversations-on-prof {
   list-style: none;
   font-family: Georgia, Serif;
-  padding: 0 0 0 0px;
+  padding: 0 0 2em;
   text-align:left;
   li {
 	  border-top: 1px solid rgba(0, 0, 0, 0.2);
-	  @include breakpoint(inbetween) {
-		  padding: 1em 0;
-	  }
+	  padding: .8em 0 1.5em;
   }
   li:hover {
 	  opacity:.8;
@@ -997,9 +1012,10 @@ aside {
 .conversation-statz {
 	text-align:center;
 	font-family: 'Open Sans', sans-serif;
-	font-weight:700;
 	font-size:1.2em;
 	color:orange;
+	position:relative;
+	top:1em;
 	@include breakpoint(inbetween) {
 	  font-size:1.4em;
 	}
@@ -1007,6 +1023,41 @@ aside {
 	  font-size:1.5em;
 	}
 }
+
+.questions-on-prof {
+	list-style: none;
+	font-family: Georgia, Serif;
+	padding: 0 0 0 0;
+	margin:0 .5em;
+	li {
+		padding: .7em .7em 0;
+		border-color: rgb(238, 238, 238) rgb(221, 221, 221) rgb(187, 187, 187);
+		border-width: 1px;
+		border-style: solid;
+		box-shadow: rgba(0, 0, 0, 0.14902) 0px 1px 3px;
+		margin:0 0 1.4em 0;
+		background:white;
+		-webkit-border-radius: 3px;
+		-moz-border-radius: 3px;
+		border-radius: 3px;
+		padding-bottom:.7em;
+		@include breakpoint(inbetween) {
+			padding: 1em 1em;
+			margin:0 0 2em 0;
+		}
+	}
+	@include breakpoint(desktop) {
+		margin:0 0 0 0;
+	}
+}
+
+.question-description-profile-page {
+	font-family: 'Open Sans', sans-serif;
+	font-size:.8em;
+	margin-top:0;
+}
+
+
 
 .num-answers {
 	color:green;

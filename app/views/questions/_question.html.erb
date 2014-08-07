@@ -27,7 +27,7 @@
 				<%= question.linked_content.html_safe %>
 			</div>
 			<div class="q-a-metadata">
-				<%= question.user.fullname %> <span class="timestamp"> asked <%= link_to time_ago_in_words(question.created_at), question %> ago. </span>
+				<%= link_to question.user.fullname, question.user %> <span class="timestamp"> asked <%= link_to time_ago_in_words(question.created_at), question %> ago. </span>
 			</div>
 		</div>
 		<% if question.answer %>

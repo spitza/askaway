@@ -5,9 +5,17 @@
 				<%= image_tag(conversation.user.portrait("bigger"), class:"img-circle conversation-avatar")%>
 			</div>
 			<div class="pure-u-3-4 name-and-prompt-area">
-				<h1 class="conversation-list-name"><%= conversation.user.fullname %></h1>
 				<p class="conversation-list-prompt"><%= truncate("#{conversation.prompt}", length: 165, separator: ' ') %></p>
+				<p class="conversation-list-name">
+					<%= conversation.user.fullname %>
+					<span class ="conversation-statz-home-content">
+						<%= "   |   #{conversation.questions.count}" + "Q  "%><span class="num-answers"> <%= "#{conversation.answers.count}" + "A"%> </span>
+					</span>
+				</p>
+				
+				
 			</div>
 		</div>
+		
 	<% end %>
 </li>

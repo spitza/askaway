@@ -4,7 +4,8 @@ class UsersController < ApplicationController
   
   def show
     @user = User.friendly.find(params[:id])
-    @conversations = @user.conversations.all
+    @conversations = @user.conversations
+    @questions = @user.questions
   end
   
 end

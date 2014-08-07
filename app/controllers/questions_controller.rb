@@ -9,7 +9,7 @@ class QuestionsController < ApplicationController
     @questions = @conversation.questions.paginate(page: params[:page], :per_page => 15).popular
     if @question.save
       @question.add_evaluation(:votes, "1", current_user)
-      redirect_to @question
+      redirect_to @conversation
     else
       render 'conversations/show'
     end

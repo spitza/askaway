@@ -3,9 +3,12 @@
 		<div class="pure-g">
 			<div class="pure-u-3-4">
 				<p class="conversation-list-prompt"><%= truncate("#{item.prompt}", length: 165, separator: ' ') %></p>
+				<div class="q-a-metadata">
+					<span class="timestamp"> Posted <%= time_ago_in_words(item.created_at) %> ago. </span>
+				</div>
 			</div>
 			<div class="pure-u-1-4">
-				<p class="conversation-statz"> <%= "#{item.questions.count}" + "Q, "%><span class="num-answers"> <%= "#{item.answers.count}" + "A"%> </span> </p>
+				<div class="conversation-statz"> <%= "#{item.questions.count}" + "Q, "%><span class="num-answers"> <%= "#{item.answers.count}" + "A"%> </span> </div>
 			</div>
 		</div>
 	<% end %>

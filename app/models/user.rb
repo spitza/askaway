@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
-  has_many :conversations, dependent: :destroy
-  has_many :questions, dependent: :destroy
+  has_many :conversations, order: 'created_at desc', dependent: :destroy
+  has_many :questions, order: 'created_at desc', dependent: :destroy
   has_many :evaluations, class_name: "ReputationSystem::Evaluation", as: :source, dependent: :destroy
   include FriendlyId
   include ActionView::Helpers::TextHelper
