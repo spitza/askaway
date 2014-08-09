@@ -22,6 +22,7 @@ gem 'jbuilder', '1.0.2'
 gem 'omniauth-twitter'
 gem 'omniauth'
 gem 'rinku'
+gem 'possessive'
 
 group :development, :test do
   gem 'sqlite3', '1.3.8'

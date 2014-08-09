@@ -16,8 +16,8 @@
 	<%= image_tag("backup-banner.png", class: "header_img") %>
 <% end %>
 <h1 class = "askaway-logo"><%= link_to "AskAway", root_path, class:"home-link" %></h1>
-<div class="content">
-	<h1 class = "full_name"><%= @user.fullname %></h1>
+<div class="content-prof">
+	<h1 class = "full-name-prof"><%= @user.fullname %></h1>
 	<h3 class = "twitter-handle"><%= link_to "@#{@user.name}", "http://www.twitter.com/#{@user.name}", target: "_blank", class:"twitter-handle-link" %></h3>
 	<%= image_tag(@user.portrait("original"), class:"img-circle prof-pic")%>
 	<br>
