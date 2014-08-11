@@ -1,4 +1,5 @@
 @import "bootstrap";
+$nice-grey: #494949;
 
 @mixin breakpoint($point) {
     @if $point == tablet {
@@ -101,7 +102,7 @@ body {
 	line-height:1.3em;
 	padding:0 1em 0;
 	margin: 0 0 2em 0;
-	color:inherit;
+	color:$nice-grey;
 	@include breakpoint(inbetween) {
 		color:white;
 		text-shadow: 0px 1px 1px #000;
@@ -114,6 +115,7 @@ body {
 	font-family: 'Open Sans', sans-serif;
 	font-weight:700;
 	font-size:1.5em;
+	color:$nice-grey;
 	@include breakpoint(tablet) {
 		font-size:1.6em;
 	}
@@ -134,6 +136,7 @@ body {
 	font-family: Georgia, Serif;
 	position:relative;
 	bottom:10em;
+	color:$nice-grey;
 	@include breakpoint(tablet) {
 		bottom:13.3em;
 	}
@@ -152,11 +155,11 @@ body {
 }
 
 .conversation-list-prompt {
-	color:black;
 	font-size:1.2em;
 	line-height:1.4em;
 	word-wrap:break-word;
 	margin-bottom:0;
+	color:$nice-grey;
 	@include breakpoint(tablet) {
 		font-size:1.3em;
 	}
@@ -450,6 +453,7 @@ aside {
 
 .convo-form label {
 	font-size:3em;
+	color:$nice-grey;
 }
 
 /* conversation show page *///////////////////////////////////////////////////
@@ -461,6 +465,7 @@ aside {
 	font-family: Georgia, Serif;
 	position:relative;
 	bottom:17em;
+	color:$nice-grey;
 	@include breakpoint(tablet) {
 		margin-top:10.5em;
 	}
@@ -525,6 +530,7 @@ aside {
 	line-height:1.3em;
 	font-weight:700;
 	margin:1em auto;
+	color:$nice-grey;
 	@include breakpoint(tablet) {
 		display:none;
 	}
@@ -553,12 +559,12 @@ aside {
 }
 
 .conversation-username-link {
-	color:black;
+	color:$nice-grey;
 	text-decoration:none;
 }
 
 .conversation-username-link:hover {
-	color:black;
+	color:$nice-grey;
 }
 
 .conversation-username-link-tabletplus {
@@ -686,7 +692,6 @@ aside {
 	font-size:1.1em;
 	line-height:1.5em;
 	padding-bottom: .1em;
-	color:#333333;
 	@include breakpoint(tablet) {
 		font-size:1.4em;
 	}
@@ -702,8 +707,6 @@ aside {
 	border-left:.3em solid green;
 	padding:.5em 1em;
 	background-color: rgba(0, 182, 0, 0.06);
-	background: rgba(0, 182, 0, 0.06);
-	color: rgba(0, 182, 0, 0.06);
 	-webkit-border-top-right-radius: 3px;
 	-webkit-border-bottom-right-radius: 3px;
 	-moz-border-radius-topright: 3px;
@@ -857,6 +860,7 @@ aside {
 	font-family: Georgia, Serif;
 	position:relative;
 	bottom:7em;
+	color:$nice-grey;
 	@include breakpoint(tablet) {
 		bottom:11em;
 	}
@@ -940,6 +944,7 @@ aside {
 .answer-text-area {
 	resize:none;
 	font-size:1.2em;
+	color:$nice-grey;
 }
 
 .q-link {
@@ -1002,6 +1007,7 @@ aside {
 	font-family: Georgia, Serif;
 	position:relative;
 	bottom:17em;
+	color:$nice-grey;
 	@include breakpoint(tablet) {
 		margin-top:7.2em;
 	}
@@ -1125,8 +1131,6 @@ aside {
 	font-size:.8em;
 	margin-top:0;
 }
-
-
 
 .num-answers {
 	color:green;
