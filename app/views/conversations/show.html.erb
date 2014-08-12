@@ -41,7 +41,12 @@
 			<div class = "sticky-share-prompt">
 				<div class = "taped"></div>
 				<h3 class="no-questions-prompt">No questions yet!  Share your conversation link to get an audience: </h3>
-				<p class="convo-link"><FONT style="BACKGROUND-COLOR: rgb(237,255,236)"><%= "#{request.original_url}" %></FONT></p>
+				<div class ="urlTextArea">
+					<input id="urlText" type="text" rows="10" cols="50" onclick="this.focus();this.select()" readonly="readonly" />
+				</div>
+				<br>
+				<br>
+				<br>
 			</div>
 		</div>
 	<% end %>

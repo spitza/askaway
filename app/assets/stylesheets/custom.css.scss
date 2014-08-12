@@ -624,7 +624,7 @@ aside {
 	font-family: 'Open Sans', sans-serif;
 	font-weight:700;
 	padding:0 1em;
-	margin:1.3em 0 2em;
+	margin:1.3em 0 0;
 	line-height:1.4em;
 	position:relative;
 	bottom:2em;
@@ -638,15 +638,14 @@ aside {
 	}
 }
 
-.convo-link {
+.convo-url {
 	font-family: 'Open Sans', sans-serif;
-	font-size:1.3em;
+	font-size:1.2em;
 	margin-top:.7em;
 	color:#336600;
 	line-height:1.4em;
 	word-wrap:break-word;
-	position:relative;
-	bottom:2em;
+	text-align:left;
 }
 
 .sticky-share-prompt {
@@ -825,6 +824,11 @@ aside {
 	margin-top:3em;
 	font-family: 'Open Sans', sans-serif;
 	font-size:.8em;
+}
+
+div.urlTextArea input {
+	width:15em;
+	height:2em;
 }
 
 /* question show page *///////////////////////////////////////////////////

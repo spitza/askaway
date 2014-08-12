@@ -90,6 +90,10 @@
 		        toggleClass(menuLink, active);
 		    };
 		}(this, this.document));
+		window.onload=function(){
+			var url = document.URL;
+			document.getElementById("urlText").value=url;
+		}
 	</script>
   </body>
 </html>
