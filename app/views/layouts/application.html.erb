@@ -61,9 +61,9 @@
 		    var docurl = document.URL
 			var docurlField = document.getElementById("textfield-for-url");
 			docurlField.value = docurl;
-			
 			docurlField.onclick = function() {
-				docurlField.select();
+				docurlField.focus();
+				docurlField.setSelectionRange(0, 9999);
 			};
 			
 			
