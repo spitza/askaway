@@ -58,15 +58,7 @@
     </div>
 	<script type="text/javascript">
 		(function (window, document) {
-		    var docurl = document.URL
-			var docurlField = document.getElementById("textfield-for-url");
-			docurlField.value = docurl;
-			docurlField.onclick = function() {
-				docurlField.focus();
-				docurlField.setSelectionRange(0, 9999);
-			};
-			
-			
+		   
 			var layout   = document.getElementById('layout'),
 		        menu     = document.getElementById('menu'),
 		        menuLink = document.getElementById('menuLink');
@@ -99,6 +91,13 @@
 		        toggleClass(menuLink, active);
 		    };
 		}(this, this.document));
+	    var docurl = document.URL;
+		var docurlField = document.getElementById("textfield-for-url");
+		docurlField.value = docurl;
+		docurlField.onclick = function() {
+			docurlField.focus();
+			docurlField.setSelectionRange(0, 9999);
+		};
 		
 	</script>
   </body>
