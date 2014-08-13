@@ -56,9 +56,12 @@
       	  <%= yield %>
 		</div>
     </div>
-	<script>
+	<script type="text/javascript">
 		(function (window, document) {
-		    var layout   = document.getElementById('layout'),
+		    var docurl = document.URL
+			document.getElementById("textfield-for-url").value = docurl;
+			
+			var layout   = document.getElementById('layout'),
 		        menu     = document.getElementById('menu'),
 		        menuLink = document.getElementById('menuLink');
 
@@ -90,17 +93,7 @@
 		        toggleClass(menuLink, active);
 		    };
 		}(this, this.document));
-		function selectText(containerid) {
-	        if (document.selection) {
-	            var range = document.body.createTextRange();
-	            range.moveToElementText(document.getElementById(containerid));
-	            range.select();
-	        } else if (window.getSelection) {
-	            var range = document.createRange();
-	            range.selectNode(document.getElementById(containerid));
-	            window.getSelection().addRange(range);
-	        }
-	    }
+		
 	</script>
   </body>
 </html>
