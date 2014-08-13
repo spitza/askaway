@@ -932,16 +932,7 @@ aside {
 
 .question-input {
 	resize:none;
-	font-size:1em;
-	@include breakpoint(tablet) {
-		font-size:1.1em;
-	}
-	@include breakpoint(inbetween) {
-		font-size:1.2em;
-	}
-	@include breakpoint(desktop) {
-		font-size:1.3em;
-	}
+	font-size:1.3em
 }
 
 .space-before-ask-button {
