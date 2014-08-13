@@ -59,7 +59,13 @@
 	<script type="text/javascript">
 		(function (window, document) {
 		    var docurl = document.URL
-			document.getElementById("textfield-for-url").value = docurl;
+			var docurlField = document.getElementById("textfield-for-url");
+			docurlField.value = docurl;
+			
+			docurlField.onclick = function() {
+				docurlField.select();
+			};
+			
 			
 			var layout   = document.getElementById('layout'),
 		        menu     = document.getElementById('menu'),
