@@ -1,0 +1,15 @@
+<% if @current && @user != @current %>
+	<%= bootstrap_form_for @query do |f| %>
+		<%= f.text_area :content, class:"query-input pure-input-1", id: "composer", hide_label: true %>
+		<%= f.hidden_field :asker_id, :value => @current.id %>
+		<%= f.hidden_field :askee_id, :value => @user.id %>
+		<span class="countdown"></span>
+		<div class = "space-before-ask-button">&nbsp;</div>
+		<%= f.submit "Ask", class: "btn btn-large btn-success ask-button" %>
+	<% end %>
+	<br>
+<% elsif @user != @current && @user.queries_received.count > 0 %>
+	<div class="small-screen-login-prompt center">
+		<%= link_to image_tag("sign-in-with-twitter-gray.png"), "/auth/twitter?origin=#{request.original_url}" %>
+	</div>
+<% end %>

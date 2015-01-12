@@ -6,7 +6,6 @@ class AnswersController < ApplicationController
     @answer = Answer.new(answer_params)
     @question = @answer.question
     @conversation = @question.conversation
-    @answer = Answer.new(answer_params)
     if @answer.save
       @question.update_attribute(:has_answer, true)
       redirect_to @question

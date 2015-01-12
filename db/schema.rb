@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140730235533) do
+ActiveRecord::Schema.define(version: 20150112003740) do
 
   create_table "answers", force: true do |t|
     t.integer  "question_id"
@@ -31,6 +31,18 @@ ActiveRecord::Schema.define(version: 20140730235533) do
 
   add_index "conversations", ["slug"], name: "index_conversations_on_slug", unique: true
 
+  create_table "queries", force: true do |t|
+    t.text     "content"
+    t.integer  "asker_id"
+    t.integer  "askee_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "has_response", default: false
+  end
+
+  add_index "queries", ["askee_id"], name: "index_queries_on_askee_id"
+  add_index "queries", ["asker_id"], name: "index_queries_on_asker_id"
+
   create_table "questions", force: true do |t|
     t.text     "content"
     t.integer  "user_id"
@@ -43,6 +55,14 @@ ActiveRecord::Schema.define(version: 20140730235533) do
   end
 
   add_index "questions", ["slug"], name: "index_questions_on_slug", unique: true
+
+  create_table "responses", force: true do |t|
+    t.integer  "query_id"
+    t.integer  "user_id"
+    t.string   "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "rs_evaluations", force: true do |t|
     t.string   "reputation_name"

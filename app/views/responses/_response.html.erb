@@ -1,0 +1,8 @@
+<div class = "answer-area">
+	<div class = "q-and-a-content">
+		<%= response.linked_content.html_safe %>
+	</div>
+	<div class="q-a-metadata">
+		<%= link_to response.query.askee.fullname, response.query.askee %> <span class="timestamp"> answered <%= time_ago_in_words(response.created_at) %> ago. </span>
+	</div>
+</div>

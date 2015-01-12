@@ -3,7 +3,7 @@
 	<h3 class = "askaway-logo-small">AskAway</h3>
 </div>
 <ul class = "big-screen-nav">
-	<% if current_user %>
+	<% if @current %>
 	  	<li><%= link_to "Sign Out", signout_path %></li>
 		<li><%= link_to "Host a Conversation", create_path %></li>
 	<% else %>
@@ -21,16 +21,13 @@
 	<h3 class = "twitter-handle"><%= link_to "@#{@user.name}", "http://www.twitter.com/#{@user.name}", target: "_blank", class:"twitter-handle-link" %></h3>
 	<%= image_tag(@user.portrait("original"), class:"img-circle prof-pic")%>
 	<br>
-	<h2 class ="number-of-conversations center">
-		<%= pluralize(@user.conversations.count, "Conversations") %>
+	<div class="query-form-area">
+		<%= render 'shared/query_form' %>
+	</div>
+	<h2 class ="center">
+		<%= pluralize(@user.queries_received.count, "Questions") %> For Phil Spitzer
 	</h2>
 	<ol class="conversations-on-prof">
-		<%= render partial: "conversations/profile_conversation", collection: @conversations, as: :item %>
-	</ol>
-	<h2 class ="number-of-questions center">
-		<%= pluralize(@user.questions.count, "Questions") %>
-	</h2>
-	<ol class="questions-on-prof">
-		<%= render partial: "questions/profile_question", collection: @questions, as: :item %>
+		<%= render partial: "queries/profile_query", collection: @queries, as: :item %>
 	</ol>
 </div>

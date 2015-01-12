@@ -2,6 +2,8 @@ class User < ActiveRecord::Base
   has_many :conversations, order: 'created_at desc', dependent: :destroy
   has_many :questions, order: 'created_at desc', dependent: :destroy
   has_many :evaluations, class_name: "ReputationSystem::Evaluation", as: :source, dependent: :destroy
+  has_many :queries_asked, :class_name => 'Query', :foreign_key => 'asker_id'
+  has_many :queries_received, :class_name => 'Query', :foreign_key => 'askee_id'
   include FriendlyId
   include ActionView::Helpers::TextHelper
   friendly_id :profile_url, use: :slugged
@@ -37,6 +39,10 @@ class User < ActiveRecord::Base
   
   def user_has_upvoted?(question)
     evaluations.where(target_type: question.class, target_id: question.id, value: "1").present?
+  end
+  
+  def user_has_upvoted?(query)
+    evaluations.where(target_type: query.class, target_id: query.id, value: "1").present?
   end
   
   def portrait(size)
