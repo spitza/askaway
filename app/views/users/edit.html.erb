@@ -1,0 +1,48 @@
+<% provide(:title, "#{@user.fullname} settings") %>
+<div class = "settings-content">
+	<div class = "center"><%= image_tag("askaway-logo.png", class:"small-screen-logo") %></div>
+	<div class ="relative-container">
+		<div class = "sticky-dropdown-area user-dropdown">
+			<%= render 'shared/dropdown' %>
+		</div>
+	</div>
+	<div class = "small-image-and-description">
+		<%= image_tag(@user.portrait("original"), class:"prof-pic")%>
+		<p class = "user-description">
+			<span class = "full-name-prof"><%= @user.fullname %> </span> | <%= link_to "@#{@user.name}", "http://www.twitter.com/#{@user.name}", target: "_blank" %>
+			<% if !@description.empty? %> | <%= @description %> <% end %>
+		</p>
+	</div>
+	<div class = "fixed-image-and-description">
+		<div class = "big-screen-logo-area">
+			<%= link_to image_tag("askaway-logo.png", class:"big-screen-logo"), root_path %>
+		</div>
+		<%= image_tag(@user.portrait("original"), class:"prof-pic")%>
+		<p class = "user-description">
+			<span class = "full-name-prof"><%= @user.fullname %> </span> | <%= link_to "@#{@user.name}", "http://www.twitter.com/#{@user.name}", target: "_blank" %>
+			<% if !@description.empty? %> | <%= @description %> <% end %>
+		</p>
+	</div>
+	<div class = "col-sm-7 settings-update-area col-sm-offset-5">
+		<div class = "centering-settings">
+			<h2> Settings </h2>
+			<br>
+		    <%= bootstrap_form_for(@user) do |f| %>
+				<div class="field">
+					<%= f.text_field :fullname, class: 'form-control', label: "Name", required:true %>
+					<%= f.email_field :email, class: 'form-control', required:true %>
+					<%= f.text_area :description, class: 'form-control', id:"description-field" %>
+					<span class="countdown"></span>
+					<br>
+					<%= f.submit "Save", class: "btn btn-primary save-user", id:"update-user-save" %>
+					<%= link_to "cancel", edit_user_path(@user), class:"cancel-edits-link" %>
+				</div>
+		    <% end %>
+			
+		</div>
+		<br>
+		<br>
+		
+		<%= link_to "delete account", @user, method: :delete, data: { confirm: "You sure? You'll lose all of your questions and answers." }, class:"delete-account-link" %>
+	</div>	
+</div>

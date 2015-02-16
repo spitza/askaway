@@ -5,17 +5,23 @@ Askaway::Application.routes.draw do
   end
   resources :answers
   resources :responses
-  resources :users
-  resources :queries do
+  resources :queries, path: 'q' do
     member { post :vote }
   end
+  
+  
   root  'static_pages#home'
   match '/create',  to: 'conversations#new',   via: 'get'
   match '/help',    to: 'static_pages#help',    via: 'get'
   match '/about',   to: 'static_pages#about',   via: 'get'
+  match 'emailconfirm', to: 'users#confirm', via: 'get'
   match 'auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
   match 'auth/failure', to: redirect('/'), via: 'get'
   match 'signout', to: 'sessions#destroy', as: 'signout', via: [:get, :post]
+  match '/just_answers' => 'queries#answer_filter', as: 'just_answers', via: 'get'
+  match '/all_queries' => 'queries#no_filter', as: 'all_queries', via: 'get'
+  resources :users, :path => ''
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

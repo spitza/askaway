@@ -1,33 +1,97 @@
-<% provide(:title, @user.fullname) %>
-<div class="small-screen-header">
-	<h3 class = "askaway-logo-small">AskAway</h3>
-</div>
-<ul class = "big-screen-nav">
-	<% if @current %>
-	  	<li><%= link_to "Sign Out", signout_path %></li>
-		<li><%= link_to "Host a Conversation", create_path %></li>
-	<% else %>
-		<li><%= link_to "Sign In with Twitter", "/auth/twitter?origin=#{request.original_url}" %></li>
-	<% end %>
-</ul>
-<% if @user.bannerurl %>
-	<%= image_tag(@user.bannerurl, class: "header_img") %>
-<% else %>
-	<%= image_tag("backup-banner.png", class: "header_img") %>
-<% end %>
-<h1 class = "askaway-logo"><%= link_to "AskAway", root_path, class:"home-link" %></h1>
-<div class="content-prof">
-	<h1 class = "full-name-prof"><%= @user.fullname %></h1>
-	<h3 class = "twitter-handle"><%= link_to "@#{@user.name}", "http://www.twitter.com/#{@user.name}", target: "_blank", class:"twitter-handle-link" %></h3>
-	<%= image_tag(@user.portrait("original"), class:"img-circle prof-pic")%>
-	<br>
-	<div class="query-form-area">
-		<%= render 'shared/query_form' %>
+<% provide(:title, @user.fullname) %> 
+<div class="modal fade" id="askModal" tabindex="-1" role="dialog" aria-labelledby="askModal" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          	<h4 class="modal-title">Question for <%= @user.fullname %></h4>
+        </div>
+        <%= render 'shared/query_form' %>
+      </div>
+    </div>
+  </div>
+<div class="page-content">
+	<div class = "center"><%= image_tag("askaway-logo.png", class:"small-screen-logo") %></div>
+	<div class ="relative-container">
+		<div class="sticky-ask-button-area">
+			<% if @numQueries != 0 %>
+				<% if current_user && @user == current_user %>
+					<% yield %>
+				<% elsif current_user && @user != current_user %>
+					<button class="btn outer-ask-button" data-toggle="modal" data-target="#askModal">Ask</button>
+				<% else %>
+					<%= link_to "Ask", "#", class:"btn outer-ask-button logged-out-popover", tabindex:"0", :data => {trigger:"manual", placement:"left", content:"#{link_to "Sign In with Twitter", "/auth/twitter?origin=#{request.original_url}"} to ask #{@user.fullname} a question."} %>
+				<% end %>
+			<% end %>
+		</div>
+		<div class = "sticky-dropdown-area user-dropdown">
+			<% if current_user %>
+				<%= render 'shared/dropdown' %>
+			<% else %>
+				<% yield %>
+			<% end %>
+		</div>
 	</div>
-	<h2 class ="center">
-		<%= pluralize(@user.queries_received.count, "Questions") %> For Phil Spitzer
-	</h2>
-	<ol class="conversations-on-prof">
-		<%= render partial: "queries/profile_query", collection: @queries, as: :item %>
-	</ol>
+	<div class = "small-image-and-description">
+		<%= image_tag(@user.portrait("original"), class:"prof-pic")%>
+		<p class = "user-description">
+			<span class = "full-name-prof"><%= @user.fullname %> </span> | <%= link_to "@#{@user.name}", "http://www.twitter.com/#{@user.name}", target: "_blank" %>
+			<% if !@description.empty? %> | <%= @description %> <% end %>
+		</p>
+	</div>
+	<div class = "fixed-image-and-description">
+		<div class = "big-screen-logo-area">
+			<%= link_to image_tag("askaway-logo.png", class:"big-screen-logo"), root_path %>
+		</div>
+		<%= image_tag(@user.portrait("original"), class:"prof-pic")%>
+		<p class = "user-description">
+			<span class = "full-name-prof"><%= @user.fullname %> </span> | <%= link_to "@#{@user.name}", "http://www.twitter.com/#{@user.name}", target: "_blank" %>
+			<% if !@description.empty? %> | <%= @description %> <% end %>
+		</p>
+		<div class="big-screen-ask-area">
+			<% if @numQueries != 0 %>
+				<% if current_user && @user == current_user %>
+					<% yield %>
+				<% elsif current_user && @user != current_user %>
+					<button class="btn outer-ask-button" data-toggle="modal" data-target="#askModal">Ask</button>
+				<% else %>
+					<%= link_to "Ask", "#", class:"btn outer-ask-button logged-out-popover", tabindex:"0", :data => {trigger:"manual", placement:"right", content:"#{link_to "Sign In with Twitter", "/auth/twitter?origin=#{request.original_url}"} to ask #{@user.fullname} a question."} %>
+				<% end %>
+			<% end %>
+		</div>
+	</div>
+	<div class = "col-sm-7 profile-questions-area col-sm-offset-5">
+		<% if @numQueries == 0 && @user != current_user %>
+			<div class = "center">
+				<h3 class="no-questions-prompt-so-ask">No questions for <%= @user.fullname %> yet. Be the first to ask! </h3>
+				<% if current_user %>
+					<button class="btn btn-primary empty-profile-ask-button" data-toggle="modal" data-target="#askModal">Ask <%= @user.fullname %></button>					
+				<% else %>
+					<%= link_to "Ask #{@user.fullname}", "#", class:"btn btn-primary empty-profile-ask-button logged-out-popover", tabindex:"0", :data => {trigger:"manual", placement:"bottom", content:"#{link_to "Sign In with Twitter", "/auth/twitter?origin=#{request.original_url}"} to ask #{@user.fullname} a question."} %>
+				<% end %>
+			</div>
+		<% elsif @numQueries == 0 && @user == current_user %>
+			<div class="center">
+				<div class = "sticky-share-prompt">
+					<div class = "taped"></div>
+					<h3 class="no-questions-prompt">No questions yet!  Share your profile link to get some: </h3>
+					<textarea class = "form-control profile-url-for-sharing" type="text" id="textfield-for-url">
+					</textarea>
+					<br>
+					<br>
+					<br>
+				</div>
+			</div>
+		<% elsif @numQueries >= 1 %>
+			<h2 class = "q-for-name">
+				Questions For <%= @user.fullname %>
+			</h2>
+			<p class = "filter-links">
+				<%= link_to "all", all_queries_path(:id => @user.id), class:"filter-link", :remote => true %>  &nbsp;&nbsp;|&nbsp;&nbsp;  <%= link_to "answered", just_answers_path(:id => @user.id), class:"filter-link", :remote => true %>
+			</p>
+			<ol class="questions-on-prof" id="queries-container">
+				<%= render partial: "queries/profile_query", collection: @queries, as: :item, id: "query_list" %>
+			</ol>
+		<% end %>
+	</div>
 </div>

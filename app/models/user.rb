@@ -2,8 +2,11 @@ class User < ActiveRecord::Base
   has_many :conversations, order: 'created_at desc', dependent: :destroy
   has_many :questions, order: 'created_at desc', dependent: :destroy
   has_many :evaluations, class_name: "ReputationSystem::Evaluation", as: :source, dependent: :destroy
-  has_many :queries_asked, :class_name => 'Query', :foreign_key => 'asker_id'
-  has_many :queries_received, :class_name => 'Query', :foreign_key => 'askee_id'
+  has_many :queries_asked, :class_name => 'Query', :foreign_key => 'asker_id', dependent: :destroy
+  has_many :queries_received, :class_name => 'Query', :foreign_key => 'askee_id', dependent: :destroy
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  validates :email, uniqueness: { case_sensitive: false }, format: { with: VALID_EMAIL_REGEX, on: :update }
+  validates :description, length: { maximum: 300 }
   include FriendlyId
   include ActionView::Helpers::TextHelper
   friendly_id :profile_url, use: :slugged
@@ -13,10 +16,24 @@ class User < ActiveRecord::Base
     "#{self.name}"
   end
   
-  #checking to see if the user already exists
+  def first_name
+    "#{self.fullname.split(" ")[0]}"
+  end
   
-  def self.from_omniauth(auth)
-    where(auth.slice("provider", "uid")).first || create_from_omniauth(auth)
+  def numQueries
+    self.queries_received.count
+  end
+  
+  def self.check_existence(auth)
+    where(auth.slice("provider", "uid")).first.empty?
+  end
+  
+  def self.get_existing(auth)
+    where(auth.slice("provider", "uid")).first
+  end
+  
+  def linked_description
+    "#{Rinku.auto_link(self.description, :all, 'target="_blank"')}"
   end
 
   #creating a new one from the omniauth hash
@@ -29,9 +46,14 @@ class User < ActiveRecord::Base
       user.name = auth["info"]["nickname"]
       user.fullname = auth["info"]["name"]
       user.avatarurl = auth["info"]["image"].sub("_normal", "")
-      unless "#{auth["extra"]["raw_info"]["profile_banner_url"]}".empty?
-        user.bannerurl = auth["extra"]["raw_info"]["profile_banner_url"] << "/1500x500"
-      end
+      user.description = auth["info"]["description"]
+      user.email = ""
+      #user.website = auth["info"]["urls"]["Website"]
+      #unless "#{auth["extra"]["raw_info"]["profile_banner_url"]}".empty?
+      #  user.bannerurl = auth["extra"]["raw_info"]["profile_banner_url"] << "/1500x500"
+      #end
+      
+      
     end
   end
   

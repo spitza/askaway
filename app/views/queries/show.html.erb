@@ -1,84 +1,71 @@
 <% provide(:title, @query.id) %>
-<div class="small-screen-header">
-	<h3 class = "askaway-logo-small">AskAway</h3>
-</div>
-<ul class = "big-screen-nav">
-	<% if current_user %>
-	  	<li><%= link_to "Sign Out", signout_path %></li>
-		<li><%= link_to "Host a Conversation", create_path %></li>
-	<% end %>
-</ul>
-<% if !current_user %>
-	<div class = "sticky-login-prompt">
-		<p class="login-prompt center">
-			To ask <%=@query.askee.fullname %> a question:
-		</p>
-		<div class="center">
-			<%= link_to image_tag("sign-in-with-twitter-gray.png"), "/auth/twitter?origin=#{request.original_url}" %>
+<div class="page-content">
+	<div class = "center"><%= image_tag("askaway-logo.png", class:"small-screen-logo") %></div>
+	<div class ="relative-container">
+		<div class = "sticky-dropdown-area user-dropdown">
+			<% if current_user %>
+				<%= render 'shared/dropdown' %>
+			<% else %>
+				<% yield %>
+			<% end %>
 		</div>
 	</div>
-<% end %>
-<% if @query.askee.bannerurl %>
-	<%= image_tag(@query.askee.bannerurl, class: "header_img") %>
-<% else %>
-	<%= image_tag("backup-banner.png", class: "header_img") %>
-<% end %>
-<h1 class = "askaway-logo"><%= link_to "AskAway", root_path, class:"home-link" %></h1>
-<div class="question-page-content">
-	<div class="asker-and-askee pure-g">
-		<div class="pure-u-1-2">
-			<%= image_tag(@query.askerfunction.portrait("original"), class:"img-circle prof-pic-q-page")%>
-		</div>
-		<div class="pure-u-1-2">
-			<%= image_tag(@query.askee.portrait("original"), class:"img-circle prof-pic-q-page")%>
-		</div>
+	<div class = "big-screen-logo-area">
+		<%= link_to image_tag("askaway-logo.png", class:"big-screen-logo"), root_path %>
 	</div>
-	<div class="space-before-question-description">&nbsp;</div>
-	<h3 class="center question-description">Question from <%= @query.askerfunction.fullname %> </h3>
-	<div class="space-after-question-description">&nbsp;</div>
-	<div id="query_<%= @query.id %>">
-		
-		<% if current_user && !current_user.user_has_upvoted?(@query) %>
-			<%= button_to vote_query_path(@query, type: "up"), method: "post", class:"btn vote-button", remote: true do %>
-				<div class="center">
-					<span class="glyphicon glyphicon-arrow-up"></span>
+	<div class = "query-page-content">
+		<div id="query_<%= @query.id %>" class = "query-area-query-page container-fluid">
+			<h3 class="q-for-name-query-page">
+				<%= link_to @asker.fullname, @asker, class:"subtle-link" %> asked <%= link_to @askee.fullname, @askee, class:"subtle-link" %>:
+			</h3>
+			<div class ="col-xs-2 vote-column">
+				<% if current_user && !current_user.user_has_upvoted?(@query) %>
+					<%= button_to vote_query_path(@query, type: "up"), method: "post", class:"btn vote-button query-page-vote-button", remote: true do %>
+						<div class="center">
+							<%= image_tag("up-arrow.png", class:"up-arrow")%>
+						</div>
+						<span class = "votecount"><%= @query.reputation_for(:votes).to_i %></span>
+					<% end %>
+				<% elsif current_user && current_user.user_has_upvoted?(@query) %>
+					<%= button_to vote_query_path(@query, type: "down"), method: "post", class:"btn pressed vote-button query-page-vote-button", remote: true do %>
+						<div class="center">
+							<span class="glyphicon glyphicon-ok"></span>
+						</div>
+						<span class = "votecount"><%= @query.reputation_for(:votes).to_i %></span>
+					<% end %>
+				<% elsif !current_user %>
+					<%= link_to "#", class:"btn vote-button logged-out-popover query-page-vote-button", tabindex:"0", :data => {trigger:"manual", content:"#{link_to "Sign In with Twitter", "/auth/twitter?origin=#{request.original_url}"} to vote."} do %>
+						<div class="center">
+							<%= image_tag("up-arrow.png", class:"up-arrow")%>
+						</div>
+						<span class="votecount"><%= @query.reputation_for(:votes).to_i %></span>
+					<% end %>
+				<% end %>
+			</div>
+			<div class = "col-xs-10 content-column">
+				<div class = "q-and-a-content">
+					<%= @query_with_links %>
 				</div>
-				<span><%= @query.reputation_for(:votes).to_i %></span>
-			<% end %>
-		<% elsif current_user && current_user.user_has_upvoted?(@query) %>
-			<%= button_to vote_query_path(@query, type: "down"), method: "post", class:"btn pressed vote-button", remote: true do %>
-				<div class="center">
-					<span class="glyphicon glyphicon-ok"></span>
+				<div class="q-a-metadata">
+					<%= link_to @asker.fullname, @asker, class: "subtle-metadata" %> <span class="timestamp"> asked <%= time_ago_in_words(@query.created_at) %> ago. </span>
 				</div>
-				<span><%= @query.reputation_for(:votes).to_i %></span>
-			<% end %>
-		<% elsif !current_user %>
-			<%= button_to "#", class:"btn vote-button-logged-out", :data => {trigger:"manual", content:"#{link_to "Sign In with Twitter", "/auth/twitter?origin=#{request.original_url}"} to vote."} do %>
-				<div class="center">
-					<span class="glyphicon glyphicon-arrow-up"></span>
-				</div>
-				<span class="votecount"><%= @query.reputation_for(:votes).to_i %></span>
-			<% end %>
-		<% end %>
-		
-		<div class = "q-and-a-content">
-			<%= @query_with_links %>
+				<br>
+				<% if current_user == @askee && !@query.response %>
+					<br>
+					<%= render 'shared/response_form' %>
+				<% end %>
+				<% if @query.response %>
+					<%= render @query.response %>
+				<% end %>
+			</div>
 		</div>
-		<div class="q-a-metadata">
-			<%= @query.askerfunction.fullname %> <span class="timestamp"> asked <%= time_ago_in_words(@query.created_at) %> ago. </span>
-		</div>
-		<br>
-		<br>
-		<% if @query.response %>
-			<%= render @query.response %>
-		<% elsif current_user == @query.askee && !@query.response %>
-			<%= render 'shared/response_form' %>
-		<% elsif current_user == @query.askerfunction && !@query.response %>
+		<% if current_user == @asker && !@query.response %>
 			<div class="center">
 				<div class = "sticky-share-prompt-q">
 					<div class="taped"></div>
 					<h3 class="share-q-prompt">Share your question link with friends to rack up some votes!</h3>
-					<p class="q-link"><FONT style="BACKGROUND-COLOR: rgb(237,255,236)"><%= "#{request.original_url}" %></FONT></p>
+					<textarea class = "form-control query-url-for-sharing" type="text" id="textfield-for-url">
+					</textarea>
 				</div>
 			</div>
 		<% end %>

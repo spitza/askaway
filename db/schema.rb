@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150112003740) do
+ActiveRecord::Schema.define(version: 20150119201339) do
 
   create_table "answers", force: true do |t|
     t.integer  "question_id"
@@ -38,10 +38,12 @@ ActiveRecord::Schema.define(version: 20150112003740) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "has_response", default: false
+    t.string   "slug"
   end
 
   add_index "queries", ["askee_id"], name: "index_queries_on_askee_id"
   add_index "queries", ["asker_id"], name: "index_queries_on_asker_id"
+  add_index "queries", ["slug"], name: "index_queries_on_slug", unique: true
 
   create_table "questions", force: true do |t|
     t.text     "content"
@@ -120,6 +122,8 @@ ActiveRecord::Schema.define(version: 20150112003740) do
     t.string   "bannerurl"
     t.integer  "uid"
     t.string   "slug"
+    t.string   "description"
+    t.string   "website"
   end
 
   add_index "users", ["slug"], name: "index_users_on_slug", unique: true

@@ -1,4 +1,4 @@
-$( document ).on( "click", ".vote-button-logged-out", function() {
+$( document ).on( "click", ".logged-out-popover", function() {
     $( this ).popover({ 
     html : true,
   }).popover('toggle');    

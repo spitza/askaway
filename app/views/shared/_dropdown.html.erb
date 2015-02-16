@@ -1,0 +1,11 @@
+<div class="dropdown">
+  <button id="dLabel" class = "btn btn-default dropdown-label" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <%= current_user.fullname %>
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="dLabel">
+	<li><%= link_to "Profile", current_user %></li>
+	<li><%= link_to "Settings", edit_user_path(current_user) %></li>
+	<li><%= link_to "Sign Out", signout_path %></li>
+  </ul>
+</div>

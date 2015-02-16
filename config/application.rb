@@ -5,6 +5,7 @@ require "active_record/railtie"
 require "action_controller/railtie"
 require "action_mailer/railtie"
 require "sprockets/railtie"
+
 # require "rails/test_unit/railtie"
 
 # Require the gems listed in Gemfile, including any gems
@@ -25,5 +26,12 @@ module Askaway
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
     config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
+    unless Rails.env.test?
+      log_level = String(ENV['LOG_LEVEL'] || "info").upcase
+      config.logger = Logger.new(STDOUT)
+      config.logger.level = Logger.const_get(log_level)
+      config.log_level = log_level
+      config.lograge.enabled = true # see lograge section below...
+    end
   end
 end

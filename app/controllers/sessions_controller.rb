@@ -1,11 +1,14 @@
 class SessionsController < ApplicationController
-
-  # Need to update the create so that it redirects to the page you came from and not root URL.  May be bug with omniauth.  Investigating.
   
   def create
-    user = User.from_omniauth(env['omniauth.auth'])
+    auth = request.env["omniauth.auth"]
+    user = User.where(:id => auth['uid'].to_s).first || User.create_from_omniauth(auth)
     session[:user_id] = user.id
-    redirect_to (request.env['omniauth.origin'])
+    if user.email.blank?
+      redirect_to emailconfirm_path
+    else
+      redirect_to (request.env['omniauth.origin'])
+    end
   end
 
   def destroy

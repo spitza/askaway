@@ -1,10 +1,10 @@
 <%= bootstrap_form_for @response do |f| %>
 	<div class="field">
-		<%= f.text_area :content, placeholder: "Answer this question...", class:"answer-text-area pure-input-1", id:"composer", hide_label: true %>
+		<%= f.text_area :content, class:"answer-text-area", id:"response-composer", hide_label: true %>
 		<%= f.hidden_field :query_id, :value => @query.id %>
 		<%= f.hidden_field :user_id, :value => current_user.id %>
 		<span class="countdown"></span>
 		<br>
-		<%= f.submit "Answer", class: "btn btn-large btn-success ask-button" %>
+		<%= f.submit "Answer", class: "btn btn-large btn-success answer-button", id:"disabled-response" %>
 	</div>
 <% end %>

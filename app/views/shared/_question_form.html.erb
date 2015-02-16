@@ -1,5 +1,5 @@
 <% if current_user && @conversation.user != current_user %>
-	<%= bootstrap_form_for @question do |f| %>
+	<%= bv_form_for @question, id:"woohooo" do |f| %>
 		<%= f.text_area :content, class:"question-input pure-input-1", id: "composer", hide_label: true %>
 		<%= f.hidden_field :conversation_id, :value => @conversation.id %>
 		<%= f.hidden_field :user_id, :value => current_user.id %>
