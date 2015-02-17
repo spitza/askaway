@@ -9,6 +9,13 @@ class ApplicationController < ActionController::Base
    @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
   
+  def logged_in_user
+    unless current_user
+      flash[:danger] = "Please log in."
+      redirect_to root_url
+    end
+  end
+  
   #not using the following portrait function yet.  For resizing profile images.
   
   def portrait(size)

@@ -2,7 +2,13 @@
 <div class = "about-content">
 	<div class ="relative-container">
 		<div class = "sticky-dropdown-area user-dropdown">
-			<%= render 'shared/dropdown' %>
+			<% if current_user %>
+				<%= render 'shared/dropdown' %>
+			<% else %>
+				<%= button_to "/auth/twitter?origin=#{request.original_url}", class: "big-screen-login-button btn btn-primary" do %>
+					sign in with Twitter
+				<% end %>
+			<% end %>
 		</div>
 	</div>
 	<div class ="center">

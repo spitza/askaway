@@ -2,6 +2,7 @@ class QueriesController < ApplicationController
   
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
   respond_to :html, :js
+  before_action :logged_in_user, only: [:create, :destroy, :vote]
   
   def create
     @query = Query.create(query_params)
@@ -37,6 +38,13 @@ class QueriesController < ApplicationController
     respond_to do |format|
       format.js
     end
+  end
+  
+  def destroy
+    @query = Query.friendly.find(params[:id])
+    @askee = @query.askee
+    @query.destroy
+    redirect_to @askee
   end
   
   def show

@@ -28,7 +28,9 @@
 			<% if current_user %>
 				<%= render 'shared/dropdown' %>
 			<% else %>
-				<% yield %>
+				<%= button_to "/auth/twitter?origin=#{request.original_url}", class: "big-screen-login-button btn btn-primary" do %>
+					sign in with Twitter
+				<% end %>
 			<% end %>
 		</div>
 	</div>
@@ -63,7 +65,7 @@
 	<div class = "col-sm-7 profile-questions-area col-sm-offset-5">
 		<% if @numQueries == 0 && @user != current_user %>
 			<div class = "center">
-				<h3 class="no-questions-prompt-so-ask">No questions for <%= @user.fullname %> yet. Be the first to ask! </h3>
+				<h3 class="no-questions-prompt-so-ask">No questions for <%= @user.fullname %> yet.<br>Be the first to ask!</h3>
 				<% if current_user %>
 					<button class="btn btn-primary empty-profile-ask-button" data-toggle="modal" data-target="#askModal">Ask <%= @user.fullname %></button>					
 				<% else %>
@@ -83,15 +85,17 @@
 				</div>
 			</div>
 		<% elsif @numQueries >= 1 %>
-			<h2 class = "q-for-name">
-				Questions For <%= @user.fullname %>
-			</h2>
-			<p class = "filter-links">
-				<%= link_to "all", all_queries_path(:id => @user.id), class:"filter-link", :remote => true %>  &nbsp;&nbsp;|&nbsp;&nbsp;  <%= link_to "answered", just_answers_path(:id => @user.id), class:"filter-link", :remote => true %>
-			</p>
-			<ol class="questions-on-prof" id="queries-container">
-				<%= render partial: "queries/profile_query", collection: @queries, as: :item, id: "query_list" %>
-			</ol>
+			<div class = "max-width-questions-area">
+				<h2 class = "q-for-name">
+					Questions For <%= @user.fullname %>
+				</h2>
+				<p class = "filter-links">
+					<%= link_to "all", all_queries_path(:id => @user.id), class:"filter-link", :remote => true %>  &nbsp;&nbsp;|&nbsp;&nbsp;  <%= link_to "answered", just_answers_path(:id => @user.id), class:"filter-link", :remote => true %>
+				</p>
+				<ol class="questions-on-prof" id="queries-container">
+					<%= render partial: "queries/profile_query", collection: @queries, as: :item, id: "query_list" %>
+				</ol>
+			</div>
 		<% end %>
 	</div>
 </div>

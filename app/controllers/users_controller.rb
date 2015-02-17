@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
-  # Need to update the create so that it redirects to the page you came from and not root URL.  May be bug with omniauth.  Investigating.
+  before_action :logged_in_user, only: [:edit, :update, :confirm, :destroy]
+  before_action :correct_user,   only: [:edit, :update, :confirm, :destroy]
   
   def show
     @user = User.friendly.find(params[:id])
@@ -11,11 +12,7 @@ class UsersController < ApplicationController
   end
   
   def confirm
-    if current_user && current_user.email.blank?
-      @user = current_user
-    else
-      redirect_to root_url
-    end
+    @user = current_user
   end
   
   def update
@@ -44,6 +41,11 @@ class UsersController < ApplicationController
 
     def user_params
       params.require(:user).permit(:email, :fullname, :description)
+    end
+    
+    def correct_user
+      @user = User.friendly.find(params[:id])
+      redirect_to(root_url) unless @user == current_user
     end
   
 end

@@ -1,7 +1,7 @@
 <li>
 	<div id ="query_<%= query.id %>" class = "query-area container-fluid">
 		<div class = "homepage-question-description">
-			<%= link_to query.askerfunction.fullname, query.askerfunction, class: "homepage-question-name-link" %> asked <%= link_to query.askee.fullname, query.askerfunction, class: "homepage-question-name-link" %>:
+			<%= link_to query.askerfunction.fullname, query.askerfunction, class: "homepage-question-name-link" %> asked <%= link_to query.askee.fullname, query.askee, class: "homepage-question-name-link" %>:
 		</div>
 		<div class ="col-xs-2">
 			<% if current_user && !current_user.user_has_upvoted?(query) %>

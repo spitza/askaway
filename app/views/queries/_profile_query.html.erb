@@ -1,4 +1,11 @@
 <li>
+	<div class = "relative">
+		<% if item.askee == current_user || item.askerfunction == current_user %>
+			<div class = "delete-query-area">
+				<%= link_to "remove", item, method: :delete, data: { confirm: "You sure? This will delete the question and answer forever." }, class:"remove-question-link" %>
+			</div>
+		<% end %>
+	</div>
 	<div id ="query_<%= item.id %>" class = "query-area container-fluid">
 		<div class ="col-xs-2 vote-column">
 			<% if current_user && !current_user.user_has_upvoted?(item) %>

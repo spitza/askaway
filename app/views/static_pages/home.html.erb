@@ -1,9 +1,21 @@
 <%= image_tag("path.png", class: "header_img_home") %>
 		<div class = "sticky-dropdown-area user-dropdown-home">
 			<% if current_user %>
-				<%= render 'shared/dropdown' %>
+				<div class="dropdown">
+					  <button id="dLabel" class = "btn btn-primary home-sign-in-big-screen" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					    <%= current_user.fullname %>
+					    <span class="caret"></span>
+					  </button>
+					  <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="dLabel">
+						<li><%= link_to "Profile", current_user %></li>
+						<li><%= link_to "Settings", edit_user_path(current_user) %></li>
+						<li><%= link_to "Sign Out", signout_path %></li>
+					  </ul>
+				</div>
 			<% else %>
-				<%= link_to "Sign in with Twitter", "/auth/twitter?origin=#{request.original_url}", class: "home-sign-in-link" %>
+				<%= button_to "/auth/twitter?origin=#{request.original_url}", class: "btn btn-primary home-sign-in-big-screen" do %>
+					sign in with Twitter
+				<% end %>
 			<% end %>
 		</div>
 <div class = "home-content center">
@@ -16,4 +28,9 @@
 		<%= render @queries %>
 	</ol>
 	<%= will_paginate @queries %>
+	<br>
+	<br>
+	<br>
+	<br>
+	<%= link_to "About", about_path, class:"about-link" %>
 </div>
