@@ -1,6 +1,6 @@
 class StaticPagesController < ApplicationController
   def home
-    @conversations = Conversation.featured.paginate(page: params[:page], :per_page => 15)
+    @queries = Query.popular.paginate(page: params[:page], :per_page => 10)
   end
 
   def help

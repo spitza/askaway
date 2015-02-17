@@ -30,7 +30,7 @@
 					<%= item.linked_content.html_safe %>
 				</div>
 				<div class="q-a-metadata">
-					<%= link_to item.askerfunction.name, item.askerfunction, class: "subtle-metadata" %> <span class="timestamp"> asked <%= link_to time_ago_in_words(item.created_at), item, class: "subtle-metadata" %> ago. </span>
+					<%= link_to item.askerfunction.fullname, item.askerfunction, class: "subtle-metadata" %> <span class="timestamp"> asked <%= link_to time_ago_in_words(item.created_at), item, class: "subtle-metadata" %> ago. </span>
 				</div>
 			</div>
 			<% if item.response %>

@@ -1,18 +1,19 @@
-<ul class = "big-screen-nav">
-	<% if current_user %>
-	  	<li><%= link_to "Sign Out", signout_path %></li>
-		<li><%= link_to "Host a Conversation", create_path %></li>
-	<% else %>
-		<li><%= link_to "Sign In with Twitter", "/auth/twitter?origin=#{request.original_url}" %></li>
-	<% end %>
-</ul>
-<%= image_tag("backup-banner.png", class: "header_img_home") %>
+<%= image_tag("path.png", class: "header_img_home") %>
+		<div class = "sticky-dropdown-area user-dropdown-home">
+			<% if current_user %>
+				<%= render 'shared/dropdown' %>
+			<% else %>
+				<%= link_to "Sign in with Twitter", "/auth/twitter?origin=#{request.original_url}", class: "home-sign-in-link" %>
+			<% end %>
+		</div>
 <div class = "home-content center">
-	<p class="askaway-logo-home">AskAway</p>
-	<p class="slogan">The World's Town Hall</p>
-	<h2 class="trending-convos">Trending Conversations</h2>
-	<ol class="conversations">
-		<%= render @conversations %>
+	<%= image_tag("askaway-logo.png", class:"home-screen-logo-small") %>
+	<%= image_tag("askaway-logo-white.png", class:"home-screen-logo-big") %>
+	<p class="slogan">the simplest way to Q&A</p>
+	
+	<h3 class="trending-questions">Top Questions</h3>
+	<ol class="questions-on-homepage">
+		<%= render @queries %>
 	</ol>
-	<%= will_paginate @conversations %>
+	<%= will_paginate @queries %>
 </div>

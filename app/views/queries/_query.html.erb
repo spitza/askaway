@@ -1,0 +1,44 @@
+<li>
+	<div id ="query_<%= query.id %>" class = "query-area container-fluid">
+		<div class = "homepage-question-description">
+			<%= link_to query.askerfunction.fullname, query.askerfunction, class: "homepage-question-name-link" %> asked <%= link_to query.askee.fullname, query.askerfunction, class: "homepage-question-name-link" %>:
+		</div>
+		<div class ="col-xs-2">
+			<% if current_user && !current_user.user_has_upvoted?(query) %>
+				<%= button_to vote_query_path(query, type: "up"), method: "post", class:"btn home-vote vote-button", remote: true do %>
+					<div class="center">
+						<%= image_tag("up-arrow.png", class:"up-arrow")%>
+					</div>
+					<span class = "votecount"><%= query.reputation_for(:votes).to_i %></span>
+				<% end %>
+			<% elsif current_user && current_user.user_has_upvoted?(query) %>
+				<%= button_to vote_query_path(query, type: "down"), method: "post", class:"btn pressed home-vote vote-button", remote: true do %>
+					<div class="center">
+						<span class="glyphicon glyphicon-ok"></span>
+					</div>
+					<span class = "votecount"><%= query.reputation_for(:votes).to_i %></span>
+				<% end %>
+			<% elsif !current_user %>
+				<%= link_to "#", class:"btn home-vote vote-button logged-out-popover", tabindex:"0", :data => {trigger:"manual", content:"#{link_to "Sign In with Twitter", "/auth/twitter?origin=#{request.original_url}"} to vote."} do %>
+					<div class="center">
+						<%= image_tag("up-arrow.png", class:"up-arrow")%>
+					</div>
+					<span class="votecount"><%= query.reputation_for(:votes).to_i %></span>
+				<% end %>
+			<% end %>
+		</div>
+		<div class = "col-xs-10 content-column">
+			<div class = "question-area">
+				<div class = "q-and-a-content home-questions">
+					<%= query.linked_content.html_safe %>
+				</div>
+				<div class="q-a-metadata">
+					<span class="timestamp"> asked <%= link_to time_ago_in_words(query.created_at), query, class: "subtle-metadata" %> ago. </span>
+				</div>
+			</div>
+			<% if query.response %>
+				<%= render query.response %>
+			<% end %>
+		</div>
+	</div>
+</li>

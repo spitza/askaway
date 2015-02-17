@@ -117,82 +117,143 @@ $nice-grey: #494949;
 /* home page *///////////////////////////////////////////////////
 
 .header_img_home {
-	width: 100%;
-	height:10em;
-	z-index: -1;
-	-webkit-filter: grayscale; /*sepia, hue-rotate, invert....*/
-	-webkit-filter: brightness(80%);
-	@include breakpoint(tablet) {
+	display:none;
+	@include breakpoint(inbetween) {
+		display:block;
 		height:auto;
+		width: 100%;
+		z-index: -1;
 	}
 }
 
-.askaway-logo-home {
-	font-size:3em;
-	color:white;
-	font-family: 'oleo script';
-	text-shadow: 0px 1px 1px #000;
-	padding-top:.2em;
-	@include breakpoint(tablet) {
-		font-size:5em;
-		padding-top:0;
-		margin-bottom:.1em;
-	}
+.user-dropdown-home {
+	position: absolute;
+	right: 2em;
+	top:2em;
+	z-index:1;
+}
+
+.home-screen-logo-small {
+	width:260px;
+	margin:6em 0 .2em;
 	@include breakpoint(inbetween) {
-		font-size:6em;
-		margin-bottom:0;
+		display:none;
+	}
+}
+
+.home-sign-in-link {
+	color:white;
+}
+
+.home-sign-in-link:hover {
+	color:white;
+}
+
+.home-screen-logo-big {
+	display:none;
+	@include breakpoint(inbetween) {
+		display:block;
+		width:320px;
+		margin:11em auto .3em;
+	}
+	@include breakpoint(desktop) {
+		margin-top:8em;
 	}
 }
 
 .slogan {
 	font-family: 'Open Sans', sans-serif;
-	font-size:1.2em;
+	font-size:.9em;
 	line-height:1.3em;
 	padding:0 1em 0;
-	margin: 0 0 2em 0;
+	margin: 0 0 4.5em 0;
 	color:$nice-grey;
+	display:block;
 	@include breakpoint(inbetween) {
 		color:white;
-		text-shadow: 0px 1px 1px #000;
-		position:relative;
-		bottom:1em;
+		font-size:1.1em;
 	}
 }
 
-.trending-convos {
+.homepage-question-description {
 	font-family: 'Open Sans', sans-serif;
-	font-weight:700;
+	font-size:1em;
+	line-height:1.3em;
+	margin: 0 0 1.4em .2em;
+	color:$nice-grey;
+	display:block;
+	@include breakpoint(tablet) {
+		margin-left:1.9em;
+	}
+	@include breakpoint(inbetween) {
+		margin-left:2.7em;
+	}
+}
+
+.homepage-question-name-link {
+	color:$nice-grey;
+}
+
+.homepage-question-name-link:hover {
+	color:$nice-grey;
+}
+
+.trending-questions {
+	font-family: 'Open Sans', sans-serif;
 	font-size:1.5em;
 	color:$nice-grey;
+	display:block;
+	margin-bottom:0em;
 	@include breakpoint(tablet) {
 		font-size:1.6em;
 	}
 	@include breakpoint(inbetween) {
 		font-size:2em;
-		margin-top:3.5em;
+		margin-top:4em;
 	}
 	@include breakpoint(desktop) {
-		font-size:2em;
-		margin-top:5em;
+		margin-top:6em;
 	}
+}
+
+.questions-on-homepage {
+  list-style: none;
+  font-family: Georgia, Serif;
+  padding: 0 1em;
+  text-align:left;
+  li {
+	  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+	  padding:1.5em 0 1.5em;
+	  @include breakpoint(inbetween) {
+		  padding:2em 0 2em;
+	  }
+  }
+}
+
+.home-vote {
+	position:relative;
+	right:1.5em;
+	@include breakpoint(tablet) {
+		right:0em;
+	}
+	@include breakpoint(inbetween) {
+		left:.8em;
+	}
+}
+
+.question-list-link:hover {
+	text-decoration:none;
 }
 
 .home-content {
 	margin: 0 auto 2em;
 	padding: 0 .5em;
-	max-width: 800px;
+	max-width: 650px;
 	font-family: Georgia, Serif;
-	position:relative;
-	bottom:10em;
 	color:$nice-grey;
-	@include breakpoint(tablet) {
-		bottom:13.3em;
-	}
 	@include breakpoint(inbetween) {
-		bottom:21em;
-	}
-	@include breakpoint(desktop) {
-		bottom:25em;
+		position:relative;
+		bottom:22em;
 	}
 }
 
@@ -202,18 +263,8 @@ $nice-grey: #494949;
 	color:orange;
 }
 
-.conversation-list-prompt {
-	font-size:1.2em;
-	line-height:1.4em;
-	word-wrap:break-word;
-	margin-bottom:0;
+.home-questions {
 	color:$nice-grey;
-	@include breakpoint(tablet) {
-		font-size:1.3em;
-	}
-	@include breakpoint(inbetween) {
-		font-size:1.5em;
-	}
 }
 
 .conversation-list-link:hover {
@@ -961,7 +1012,7 @@ aside {
 
 .dropdown-label:hover {
 	border:1px solid $nice-grey;
-	background:none;
+	background:white;
 }
 
 .dropdown-menu {
@@ -1052,10 +1103,9 @@ aside {
 
 .q-for-name {
 	font-family: 'Open Sans', sans-serif;
-	font-weight:700;
 	font-size:1.2em;
 	position:relative;
-	left:.6em;
+	left:.5em;
 	@include breakpoint(inbetween) {
 		font-size:1.5em;
 		margin-bottom:1.3em;
@@ -1211,7 +1261,6 @@ aside {
 
 .q-for-name-query-page {
 	font-family: 'Open Sans', sans-serif;
-	font-weight:700;
 	font-size:1.2em;
 	position:relative;
 	left:.6em;
