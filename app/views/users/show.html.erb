@@ -65,7 +65,7 @@
 	<div class = "col-sm-7 profile-questions-area col-sm-offset-5">
 		<% if @numQueries == 0 && @user != current_user %>
 			<div class = "center">
-				<h3 class="no-questions-prompt-so-ask">No questions for <%= @user.fullname %> yet.<br>Be the first to ask!</h3>
+				<h3 class="no-questions-prompt-so-ask">No questions for <%= @user.fullname %> yet. Be the first to ask!</h3>
 				<% if current_user %>
 					<button class="btn btn-primary empty-profile-ask-button" data-toggle="modal" data-target="#askModal">Ask <%= @user.fullname %></button>					
 				<% else %>
