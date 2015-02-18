@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   before_action :logged_in_user, only: [:edit, :update, :confirm, :destroy]
-  before_action :correct_user,   only: [:edit, :update, :confirm, :destroy]
+  before_action :correct_user,   only: [:edit, :update, :destroy]
   
   def show
     @user = User.friendly.find(params[:id])

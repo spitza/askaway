@@ -48,7 +48,7 @@
 		<%= image_tag(@user.portrait("original"), class:"prof-pic")%>
 		<p class = "user-description">
 			<span class = "full-name-prof"><%= @user.fullname %> </span> | <%= link_to "@#{@user.name}", "http://www.twitter.com/#{@user.name}", target: "_blank" %>
-			<% if !@description.empty? %> | <%= @description %> <% end %>
+			<% if !@description.blank? %> | <%= @description %> <% end %>
 		</p>
 		<div class="big-screen-ask-area">
 			<% if @numQueries != 0 %>
