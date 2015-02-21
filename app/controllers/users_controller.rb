@@ -13,13 +13,16 @@ class UsersController < ApplicationController
   
   def confirm
     @user = current_user
+    @origin = params[:origin]
   end
   
   def update
     @user = User.friendly.find(params[:id])
+    @origin = params[:origin]
     if @user.update_attributes(user_params)
-      flash[:success] = "Profile updated"
-      redirect_to @user
+      # the following params[:origin] isn't from @origin above, 
+      # it's a new one passed through the email confirm form (that was gotten from the @origin above)
+      redirect_to (params[:origin])
     else
       render 'edit'
     end

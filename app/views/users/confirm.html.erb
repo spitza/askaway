@@ -9,6 +9,7 @@
 	<div class ="confirm-form-area">
 		<%= bootstrap_form_for(@user, id:"userEmailForm", label_errors: true) do |f| %>
 			<%= f.email_field :email, hide_label: true, required:true, id:"enter-email", :value => "" %>
+			<%= hidden_field_tag :origin, @origin %>
 			<br>
 			<%= f.submit "Finish", class: "finish-btn btn btn-large btn-primary", id:"email-submit" %>
 		<% end %>
