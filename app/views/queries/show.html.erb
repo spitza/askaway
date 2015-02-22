@@ -20,7 +20,7 @@
 			<h3 class="q-for-name-query-page">
 				<%= link_to @asker.fullname, @asker, class:"subtle-link" %> asked <%= link_to @askee.fullname, @askee, class:"subtle-link" %>:
 			</h3>
-			<div class ="col-xs-2 vote-column">
+			<div class ="col-xs-2 col-sm-1 vote-column">
 				<% if current_user && !current_user.user_has_upvoted?(@query) %>
 					<%= button_to vote_query_path(@query, type: "up"), method: "post", class:"btn vote-button", remote: true do %>
 						<div class="center">
@@ -44,7 +44,7 @@
 					<% end %>
 				<% end %>
 			</div>
-			<div class = "col-xs-10 content-column">
+			<div class = "col-xs-10 col-sm-11 content-column">
 				<div class = "q-and-a-content">
 					<%= @query_with_links %>
 				</div>

@@ -44,7 +44,7 @@ $nice-grey: #494949;
 	max-width: 600px;
 	position:relative;
 	color:$nice-grey;
-	font-family: Georgia, Serif;
+	font-family: 'Merriweather', serif;
 	@include breakpoint(inbetween) {
 		padding: 0 0;
 	}
@@ -97,7 +97,7 @@ $nice-grey: #494949;
 	margin: 4.1em auto 2em;
 	padding: 0 1em;
 	max-width: 800px;
-	font-family: Georgia, Serif;
+	font-family: 'Merriweather', serif;
 	color:$nice-grey;
 	@include breakpoint(inbetween) {
 		margin-top:3em;
@@ -142,19 +142,6 @@ $nice-grey: #494949;
 	background:transparent;
 	border:1px solid $nice-grey;
 	color:$nice-grey;
-}
-
-
-.small-screen-header {
-	display:block;
-	font-family: 'oleo script';
-	text-align:center;
-	background-color:rgb(26,26,29);
-	color:white;
-	height:3.4em;
-	@include breakpoint(desktop) {
-		display:none;
-	}
 }
 
 
@@ -265,7 +252,7 @@ $nice-grey: #494949;
 
 .questions-on-homepage {
   list-style: none;
-  font-family: Georgia, Serif;
+  font-family: 'Cardo', serif;
   padding: 0 1em;
   text-align:left;
   li {
@@ -296,7 +283,7 @@ $nice-grey: #494949;
 	margin: 0 auto 2em;
 	padding: 0 .5em;
 	max-width: 650px;
-	font-family: Georgia, Serif;
+	font-family: 'Cardo', serif;
 	color:$nice-grey;
 	@include breakpoint(inbetween) {
 		position:relative;
@@ -320,7 +307,7 @@ $nice-grey: #494949;
 
 .conversations {
   list-style: none;
-  font-family: Georgia, Serif;
+  font-family: 'Merriweather', serif;
   padding: 0 0 0 0px;
   text-align:left;
   li {
@@ -527,7 +514,7 @@ p {
 
 .questions {
 	list-style: none;
-	font-family: Georgia, Serif;
+	font-family: 'Merriweather', serif;
 	padding: 0 0 0 0;
 	margin:0 .5em;
 	li {
@@ -581,7 +568,7 @@ aside {
 	margin: 0 auto 2em;
 	padding: 0 .5em;
 	max-width: 800px;
-	font-family: Georgia, Serif;
+	font-family: 'Merriweather', serif;
 	position:relative;
 	bottom:16em;
 }
@@ -613,7 +600,7 @@ aside {
 	margin: 13em auto 2em;
 	padding: 0 .5em;
 	max-width: 800px;
-	font-family: Georgia, Serif;
+	font-family: 'Merriweather', serif;
 	position:relative;
 	bottom:17em;
 	color:$nice-grey;
@@ -852,9 +839,9 @@ aside {
 	font-size:1.1em;
 	line-height:1.5em;
 	padding-bottom: .1em;
-	font-family: Georgia, Serif;
+	font-family: 'Merriweather', serif;
 	@include breakpoint(tablet) {
-		font-size:1.4em;
+		font-size:1.2em;
 	}
 }
 
@@ -979,7 +966,7 @@ aside {
 	margin: 4.1em auto 2em;
 	padding: 0 1em;
 	max-width: 800px;
-	font-family: Georgia, Serif;
+	font-family: 'Merriweather', serif;
 	color:$nice-grey;
 	@include breakpoint(inbetween) {
 		margin-top:4em;
@@ -1008,12 +995,12 @@ aside {
 	font-size:.8em;
 	font-family: 'Open Sans', sans-serif;
 	position:relative;
-	left:.9em;
+	left:1.1em;
 	@include breakpoint(tablet) {
 		font-size:.9em;
 	}
 	@include breakpoint(inbetween) {
-		left:1em;
+		left:0;
 	}
 }
 
@@ -1026,8 +1013,6 @@ aside {
 }
 
 .big-screen-ask-area {
-	position:relative;
-	right:1em;
 }
 
 .relative-container {
@@ -1073,15 +1058,15 @@ aside {
 
 
 .outer-ask-button {
-	font-family: Georgia, Serif;
-	font-size:1.3em;
-	font-style:italic;
+	font-family: 'Open Sans', sans-serif;
+	font-size:1.1em;
 	background:none;
 	color:$nice-grey;
+	border:1px solid $nice-grey;
 }
 
 .outer-ask-button:hover {
-	border:1px solid $nice-grey;
+	background:rgba(11,188,255,0.1);
 }
 
 .outer-ask-button:active {
@@ -1136,7 +1121,7 @@ aside {
 .user-description {
 	font-style:italic;
 	line-height:1.4;
-	font-size:1em;
+	font-size:.9em;
 	margin:1em 0 2.4em;
 	color:$nice-grey;
 	@include breakpoint(inbetween) {
@@ -1152,11 +1137,12 @@ aside {
 	font-family: 'Open Sans', sans-serif;
 	font-size:1.2em;
 	position:relative;
-	left:.5em;
+	left:.7em;
 	@include breakpoint(inbetween) {
 		font-size:1.5em;
 		margin-bottom:1.3em;
 		margin-top:.2em;
+		left:0;
 	}
 }
 
@@ -1301,10 +1287,8 @@ aside {
 	display:inline-block;
 	position:relative;
 	bottom:.1em;
-	right:5px;
-	@include breakpoint(desktop) {
-		margin-right:.8em;
-		
+	@include breakpoint(inbetween) {
+		right:15px;
 	}
 }
 
@@ -1333,7 +1317,7 @@ aside {
 	margin: 2.2em auto 2em;
 	padding: 0 1em;
 	max-width: 800px;
-	font-family: Georgia, Serif;
+	font-family: 'Merriweather', serif;
 	color:$nice-grey;
 	@include breakpoint(inbetween) {
 		margin-top:3em;
@@ -1352,6 +1336,7 @@ aside {
 	}
 	@include breakpoint(inbetween) {
 		margin:2em 0 2em;
+		left:0em;
 	}
 }
 

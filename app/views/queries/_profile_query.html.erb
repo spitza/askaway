@@ -7,7 +7,7 @@
 		<% end %>
 	</div>
 	<div id ="query_<%= item.id %>" class = "query-area container-fluid">
-		<div class ="col-xs-2 vote-column">
+		<div class ="col-xs-2 col-sm-1 vote-column">
 			<% if current_user && !current_user.user_has_upvoted?(item) %>
 				<%= button_to vote_query_path(item, type: "up"), method: "post", class:"btn vote-button", remote: true do %>
 					<div class="center">
@@ -31,7 +31,7 @@
 				<% end %>
 			<% end %>
 		</div>
-		<div class = "col-xs-10 content-column">
+		<div class = "col-xs-10 col-sm-11 content-column">
 			<div class = "question-area">
 				<div class = "q-and-a-content">
 					<%= item.linked_content.html_safe %>
