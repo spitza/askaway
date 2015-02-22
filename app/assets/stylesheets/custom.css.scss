@@ -44,7 +44,7 @@ $nice-grey: #494949;
 	max-width: 600px;
 	position:relative;
 	color:$nice-grey;
-	font-family: 'Merriweather', Georgia, Times, serif;
+	font-family: 'Merriweather', serif;
 	@include breakpoint(inbetween) {
 		padding: 0 0;
 	}
@@ -97,7 +97,7 @@ $nice-grey: #494949;
 	margin: 4.1em auto 2em;
 	padding: 0 1em;
 	max-width: 800px;
-	font-family: 'Merriweather', Georgia, Times, serif;
+	font-family: 'Merriweather', serif;
 	color:$nice-grey;
 	@include breakpoint(inbetween) {
 		margin-top:3em;
@@ -283,7 +283,7 @@ $nice-grey: #494949;
 	margin: 0 auto 2em;
 	padding: 0 .5em;
 	max-width: 650px;
-	font-family: 'Merriweather', Georgia, Times, serif;
+	font-family: 'Merriweather', serif;
 	color:$nice-grey;
 	@include breakpoint(inbetween) {
 		position:relative;
@@ -308,7 +308,7 @@ $nice-grey: #494949;
 
 .conversations {
   list-style: none;
-  font-family: 'Merriweather', Georgia, Times, serif;
+  font-family: 'Merriweather', serif;
   padding: 0 0 0 0px;
   text-align:left;
   li {
@@ -515,7 +515,7 @@ p {
 
 .questions {
 	list-style: none;
-	font-family: 'Merriweather', Georgia, Times, serif;
+	font-family: 'Merriweather', serif;
 	padding: 0 0 0 0;
 	margin:0 .5em;
 	li {
@@ -569,7 +569,7 @@ aside {
 	margin: 0 auto 2em;
 	padding: 0 .5em;
 	max-width: 800px;
-	font-family: 'Merriweather', Georgia, Times, serif;
+	font-family: 'Merriweather', serif;
 	position:relative;
 	bottom:16em;
 }
@@ -601,7 +601,7 @@ aside {
 	margin: 13em auto 2em;
 	padding: 0 .5em;
 	max-width: 800px;
-	font-family: 'Merriweather', Georgia, Times, serif;
+	font-family: 'Merriweather', serif;
 	position:relative;
 	bottom:17em;
 	color:$nice-grey;
@@ -840,7 +840,7 @@ aside {
 	font-size:1.1em;
 	line-height:1.5em;
 	padding-bottom: .1em;
-	font-family: 'Merriweather', Georgia, Times, serif;
+	font-family: 'Merriweather', serif;
 	@include breakpoint(tablet) {
 		font-size:1.2em;
 	}
@@ -967,7 +967,7 @@ aside {
 	margin: 4.1em auto 2em;
 	padding: 0 1em;
 	max-width: 800px;
-	font-family: 'Merriweather', Georgia, Times, serif;
+	font-family: 'Merriweather', serif;
 	color:$nice-grey;
 	@include breakpoint(inbetween) {
 		margin-top:4em;
@@ -1318,7 +1318,7 @@ aside {
 	margin: 2.2em auto 2em;
 	padding: 0 1em;
 	max-width: 800px;
-	font-family: 'Merriweather', Georgia, Times, serif;
+	font-family: 'Merriweather', serif;
 	color:$nice-grey;
 	@include breakpoint(inbetween) {
 		margin-top:3em;
