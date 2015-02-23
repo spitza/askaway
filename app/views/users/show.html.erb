@@ -34,13 +34,13 @@
 			<% end %>
 		</div>
 	</div>
-	<div class = "small-image-and-description">
+	<div class = "small-image-container">
 		<%= image_tag(@user.portrait("original"), class:"prof-pic")%>
-		<p class = "user-description">
-			<span class = "full-name-prof"><%= @user.fullname %> </span> | <%= link_to "@#{@user.name}", "http://www.twitter.com/#{@user.name}", target: "_blank" %>
-			<% if !@description.empty? %> | <%= @description %> <% end %>
-		</p>
 	</div>
+	<p class = "user-description-small center">
+		<span class = "full-name-prof"><%= @user.fullname %> </span> | <%= link_to "@#{@user.name}", "http://www.twitter.com/#{@user.name}", target: "_blank" %>
+		<% if !@description.empty? %> | <%= @description %> <% end %>
+	</p>
 	<div class = "fixed-image-and-description">
 		<div class = "big-screen-logo-area">
 			<%= link_to image_tag("askaway-logo.png", class:"big-screen-logo"), root_path %>

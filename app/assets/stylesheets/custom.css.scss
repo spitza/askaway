@@ -674,8 +674,6 @@ aside {
 	}
 }
 
-
-
 .small-screen-logo {
 	width:100px;
 	position:relative;
@@ -1108,9 +1106,6 @@ aside {
 	margin:auto;
 	width:100%;
 	border-radius: 4px;
-	@include breakpoint(tablet) {
-		margin-top:2em;
-	}
 	@include breakpoint(inbetween) {
 		margin-top:4em;
 	}
@@ -1137,6 +1132,18 @@ aside {
 	color:$nice-grey;
 	@include breakpoint(inbetween) {
 		line-height:1.5;
+	}
+}
+
+.user-description-small {
+	font-style:italic;
+	line-height:1.4;
+	font-size:.9em;
+	margin:1em auto 4em;
+	max-width:30em;
+	color:$nice-grey;
+	@include breakpoint(inbetween) {
+		display:none;
 	}
 }
 
@@ -1226,9 +1233,13 @@ aside {
 	}
 }
 
-.small-image-and-description {
-	max-width:20em;
+.small-image-container {
+	max-width:8em;
 	margin:auto;
+	padding-top:2em;
+	@include breakpoint(tablet) {
+		max-width:12em;
+	}
 	@include breakpoint(inbetween) {
 		display:none;
 	}

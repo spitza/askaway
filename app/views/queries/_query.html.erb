@@ -7,7 +7,7 @@
 			<% if current_user && !current_user.user_has_upvoted?(query) %>
 				<%= button_to vote_query_path(query, type: "up"), method: "post", class:"btn home-vote vote-button", remote: true do %>
 					<div class="center">
-						<%= image_tag("up-arrow.png", class:"up-arrow")%>
+						<span class="glyphicon glyphicon-chevron-up"></span>
 					</div>
 					<span class = "votecount"><%= query.reputation_for(:votes).to_i %></span>
 				<% end %>
@@ -21,7 +21,7 @@
 			<% elsif !current_user %>
 				<%= link_to "#", class:"btn home-vote vote-button logged-out-popover", tabindex:"0", :data => {trigger:"manual", content:"#{link_to "Sign In with Twitter", "/auth/twitter?origin=#{request.original_url}"} to vote."} do %>
 					<div class="center">
-						<%= image_tag("up-arrow.png", class:"up-arrow")%>
+						<span class="glyphicon glyphicon-chevron-up"></span>
 					</div>
 					<span class="votecount"><%= query.reputation_for(:votes).to_i %></span>
 				<% end %>
