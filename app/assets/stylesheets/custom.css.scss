@@ -44,10 +44,20 @@ $nice-grey: #494949;
 	max-width: 600px;
 	position:relative;
 	color:$nice-grey;
-	font-family: 'Merriweather', serif;
+	font-size:1.1em;
 	@include breakpoint(inbetween) {
 		padding: 0 0;
 	}
+}
+
+.about-title {
+	font-family: 'Merriweather', serif;
+	font-size:1.2em;
+}
+
+.about-text {
+	font-family: 'Merriweather', serif;
+	font-size:1em;
 }
 
 .about-link {
@@ -1044,7 +1054,7 @@ aside {
 }
 
 .dropdown-label:hover {
-	border:1px solid $nice-grey;
+	border:1px solid rgba(59,59,59,.4);;
 	background:white;
 }
 
@@ -1063,11 +1073,11 @@ aside {
 	font-size:1.1em;
 	background:none;
 	color:$nice-grey;
-	border:1px solid $nice-grey;
+	border:1px solid rgba(59,59,59,.4);
 }
 
 .outer-ask-button:hover {
-	background:rgba(11,188,255,0.1);
+	background:rgba(59,59,59,0.07);
 }
 
 .outer-ask-button:active {
